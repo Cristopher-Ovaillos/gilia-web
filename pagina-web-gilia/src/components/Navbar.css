@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'Anurati-gilia';
+    src: url('../Assets/Fonts/Anurati.otf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.Menu-Container {
+    margin-top: 1%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    background-color: var(--background-color);
+}
+
+.Menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    width: 100%;
+    border: none;
+}
+
+.logo-item {
+    display: flex;
+    align-items: center;
+    font-family: 'Anurati-gilia', cursive;
+    font-size: 300%;
+    letter-spacing: 10px;
+    margin-right: auto; 
+    margin-left: 3%;
+}
+
+.Menu-item{
+    margin-right: 4% !important;
+    color: var(--primary-color) !important;
+}
+
+.menu-button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menu-button {
+        display: block;
+    }
+
+    .Menu {
+        display: none; 
+    }
+}
