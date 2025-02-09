@@ -1,53 +1,92 @@
 @font-face {
-    font-family: 'Anurati-gilia';
-    src: url('../Assets/Fonts/Anurati.otf') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Anurati-gilia';
+  src: url('../Assets/Fonts/Anurati.otf') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 .Menu-Container {
-    margin-top: 1%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0 20px;
-    background-color: var(--background-color);
+  margin-top: 1%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
+  background-color: var(--background-color);
 }
 
 .Menu {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; 
-    width: 100%;
-    border: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  border: none;
 }
 
 .logo-item {
-    display: flex;
-    align-items: center;
-    font-family: 'Anurati-gilia', cursive;
-    font-size: 300%;
-    letter-spacing: 10px;
-    margin-right: auto; 
-    margin-left: 3%;
+  display: flex;
+  align-items: center;
+  font-family: 'Anurati-gilia', cursive;
+  font-size: 300%;
+  letter-spacing: 10px;
+  margin-right: auto;
+  margin-left: 3%;
 }
 
-.Menu-item{
-    margin-right: 4% !important;
-    color: var(--primary-color) !important;
+.Menu-item {
+  margin-right: 4% !important;
+  color: var(--primary-color) !important;
 }
 
 .menu-button {
-    display: none;
+  display: none;
 }
 
-@media (max-width: 768px) {
-    .menu-button {
-        display: block;
-    }
+.menu-icon {
+  color: var(--primary-color);
+}
 
-    .Menu {
-        display: none; 
-    }
+.theme-toggle-container {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle-button {
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+
+.ant-drawer-header span {
+  color: var(--primary-color);
+}
+
+
+@media (max-width: 768px) {
+  .menu-button {
+    display: block;
+    margin-right: 20px;
+  }
+
+  .Menu {
+    display: none;
+  }
+
+  .theme-toggle-container {
+    display: none;
+  }
+
+  /*biblioteca ant cambiar la cruz,etc*/
+  .ant-drawer-close {
+    color: var(--primary-color);
+  }
+
+  .ant-drawer-header {
+    background-color: var(--background-color);
+  }
+
+  .ant-drawer-body {
+    background-color: var(--background-color);
+  }
 }

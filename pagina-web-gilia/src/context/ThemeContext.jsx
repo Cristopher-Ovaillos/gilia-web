@@ -3,9 +3,8 @@ import { lightTheme, darkTheme } from '../Assets/styles/themes';
 
 const ThemeContext = createContext();
 
-// Proveedor de contexto
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(lightTheme); // Estado para el tema
+  const [theme, setTheme] = useState(lightTheme);
 
   const toggleTheme = () => {
     setTheme(theme === lightTheme ? darkTheme : lightTheme);
