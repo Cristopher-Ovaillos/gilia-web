@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import { useTheme } from './context/ThemeContext'; 
-import Section from './components/Section';  // Importamos el componente Section
+import AboutUs from "./components/About-us";
+
 
 function App() {
   const { theme } = useTheme();
@@ -12,20 +13,13 @@ function App() {
     document.body.style.overflowX = 'hidden';
   }, [theme]);
 
+
   const renderSectionContent = () => {
     switch (activeSection) {
-      case "home":
-        return <Section title="Inicio">Contenido de la página de inicio</Section>;
-      case "goal":
-        return <Section title="Objetivos">Contenido de los objetivos</Section>;
-      case "publications":
-        return <Section title="Publicaciones">Contenido de publicaciones</Section>;
-      case "projects":
-        return <Section title="Proyectos">Contenido de proyectos</Section>;
-      case "about-us":
-        return <Section title="¿Quiénes Somos?">Contenido de la sección ¿Quiénes Somos?</Section>;
-      default:
-        return <Section title="Error">Contenido no disponible</Section>;
+     
+      case 'about-us':
+        return <AboutUs/>; ;
+   
     }
   };
 
@@ -33,7 +27,7 @@ function App() {
     <div>
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
       <div className="content">
-        {renderSectionContent()}
+        {renderSectionContent()} {/* Esto renderiza el contenido de la sección activa */}
       </div>
     </div>
   );

@@ -4,7 +4,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
 .Menu-Container {
   margin-top: 1%;
   display: flex;
@@ -41,10 +40,11 @@
 .menu-button {
   display: none;
 }
-
+/*button menu color dark/light mode */
 .menu-icon {
   color: var(--primary-color);
 }
+
 
 .theme-toggle-container {
   margin-right: 20px;
@@ -57,13 +57,14 @@
   color: var(--primary-color);
 }
 
-
+/*este es para la cruz y el logo de dark/light mode*/
 .ant-drawer-header span {
   color: var(--primary-color);
 }
 
 
 @media (max-width: 768px) {
+ 
   .menu-button {
     display: block;
     margin-right: 20px;
@@ -77,16 +78,4 @@
     display: none;
   }
 
-  /*biblioteca ant cambiar la cruz,etc*/
-  .ant-drawer-close {
-    color: var(--primary-color);
-  }
-
-  .ant-drawer-header {
-    background-color: var(--background-color);
-  }
-
-  .ant-drawer-body {
-    background-color: var(--background-color);
-  }
 }
