@@ -4,12 +4,12 @@ import { MenuOutlined, BulbOutlined, MoonOutlined } from "@ant-design/icons";
 import { useTheme } from "../context/ThemeContext";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ activeSection, setActiveSection }) => {
   const [visible, setVisible] = useState(false);
   const [esCelular, setEsCelular] = useState(window.innerWidth < 768);
   const { theme, toggleTheme } = useTheme();
 
-  // Detectar el cambio de tamaño de la pantalla
+  // Detectar el cambio de tamanio de la pantalla
   useEffect(() => {
     const handleResize = () => {
       setEsCelular(window.innerWidth < 768);
@@ -55,7 +55,12 @@ const Navbar = () => {
           open={visible}
           style={{ backgroundColor: theme.token.backgroundColor }}
         >
-          <Menu mode="vertical" onClick={() => setVisible(false)} style={{ backgroundColor: theme.token.backgroundColor }}>
+          <Menu 
+            mode="vertical" 
+            onClick={(e) => setActiveSection(e.key)} 
+            selectedKeys={[activeSection]} 
+            style={{ backgroundColor: theme.token.backgroundColor }}
+          >
             <Menu.Item className="Menu-item" key="home">Inicio</Menu.Item>
             <Menu.Item className="Menu-item" key="about">Objetivos</Menu.Item>
             <Menu.Item className="Menu-item" key="publications">Publicaciones</Menu.Item>
@@ -66,9 +71,15 @@ const Navbar = () => {
       </>
       ) : (
         <>
-          <Menu className="Menu" mode="horizontal" defaultSelectedKeys={["home"]} style={{ backgroundColor: theme.token.backgroundColor }}>
+          <Menu 
+            className="Menu" 
+            mode="horizontal" 
+            selectedKeys={[activeSection]} 
+            onClick={(e) => setActiveSection(e.key)} 
+            style={{ backgroundColor: theme.token.backgroundColor }}
+          >
             <Menu.Item className="Menu-item" key="home">Inicio</Menu.Item>
-            <Menu.Item className="Menu-item" key="about">Objetivos</Menu.Item>
+            <Menu.Item className="Menu-item" key="goal">Objetivos</Menu.Item>
             <Menu.Item className="Menu-item" key="publications">Publicaciones</Menu.Item>
             <Menu.Item className="Menu-item" key="projects">Proyectos</Menu.Item>
             <Menu.Item className="Menu-item" key="about-us">¿Quiénes Somos?</Menu.Item>
