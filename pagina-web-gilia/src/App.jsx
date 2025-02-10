@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import { useTheme } from './context/ThemeContext'; 
-import AboutUs from "./components/About-us";
+import AboutUs from "./components/About-us/About-us";
 
 
 function App() {

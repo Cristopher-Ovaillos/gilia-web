@@ -1,6 +1,6 @@
 import React from "react";
 import "./About-us.css";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../../context/ThemeContext";
 
 const quienesSomos = {
     descripcion:

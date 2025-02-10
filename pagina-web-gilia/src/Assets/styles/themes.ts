@@ -5,7 +5,7 @@ export const lightTheme = {
       backgroundColor: '#ffffff',              // Fondo claro
       colorTextBase: '#000000',                 // Texto oscuro para modo claro
       backgroundColorSelected: '#e6f7ff',      // Fondo de ítem seleccionado en modo claro
-      itemSelectedColor: '#1890ff',             // Color del texto en ítem seleccionado
+      itemSelectedColor: '#F5F5F5',             // Color del texto en ítem seleccionado
     }
   };
   
@@ -15,7 +15,7 @@ export const lightTheme = {
       backgroundColor: '#121212',              // Fondo oscuro
       colorTextBase: '#ffffff',                 // Texto claro para modo oscuro
       backgroundColorSelected: '#333',         // Fondo de ítem seleccionado en modo oscuro
-      itemSelectedColor: '#1890ff',            // Color del texto en ítem seleccionado
+      itemSelectedColor: '#212121',            // Color del texto en ítem seleccionado
     }
   };
   

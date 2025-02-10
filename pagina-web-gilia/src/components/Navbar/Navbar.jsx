@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, Drawer, Button } from "antd";
 import { MenuOutlined, BulbOutlined, MoonOutlined } from "@ant-design/icons";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../../context/ThemeContext";
 import "./Navbar.css";
 
 const Navbar = ({ activeSection, setActiveSection }) => {
@@ -19,8 +19,9 @@ const Navbar = ({ activeSection, setActiveSection }) => {
   }, []);
 
   useEffect(() => {
-    document.body.style.setProperty("--primary-color", theme.token.colorTextBase);
     document.body.style.setProperty("--background-color", theme.token.backgroundColor);
+    document.body.style.setProperty("--itemSelectedColor", theme.token.itemSelectedColor);
+    document.body.style.setProperty("--colorTextBase", theme.token.colorTextBase);
   }, [theme]);
 
   const handleMenuItemClick = (e) => {
