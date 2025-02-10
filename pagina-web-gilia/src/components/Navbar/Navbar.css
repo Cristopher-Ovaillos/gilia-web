@@ -97,6 +97,14 @@
   color: var(--colorTextBase);
 }
 
+.anticon{
+  color: var(--colorTextBase) ;
+}
+
+.anticon:hover{
+  background-color: var(--itemSelectedColor);
+}
+
 
 @media (max-width: 768px) {
 
