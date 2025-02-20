@@ -1,0 +1,136 @@
+@font-face {
+  font-family: 'Anurati-gilia';
+  src: url('../../Assets/fonts/Anurati.otf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.Menu-Container {
+  margin-top: 1%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
+  background-color: var(--background-color);
+}
+
+.Menu-item{
+  font-size: 90%;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 10%;
+}
+
+.Menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  border: none;
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  font-family: 'Anurati-gilia';
+  font-size: 300%;
+  letter-spacing: 10px;
+  margin-right: auto;
+  margin-left: 4%;
+}
+
+.Menu .ant-menu-item {
+  margin-right: 3%;
+  color: var(--colorTextBase);
+}
+
+.Menu .ant-menu-item:not(.ant-menu-item-selected):hover {
+  background-color: var(--itemSelectedColor);
+  border-radius: 10%;
+  color: var(--colorTextBase);
+}
+
+.ant-menu-light.ant-menu-horizontal>.ant-menu-item::after,
+.ant-menu-light.ant-menu-horizontal>.ant-menu-submenu::after {
+  border-bottom: none !important;
+}
+
+:where(.css-dev-only-do-not-override-xex5fb).ant-menu-light.ant-menu-horizontal>.ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-xex5fb).ant-menu-light>.ant-menu.ant-menu-horizontal>.ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-xex5fb).ant-menu-light.ant-menu-horizontal>.ant-menu-submenu-selected,
+:where(.css-dev-only-do-not-override-xex5fb).ant-menu-light>.ant-menu.ant-menu-horizontal>.ant-menu-submenu-selected {
+  color: var(--colorTextBase);
+  border-radius: 10%;
+  border-bottom: 2px solid #dad6d6;
+  /* Se agrega 'solid' para definir el estilo del borde */
+}
+
+:where(.css-dev-only-do-not-override-xex5fb).ant-menu-light .ant-menu-item {
+  color: var(--colorTextBase);
+}
+
+:where(.css-dev-only-do-not-override-xex5fb).ant-menu-light .ant-menu-item-selected {
+  background-color: var(--background-color);
+}
+
+:where(.css-dev-only-do-not-override-xex5fb).ant-menu-light .ant-menu-item:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected):hover {
+  color: var(--colorTextBase);
+}
+
+.menu-button {
+  display: none;
+}
+
+/*button menu color dark/light mode */
+.menu-icon {
+  color: var(--colorTextBase);
+}
+
+
+.theme-toggle-container {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle-button {
+  font-size: 15px;
+  color: var(--colorTextBase);
+}
+
+/*este es para la cruz y el logo de dark/light mode*/
+.ant-drawer-header span {
+  color: var(--colorTextBase);
+}
+
+.anticon{
+  color: var(--colorTextBase) ;
+}
+
+.anticon:hover{
+  background-color: var(--itemSelectedColor);
+}
+
+
+@media (max-width: 768px) {
+
+
+  .logo-item {
+    margin-top: 5%;
+    font-size: 250%;
+  }
+
+  .menu-button {
+    display: block;
+    margin-right: 20px;
+  }
+
+  .Menu {
+    display: none;
+  }
+
+  .theme-toggle-container {
+    display: none;
+  }
+
+}
