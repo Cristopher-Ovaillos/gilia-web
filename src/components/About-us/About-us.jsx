@@ -1,4 +1,3 @@
-import React from "react";
 import "./About-us.css";
 import { useTheme } from "../../context/ThemeContext";
 
@@ -45,7 +44,7 @@ const AboutUs = () => {
     const { theme } = useTheme(); // Obtener el tema
 
     return (
-        <div className="p-6 max-w-4xl mx-auto" style={{ backgroundColor: theme.token.backgroundColor }}>
+        <div className="custom-about-us p-6 max-w-4xl mx-auto" style={{ backgroundColor: theme.token.backgroundColor }}>
             {/* Descripción */}
             <h2 className="text-3xl font-bold text-center mb-6" style={{ color: theme.token.colorTextBase }}>¿Quiénes Somos?</h2>
             <p className="text-center mb-8" style={{ color: theme.token.colorTextBase }}>{quienesSomos.descripcion}</p>

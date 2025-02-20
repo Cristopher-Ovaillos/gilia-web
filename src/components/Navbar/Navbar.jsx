@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import { Menu, Drawer, Button } from "antd";
 import { MenuOutlined, BulbOutlined, MoonOutlined } from "@ant-design/icons";
 import { useTheme } from "../../context/ThemeContext";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
+
 
 const Navbar = ({ activeSection, setActiveSection }) => {
   const [visible, setVisible] = useState(false);
   const [esCelular, setEsCelular] = useState(window.innerWidth < 768);
   const { theme, toggleTheme } = useTheme();
+
 
   // Detectar el cambio de tamanio de la pantalla
   useEffect(() => {
@@ -69,12 +73,12 @@ const Navbar = ({ activeSection, setActiveSection }) => {
               selectedKeys={[activeSection]} 
               style={{ backgroundColor: theme.token.backgroundColor }}
             >
-              <Menu.Item className="Menu-item" key="home">Inicio</Menu.Item>
-              <Menu.Item className="Menu-item" key="about">Objetivos</Menu.Item>
-              <Menu.Item className="Menu-item" key="publications">Publicaciones</Menu.Item>
-              <Menu.Item className="Menu-item" key="projects">Proyectos</Menu.Item>
-              <Menu.Item className="Menu-item" key="about-us">¿Quiénes Somos?</Menu.Item>
-            </Menu>
+            <Menu.Item className="Menu-item" key="home"><Link to="/home">Inicio </Link></Menu.Item>
+            <Menu.Item className="Menu-item" key="goal"><Link to="/home">Objetivos </Link></Menu.Item>
+            <Menu.Item className="Menu-item" key="publications"><Link to="/home">Publicaciones </Link></Menu.Item>
+            <Menu.Item className="Menu-item" key="projects"><Link to="/home">Líneas de Investigación</Link></Menu.Item>
+            <Menu.Item className="Menu-item" key="about-us"><Link to="/about-us">¿Quienes Somos? </Link></Menu.Item>
+           </Menu>
           </Drawer>
         </>
       ) : (
@@ -83,14 +87,14 @@ const Navbar = ({ activeSection, setActiveSection }) => {
             className="Menu" 
             mode="horizontal" 
             selectedKeys={[activeSection]} 
-            onClick={handleMenuItemClick}  // Cambiar a la función handleMenuItemClick
+            onClick={handleMenuItemClick}  
             style={{ backgroundColor: theme.token.backgroundColor }}
           >
-            <Menu.Item className="Menu-item" key="home">Inicio</Menu.Item>
-            <Menu.Item className="Menu-item" key="goal">Objetivos</Menu.Item>
-            <Menu.Item className="Menu-item" key="publications">Publicaciones</Menu.Item>
-            <Menu.Item className="Menu-item" key="projects">Proyectos</Menu.Item>
-            <Menu.Item className="Menu-item" key="about-us">¿Quiénes Somos?</Menu.Item>
+            <Menu.Item className="Menu-item" key="home"><Link to="/home">Inicio </Link></Menu.Item>
+            <Menu.Item className="Menu-item" key="goal"><Link to="/home">Objetivos </Link></Menu.Item>
+            <Menu.Item className="Menu-item" key="publications"><Link to="/home">Publicaciones </Link></Menu.Item>
+            <Menu.Item className="Menu-item" key="projects"><Link to="/home">Líneas de Investigación</Link></Menu.Item>
+            <Menu.Item className="Menu-item" key="about-us"><Link to="/about-us">¿Quienes Somos? </Link></Menu.Item>
           </Menu>
           <div className="theme-toggle-container">
             <Button type="text" onClick={toggleTheme} className="theme-toggle-button">
@@ -101,6 +105,12 @@ const Navbar = ({ activeSection, setActiveSection }) => {
       )}
     </div>
   );
+};
+
+
+Navbar.propTypes = {
+  activeSection: PropTypes.string.isRequired,
+  setActiveSection: PropTypes.func.isRequired,
 };
 
 export default Navbar;

@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import { useTheme } from './context/ThemeContext'; 
+import { useTheme } from './context/ThemeContext';
 import AboutUs from "./components/About-us/About-us";
+import HomeContainer from './components/HomeContainer/HomeContainer';
 
 
 function App() {
@@ -13,23 +15,15 @@ function App() {
     document.body.style.overflowX = 'hidden';
   }, [theme]);
 
-
-  const renderSectionContent = () => {
-    switch (activeSection) {
-     
-      case 'about-us':
-        return <AboutUs/>; ;
-   
-    }
-  };
-
   return (
-    <div>
+
+    <Router>
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
-      <div className="content">
-        {renderSectionContent()} {/* Esto renderiza el contenido de la sección activa */}
-      </div>
-    </div>
+      <Routes>
+        <Route path="/home" element={<HomeContainer/> } />
+        <Route path="/about-us" element={<AboutUs/>} />
+      </Routes>
+    </Router>
   );
 }
 

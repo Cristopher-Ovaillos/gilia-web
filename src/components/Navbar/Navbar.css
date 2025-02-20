@@ -15,6 +15,10 @@
   background-color: var(--background-color);
 }
 
+.Menu-item{
+  font-size: 85%;
+}
+
 .Menu {
   display: flex;
   align-items: center;
@@ -30,7 +34,7 @@
   font-size: 300%;
   letter-spacing: 10px;
   margin-right: auto;
-  margin-left: 3%;
+  margin-left: 4%;
 }
 
 .Menu .ant-menu-item {
@@ -88,7 +92,7 @@
 }
 
 .theme-toggle-button {
-  font-size: 20px;
+  font-size: 15px;
   color: var(--colorTextBase);
 }
 

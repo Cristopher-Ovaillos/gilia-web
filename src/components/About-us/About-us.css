@@ -1,3 +1,6 @@
 
 @import "tailwindcss";
 
+.vertical-menu::-webkit-scrollbar {
+    display: none; 
+  }
