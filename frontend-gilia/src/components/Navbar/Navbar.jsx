@@ -42,6 +42,16 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     }
   };
 
+  const menuItems = [
+    { key: "home", label: <Link to="/home">Inicio</Link>, className: "Menu-item" },
+    { key: "projects", label: <Link to="/home">Líneas de Investigación</Link>, className: "Menu-item" },
+    { key: "goal", label: <Link to="/home">Objetivos</Link>, className: "Menu-item" },
+    { key: "publications", label: <Link to="/home">Publicaciones</Link>, className: "Menu-item" },
+    { key: "extension", label: <Link to="/...">Extensión</Link>, className: "Menu-item" },
+    { key: "about-us", label: <Link to="/about-us">¿Quiénes Somos?</Link>, className: "Menu-item" }
+  ];
+
+
   return (
     <div
       className="Menu-Container"
@@ -93,59 +103,27 @@ const Navbar = ({ activeSection, setActiveSection }) => {
             style={{ backgroundColor: theme.token.backgroundColor }}
           >
             <Menu
+              items={menuItems}
               mode="vertical"
               onClick={handleMenuItemClick}
               selectedKeys={[activeSection]}
               style={{ backgroundColor: theme.token.backgroundColor }}
             >
-              <Menu.Item className="Menu-item" key="home">
-                <Link to="/home">Inicio </Link>
-              </Menu.Item>
-              <Menu.Item className="Menu-item" key="projects">
-                <Link to="/home">Líneas de Investigación</Link>
-              </Menu.Item>
-              <Menu.Item className="Menu-item" key="goal">
-                <Link to="/home">Objetivos </Link>
-              </Menu.Item>
-              <Menu.Item className="Menu-item" key="publications">
-                <Link to="/home">Publicaciones </Link>
-              </Menu.Item>
-              <Menu.Item className="Menu-item" key="publications">
-                <Link to="/...">Extensión </Link>
-              </Menu.Item>
-              <Menu.Item className="Menu-item" key="about-us">
-                <Link to="/about-us">¿Quienes Somos? </Link>
-              </Menu.Item>
+
             </Menu>
           </Drawer>
         </>
       ) : (
         <>
           <Menu
+            items={menuItems}
             className="Menu"
             mode="horizontal"
             selectedKeys={[activeSection]}
             onClick={handleMenuItemClick}
             style={{ backgroundColor: theme.token.backgroundColor }}
           >
-            <Menu.Item className="Menu-item" key="home">
-              <Link to="/home">Inicio </Link>
-            </Menu.Item>
-            <Menu.Item className="Menu-item" key="goal">
-              <Link to="/home">Objetivos </Link>
-            </Menu.Item>
-            <Menu.Item className="Menu-item" key="projects">
-              <Link to="/home">Líneas de Investigación</Link>
-            </Menu.Item>
-            <Menu.Item className="Menu-item" key="publications">
-              <Link to="/home">Publicaciones </Link>
-            </Menu.Item>
-            <Menu.Item className="Menu-item" key="about-us">
-              <Link to="/about-us">Extensión</Link>
-            </Menu.Item>
-            <Menu.Item className="Menu-item" key="about-us">
-              <Link to="/about-us">¿Quienes Somos? </Link>
-            </Menu.Item>
+
           </Menu>
           <div className="theme-toggle-container">
             <Button

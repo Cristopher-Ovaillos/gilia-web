@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+.custom-color{
+    color: var(--colorTextBase);
+    font-family: "Open Sans", sans-serif;
+    background-color: var(--background-color);
+    border-radius: 2rem;
+}
+.custom-back{
+    background-color: var(--cardBackgroundColor);
+}

@@ -4,9 +4,9 @@ import App from './App';
 import { ThemeProvider } from './context/ThemeContext'; 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  //<StrictMode>
     <ThemeProvider> 
       <App />
     </ThemeProvider>
-  </StrictMode>,
+  //</StrictMode>,
 );
