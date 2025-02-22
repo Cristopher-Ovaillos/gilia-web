@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import { useTheme } from './context/ThemeContext';
-import AboutUs from "./components/About-us/About-us";
+import AboutUs from "./components/AboutUs/AboutUs";
 import HomeContainer from './components/HomeContainer/HomeContainer';
 
 
@@ -20,7 +20,7 @@ function App() {
     <Router>
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
       <Routes>
-        <Route path="/home" element={<HomeContainer/> } />
+        <Route path="/" element={<HomeContainer/> } />
         <Route path="/about-us" element={<AboutUs/>} />
       </Routes>
     </Router>

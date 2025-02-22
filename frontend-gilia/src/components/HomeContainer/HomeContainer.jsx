@@ -2,7 +2,8 @@ import { useTheme } from "../../context/ThemeContext";
 import { useEffect } from "react";
 import "./HomeContainer.css";
 import ParticleEffect from "./subcomponentes/Animation/ParticleEffect";
-import HomeInformation from "./subcomponentes/HomeInformation/HomeInformation";
+import HomePresentation from "./subcomponentes/HomePresentation/HomePresentation";
+import HomeExploration from "./subcomponentes/HomeExploration/HomeExploration";
 
 export default function HomeContainer() {
   const { theme } = useTheme();
@@ -25,8 +26,9 @@ export default function HomeContainer() {
   return (
     <div>
       <ParticleEffect>
-        <HomeInformation />
+        <HomePresentation />
       </ParticleEffect>
+      <HomeExploration/>
     </div>
     
   );

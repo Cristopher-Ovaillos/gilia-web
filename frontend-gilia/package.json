@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.6.1",
+    "@heroicons/react": "^2.2.0",
     "antd": "^5.23.4",
     "bootstrap": "^5.3.3",
     "framer-motion": "^12.4.1",

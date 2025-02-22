@@ -1,9 +1,9 @@
-import "./HomeInformation.css";
+import "./HomePresentation.css";
 
- const HomeInformation = () => {
+ const HomePresentation = () => {
   return (
     <div
-    className="relative isolate bg-cover bg-fixed bg-center bg-opacity-50"
+    className=" isolate bg-cover bg-fixed bg-center bg-opacity-50"
     style={{ backgroundImage: 'url("")' }}
   >
     <div className="mx-auto max-w-2xl sm:py-24 lg:py-34">
@@ -17,12 +17,12 @@ import "./HomeInformation.css";
             href="#"
             className="rounded-md custom-color custom-back px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2"
           >
-            Get started
+            Lineas de Investigación
           </a>
           <a href="#"
             className=" custom-color text-sm/6 font-semibold text-gray-900"
           >
-            Learn more <span aria-hidden="true">→</span>
+            Sobre Nosotros <span aria-hidden="true">→</span>
           </a>
         </div>
       </div>
@@ -31,4 +31,4 @@ import "./HomeInformation.css";
   )
 }
 
-export default HomeInformation;
+export default HomePresentation;

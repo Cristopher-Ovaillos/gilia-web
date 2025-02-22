@@ -43,11 +43,11 @@ const Navbar = ({ activeSection, setActiveSection }) => {
   };
 
   const menuItems = [
-    { key: "home", label: <Link to="/home">Inicio</Link>, className: "Menu-item" },
-    { key: "projects", label: <Link to="/home">Líneas de Investigación</Link>, className: "Menu-item" },
-    { key: "goal", label: <Link to="/home">Objetivos</Link>, className: "Menu-item" },
-    { key: "publications", label: <Link to="/home">Publicaciones</Link>, className: "Menu-item" },
-    { key: "extension", label: <Link to="/...">Extensión</Link>, className: "Menu-item" },
+    { key: "home", label: <Link to="/">Inicio</Link>, className: "Menu-item" },
+    { key: "projects", label: <Link to="/">Líneas de Investigación</Link>, className: "Menu-item" },
+    { key: "goal", label: <Link to="/">Objetivos</Link>, className: "Menu-item" },
+    { key: "publications", label: <Link to="/">Publicaciones</Link>, className: "Menu-item" },
+    { key: "extension", label: <Link to="/">Extensión</Link>, className: "Menu-item" },
     { key: "about-us", label: <Link to="/about-us">¿Quiénes Somos?</Link>, className: "Menu-item" }
   ];
 

@@ -1,4 +1,4 @@
-import "./About-us.css";
+import "./AboutUs.css";
 import { useTheme } from "../../context/ThemeContext";
 
 const quienesSomos = {

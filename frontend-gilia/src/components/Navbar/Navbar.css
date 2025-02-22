@@ -13,11 +13,12 @@
   width: 100%;
   padding: 0 20px;
   background-color: var(--background-color);
+  outline: none;
 }
-
-.Menu-item{
-  font-size: 90%;
+.Menu-item {
+  font-size: 87%;
   font-family: "Open Sans", sans-serif;
+  font-weight: bold; /* Aplica negrita */
   border-radius: 10%;
 }
 
@@ -60,8 +61,8 @@
 :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light.ant-menu-horizontal>.ant-menu-submenu-selected,
 :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light>.ant-menu.ant-menu-horizontal>.ant-menu-submenu-selected {
   color: var(--colorTextBase);
-  border-radius: 10%;
-  border-bottom: 2px solid #dad6d6;
+  border-radius: 5%;
+  border-bottom: 2px solid var(--colorTextBase);
   /* Se agrega 'solid' para definir el estilo del borde */
 }
 

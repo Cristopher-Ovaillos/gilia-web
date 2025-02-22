@@ -5,7 +5,7 @@ import { useTheme } from "../../../../context/ThemeContext";
 // eslint-disable-next-line react/prop-types
 const ParticleEffect = ({ children }) => {
   const mountRef = useRef(null);
-  const { theme } = useTheme(); // Obtener el tema actual
+  const { theme } = useTheme();
 
   useEffect(() => {
     const scene = new THREE.Scene();
@@ -15,7 +15,7 @@ const ParticleEffect = ({ children }) => {
       0.1,
       1000
     );
-    const renderer = new THREE.WebGLRenderer({ alpha: true }); // Fondo transparente
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current.appendChild(renderer.domElement);
 
@@ -32,10 +32,35 @@ const ParticleEffect = ({ children }) => {
     }
 
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    
-    // Convertir el color del tema a un valor hexadecimal para Three.js
+
+    // Convertir el color del tema a hexadecimal
     const particleColor = new THREE.Color(theme.token.colorTextBase);
-    const material = new THREE.PointsMaterial({ color: particleColor, size: 0.1 });
+
+    // Crear una textura de círculo en tiempo real
+    const createCircleTexture = () => {
+      const size = 128; 
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext("2d");
+
+      // Dibujar círculo
+      ctx.beginPath();
+      ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fill();
+
+      const texture = new THREE.CanvasTexture(canvas);
+      return texture;
+    };
+
+    const material = new THREE.PointsMaterial({
+      color: particleColor,
+      size: 0.1, // Tamaño de las partículas
+      map: createCircleTexture(), // Usar la textura de círculo
+      transparent: true, // Habilita transparencia
+      alphaTest: 0.5, // Elimina bordes no deseados
+    });
 
     const particles = new THREE.Points(geometry, material);
     scene.add(particles);
@@ -71,13 +96,15 @@ const ParticleEffect = ({ children }) => {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      mountRef.current.removeChild(renderer.domElement);
+      if (mountRef.current) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
       renderer.dispose();
     };
-  }, [theme]); // Se vuelve a ejecutar cuando el tema cambia
+  }, [theme]);
 
   return (
-    <div ref={mountRef} style={{ position: "relative" }}>
+    <div ref={mountRef} style={{ position: "relative", outline: "none", border: "none" }}>
       {children && (
         <div
           style={{
@@ -89,8 +116,8 @@ const ParticleEffect = ({ children }) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: 1, // Para que esté sobre el canvas
-            pointerEvents: "none", // Evita interferencias con el fondo
+            zIndex: 1,
+            pointerEvents: "none",
           }}
         >
           {children}
