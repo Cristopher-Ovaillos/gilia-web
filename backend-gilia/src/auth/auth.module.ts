@@ -1,4 +1,7 @@
+//auth.module.ts
 //este archvio llama a todo los demas, este archivo sera utilizado en app.module
+
+
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from './auth.controller';
@@ -14,7 +17,7 @@ import { UsersModule } from '../users/users.module';
       secret: 'SECRET_KEY',
       signOptions: { expiresIn: '60m' },
     }),
-    UsersModule, 
+    UsersModule,
   ],
   providers: [AuthService, JwtStrategy],
   controllers: [AuthController],

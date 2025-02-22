@@ -4,34 +4,34 @@ import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
   const isMobile = useIsMobile();
-
   const [username, setUsername] = useState("");  
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();  // evitar que se recargue la página al enviar el formulario
+    e.preventDefault();
+    console.log("LOGIN FORM:   Enviando datos:", { username, password }); // Verificamos los datos enviados
+
     try {
-      const response = await fetch("http://localhost:3000/auth/login", {  
+      const response = await fetch("http://localhost:3000/auth/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),  // Mandamos username y password
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
       });
-      
+
+      console.log("LOGIN FORM:   Respuesta del servidor:", response.status);
 
       const data = await response.json();
+      console.log("Datos recibidos:", data);
 
       if (response.ok) {
-        // si inicio sesion exitosamente
         console.log("Usuario autenticado:", data);
+        localStorage.setItem("token", data.access_token); // Guardar el token para futuras solicitudes
       } else {
-        // ocurrio un error
         setErrorMessage(data.message || "Credenciales incorrectas.");
       }
     } catch (error) {
-      console.error("Error al enviar la solicitud:", error);
+      console.error("Error en la solicitud:", error);
       setErrorMessage("Hubo un problema al conectar con el servidor.");
     }
   };
@@ -42,9 +42,9 @@ const LoginForm = () => {
         <h2 className="text-2xl font-bold text-center mb-6">Iniciar Sesión</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm">Nombre de usuario</label> 
+            <label className="block text-gray-700 text-sm">Nombre de usuario</label>
             <input
-              type="text" 
+              type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="username"

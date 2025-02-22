@@ -1,3 +1,5 @@
+//jwt.strategy.ts
+
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
@@ -7,16 +9,16 @@ import { UsersService } from '../users/users.service';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly usersService: UsersService) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // Extrae el JWT desde el header
-      secretOrKey: 'SECRET_KEY', // Usa una variable de entorno en producción
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: 'SECRET_KEY',
     });
   }
 
   async validate(payload: any) {
-    const user = await this.usersService.findOne(payload.username); // Valida el usuario en la base de datos
+    const user = await this.usersService.findOne(payload.username);
     if (!user) {
       throw new Error('Usuario no encontrado');
     }
-    return user; // Si el usuario es valido, lo devuelve
+    return user;
   }
 }

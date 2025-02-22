@@ -1,29 +1,28 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { UsersModule } from './users/users.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './users/entities/user.entity';  // Cambié Users por User
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    // Para cargar las variables de entorno desde el archivo .env
     ConfigModule.forRoot({
       envFilePath: '.env',
-      isGlobal: true, 
+      isGlobal: true,
     }),
-    // cnfigura la conexion con la base de datos usando TypeORM
     TypeOrmModule.forRoot({
-      type: 'postgres', // definimos la base de datos utilizada
-      host: process.env.DB_HOST, // Host de la base de datos 
-      port: Number(process.env.DB_PORT), // Puerto de la base de datos 
-      username: process.env.DB_USER, // Usuario de la base de datos 
-      password: process.env.DB_PASSWORD, // Contraseña de la base de datos 
-      database: process.env.DB_NAME, // Nombre de la base de datos 
-      autoLoadEntities: true, // Carga las entidades automaticamente
-      synchronize: true, // Solo en desarrollo. En produccion usa migraciones
+      type: 'postgres',
+      host: process.env.DATABASE_HOST ?? 'localhost',
+      port: +process.env.DATABASE_PORT! || 5432,
+      username: process.env.DB_USER ?? 'postgres',
+      password: process.env.DB_PASSWORD ?? '',
+      database: process.env.DB_NAME ?? 'gilia_db',
+      entities: [User],
+      synchronize: true,
     }),
-    UsersModule, 
-    AuthModule,  
+    AuthModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
