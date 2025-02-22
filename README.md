@@ -101,10 +101,10 @@ Esto creará una tabla llamada `user` que tendrá los campos `id` (único y auto
 
 ### Paso 5: Agregar un Usuario Administrador
 
-Ahora, agrega un usuario administrador a la tabla `users`:
+Ahora, agrega un usuario administrador a la tabla `user`:
 
 ```sql
-INSERT INTO users (username, password) VALUES ('admin', 'tu_contraseña');
+INSERT INTO user (username, password) VALUES ('admin', 'tu_contraseña');
 ```
 
 Reemplaza `'tu_contraseña'` con una contraseña segura.
@@ -138,13 +138,7 @@ DB_PASSWORD=tu_password # Usa la contraseña que configuraste en PostgreSQL
 DB_NAME=gilia_db        # Nombre de la base de datos que creaste
 ```
 
-4. **Ejecuta las migraciones** para configurar las tablas de la base de datos:
-
-   ```bash
-   npm run migration:run
-   ```
-
-5. **Inicia el servidor del backend**:
+4. **Inicia el servidor del backend**:
 
    ```bash
    npm run start
@@ -211,7 +205,7 @@ Para probar el inicio de sesión en la interfaz administrativa, es necesario cre
 3. Ejecuta el siguiente comando SQL para crear un usuario:
 
    ```sql
-   INSERT INTO users (username, password, role)
+   INSERT INTO user (username, password, role)
    VALUES ('admin', 'contraseña_segura', 'admin');
    ```
 
