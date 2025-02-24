@@ -6,13 +6,12 @@ import "./HomePresentation.css";
     className=" isolate bg-cover bg-fixed bg-center bg-opacity-50"
     style={{ backgroundImage: 'url("")' }}
   >
-    <div className="mx-auto max-w-2xl sm:py-24 lg:py-34">
+    <div className="mx-auto max-w-2xl sm:py-20 lg:py-34">
       <div className="text-center">
-        <h1 className="custom-color text-7xl font-semibold tracking-tight text-balance sm:text-6xl">
-          {" "}
-          Investigación en Lenguajes e Inteligencia Artificial{" "}
+        <h1 className="custom-color custom-font font-semibold tracking-tight text-balance">
+          Investigación en Lenguajes e Inteligencia Artificial
         </h1>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
+        <div className="custom-subtext mt-10 flex items-center justify-center gap-x-6">
           <a
             href="#"
             className="rounded-md custom-color custom-back px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2"

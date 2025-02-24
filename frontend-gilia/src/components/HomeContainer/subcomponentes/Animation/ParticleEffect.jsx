@@ -25,26 +25,23 @@ const ParticleEffect = ({ children }) => {
     const velocities = new Float32Array(particleCount);
 
     for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = Math.random() * -10;
-      positions[i * 3 + 1] = Math.random() * 10 - 5;
-      positions[i * 3 + 2] = Math.random() * 10 - 5;
-      velocities[i] = Math.random() * 0.05 + 0.01;
+      positions[i * 3] = Math.random() * -10; // Ajustar la distancia de las partículas
+      positions[i * 3 + 1] = Math.random() * 10 - 4; // Ajustar la altura de las partículas
+      positions[i * 3 + 2] = Math.random() * 10 - 5; // Ajustar la profundidad de las partículas
+      velocities[i] = Math.random() * 0.06 + 0.01; // Ajustar la velocidad de las partículas
     }
 
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
-    // Convertir el color del tema a hexadecimal
     const particleColor = new THREE.Color(theme.token.colorTextBase);
 
-    // Crear una textura de círculo en tiempo real
     const createCircleTexture = () => {
-      const size = 128; 
+      const size = 128;
       const canvas = document.createElement("canvas");
       canvas.width = size;
       canvas.height = size;
       const ctx = canvas.getContext("2d");
 
-      // Dibujar círculo
       ctx.beginPath();
       ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
       ctx.fillStyle = "#FFFFFF";
@@ -56,10 +53,10 @@ const ParticleEffect = ({ children }) => {
 
     const material = new THREE.PointsMaterial({
       color: particleColor,
-      size: 0.1, // Tamaño de las partículas
-      map: createCircleTexture(), // Usar la textura de círculo
-      transparent: true, // Habilita transparencia
-      alphaTest: 0.5, // Elimina bordes no deseados
+      size: 0.1,
+      map: createCircleTexture(),
+      transparent: true,
+      alphaTest: 0.5,
     });
 
     const particles = new THREE.Points(geometry, material);
@@ -94,17 +91,37 @@ const ParticleEffect = ({ children }) => {
 
     animate();
 
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    };
+
+    window.addEventListener('resize', handleResize);
+
     return () => {
       cancelAnimationFrame(animationFrameId);
       if (mountRef.current) {
         mountRef.current.removeChild(renderer.domElement);
       }
       renderer.dispose();
+      window.removeEventListener('resize', handleResize);
     };
   }, [theme]);
 
   return (
-    <div ref={mountRef} style={{ position: "relative", outline: "none", border: "none" }}>
+    <div 
+      ref={mountRef} 
+      style={{
+        position: "relative", 
+        outline: "none", 
+        border: "none",  
+        width: "100vw", 
+        height: "100vh", // Ajustar la altura al 50% de la pantalla
+      }}
+    >
       {children && (
         <div
           style={{

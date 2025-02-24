@@ -5,8 +5,12 @@
     margin-left: -5%;
     height: 82%;
     background-color: var(--cardBackgroundColor);
-    z-index: 10; /* Ajusta el valor de z-index según sea necesario */
-    
+    z-index: 10; /* Ajusta el valor de z-index según sea necesario */   
+}
+
+
+.custom-card-active h3{
+    margin-top: 12%;
 }
 
 .relative{
@@ -26,15 +30,23 @@
     flex-direction: column;
     align-content: start;
     align-items: center;
-    transition: 0.3s;
+    transition:  all 0.7s ease-out;
     cursor: pointer;
     &:hover{
+        box-shadow:  6px 6px 12px #f7f7f757 ,
+             -6px -6px 12px #f7f7f757 ;
     }
 }
 
 .custom-descrip-card{
     padding: 8%;
     height: 45%;
+    font-family: "Josefin Sans", sans-serif;
+    text-align: center;
+    color: var(--colorTextBase);
+}
+.custom-card-inactive .custom-descrip-card{
+    color: #a5a0a0;
 }
 
 .custom-text-card{
@@ -47,8 +59,6 @@
     font-family: "Josefin Sans", sans-serif;
     color: #a5a0a0;
     text-align: center;
-    
-
 }
 
 .custom-btn{
@@ -77,3 +87,22 @@
     }
 }
 
+
+@media (max-width: 768px) {
+    .custom-card-home{
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        margin-bottom: 30%;
+        z-index:0;
+    }
+    .custom-card-inactive .custom-descrip-card{
+        color: var(--colorTextBase);
+    }
+    .custom-text-card{
+        color: var(--colorTextBase);
+        font-size: 120%;
+    }
+
+  }
+  
