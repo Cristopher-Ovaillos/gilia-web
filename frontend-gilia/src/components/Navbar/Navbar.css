@@ -23,6 +23,20 @@
   color: var(--colorTextBase);
 }
 
+
+.ant-menu-overflow {
+  border: none;
+}
+
+
+.ant-menu-title-content{
+  color: var(--colorTextBase);
+}
+
+:where(.css-dev-only-do-not-override-xex5fb).ant-menu-light.ant-menu-submenu-popup>.ant-menu, :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light>.ant-menu.ant-menu-submenu-popup>.ant-menu{
+  background-color: var(--background-color);
+}
+
 .Menu {
   display: flex;
   align-items: center;
