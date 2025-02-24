@@ -1,4 +1,9 @@
 @import "tailwindcss";
+.custom-font{
+    font-family: "Open Sans", sans-serif;
+    color: var(--colorTextBase);
+    font-size: 320%;
+}
 
 .custom-color{
     color: var(--colorTextBase);
@@ -9,3 +14,17 @@
 .custom-back{
     background-color: var(--cardBackgroundColor);
 }
+
+@media (max-width: 768px) {
+    .custom-font {
+      font-size: 200%; 
+    }
+    .custom-subtext{
+        margin-left: 5%;
+        width: 90%;
+    }
+    .custom-subtext a{
+        font-size: 80%;
+    }
+  }
+  

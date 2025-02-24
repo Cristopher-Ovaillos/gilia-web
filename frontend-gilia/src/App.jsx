@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import { useTheme } from './context/ThemeContext';
 import AboutUs from "./components/AboutUs/AboutUs";
 import HomeContainer from './components/HomeContainer/HomeContainer';
+import LineasContainer from './components/LineasContainer/LineasContainer';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
       <Routes>
         <Route path="/" element={<HomeContainer/> } />
+        <Route path="/lineas-de-investigacion" element={<LineasContainer />} />
         <Route path="/about-us" element={<AboutUs/>} />
       </Routes>
     </Router>

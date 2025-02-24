@@ -16,10 +16,11 @@
   outline: none;
 }
 .Menu-item {
-  font-size: 87%;
+  font-size: 90%;
   font-family: "Open Sans", sans-serif;
   font-weight: bold; /* Aplica negrita */
   border-radius: 10%;
+  color: var(--colorTextBase);
 }
 
 .Menu {
