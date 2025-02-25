@@ -9,7 +9,7 @@ import "./HomePresentation.css";
     <div className="mx-auto max-w-2xl sm:py-20 lg:py-34">
       <div className="text-center">
         <h1 className="custom-color custom-font font-semibold tracking-tight text-balance">
-          Investigación en Lenguajes e Inteligencia Artificial
+          Grupo de investigación en Lenguajes e Inteligencia Artificial
         </h1>
         <div className="custom-subtext mt-10 flex items-center justify-center gap-x-6">
           <a

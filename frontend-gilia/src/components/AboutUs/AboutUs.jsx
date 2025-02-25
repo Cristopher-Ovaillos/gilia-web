@@ -56,7 +56,7 @@ const AboutUs = () => {
                     {quienesSomos.directores.map((director, index) => (
                         <div
                             key={index}
-                            className={`flex items-center gap-4 p-4 rounded-lg shadow ${theme.token.backgroundColor === '#121212' ? 'bg-gray-700' : 'bg-gray-100'}`}
+                            className={`flex items-center gap-4 p-4 rounded-lg shadow ${theme.token.backgroundColor === '#141414' ? 'bg-gray-700' : 'bg-gray-100'}`}
                         >
                             <img
                                 src={director.avatar}
@@ -81,7 +81,7 @@ const AboutUs = () => {
                     {quienesSomos.docentesInvestigadores.map((docente, index) => (
                         <div
                             key={index}
-                            className={`text-center p-4 rounded-lg shadow ${theme.token.backgroundColor === '#121212' ? 'bg-gray-700' : 'bg-gray-100'}`}
+                            className={`text-center p-4 rounded-lg shadow ${theme.token.backgroundColor === '#141414' ? 'bg-gray-700' : 'bg-gray-100'}`}
                         >
                             <img src={docente.avatar} alt={docente.nombre} className="w-16 h-16 mx-auto rounded-full object-cover" />
                             <p className="mt-2" style={{ color: theme.token.colorTextBase }}>{docente.nombre}</p>
@@ -97,7 +97,7 @@ const AboutUs = () => {
                     {quienesSomos.becarios.map((becarios, index) => (
                         <div
                             key={index}
-                            className={`text-center p-4 rounded-lg shadow ${theme.token.backgroundColor === '#121212' ? 'bg-gray-700' : 'bg-gray-100'}`}
+                            className={`text-center p-4 rounded-lg shadow ${theme.token.backgroundColor === '#141414' ? 'bg-gray-700' : 'bg-gray-100'}`}
                         >
                             <img src={becarios.avatar} alt={becarios.nombre} className="w-16 h-16 mx-auto rounded-full object-cover" />
                             <p className="mt-2" style={{ color: theme.token.colorTextBase }}>{becarios.nombre}</p>
@@ -113,7 +113,7 @@ const AboutUs = () => {
                     {quienesSomos.proyectos.map((proyecto, index) => (
                         <div key={index} className="border-l-4 border-blue-600 p-4 shadow rounded-lg"
                             style={{
-                                backgroundColor: theme.token.backgroundColor === '#121212' ? '#2a2a2a' : '#f9f9f9',
+                                backgroundColor: theme.token.backgroundColor === '#141414' ? '#2a2a2a' : '#f9f9f9',
                                 color: theme.token.colorTextBase
                             }}>
                             <h4 className="text-lg font-bold">{proyecto.titulo}</h4>
