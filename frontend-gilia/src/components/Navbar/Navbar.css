@@ -4,45 +4,79 @@
   font-weight: normal;
   font-style: normal;
 }
+.link-text{
+  color: var(--colorTextBase);
+  transition: color 0.3s ease-in-out, color 0.3s ease-in-out;
+  border-radius: 3ch;
+
+}
+.ant-menu-horizontal{
+  padding-top: 1%;
+}
+.theme-toggle-container{
+  padding-top: 1%;
+
+}
+
+.link-text:hover {
+  color: color-mix(in srgb, var(--colorTextBase) 80%, black);
+  transition: color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.Menu{
+    background-color: var(--backgroundColor); 
+    flex: 1;
+    overflow: visible;
+    display: flex; 
+    justify-content: flex-end; 
+}
 
 .Menu-Container {
+
   margin-top: 1%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   padding: 0 20px;
-  background-color: var(--background-color);
   outline: none;
 }
+
 .Menu-item {
-  font-size: 90%;
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold; /* Aplica negrita */
+  font-size: 100%;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600; /* Equivalente a semibold */
   border-radius: 10%;
   color: var(--colorTextBase);
 }
 
-
 .ant-menu-overflow {
+  align-self: center;
   border: none;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 
 .ant-menu-title-content{
   color: var(--colorTextBase);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+
 
 :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light.ant-menu-submenu-popup>.ant-menu, :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light>.ant-menu.ant-menu-submenu-popup>.ant-menu{
-  background-color: var(--background-color);
+  background-color: color-mix(in srgb, var(--backgroundColorSecondary) 50%, var(--backgroundColor));
 }
 
+:where(.css-dev-only-do-not-override-xex5fb).ant-menu-light .ant-menu-item-selected, :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light>.ant-menu .ant-menu-item-selected {
+  background-color: var(--backgroundColor);
+}
 .Menu {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   width: 100%;
   border: none;
+      font-family: "Josefin Sans", sans-serif;
+
 }
 
 .logo-item {
@@ -53,17 +87,31 @@
   letter-spacing: 10px;
   margin-right: auto;
   margin-left: 4%;
+  
+}
+
+.logo-text{
+  color: var(--colorTextBase);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .Menu .ant-menu-item {
   margin-right: 3%;
   color: var(--colorTextBase);
+
+}
+.li{
+  align-self: center;
+}
+.Menu .ant-menu-item:not(.ant-menu-item-selected):hover {
+  background-color: color-mix(in srgb, var(--backgroundColorSecondary) 50%, var(--backgroundColor));
+  border-radius: 3ch;
+  color: var(--colorTextBase);
 }
 
-.Menu .ant-menu-item:not(.ant-menu-item-selected):hover {
-  background-color: var(--itemSelectedColor);
-  border-radius: 10%;
-  color: var(--colorTextBase);
+.Menu .ant-menu-item:not(.ant-menu-item-selected) {
+  border-radius: 3ch;
+  text-align: center; 
 }
 
 .ant-menu-light.ant-menu-horizontal>.ant-menu-item::after,
@@ -75,10 +123,10 @@
 :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light>.ant-menu.ant-menu-horizontal>.ant-menu-item-selected,
 :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light.ant-menu-horizontal>.ant-menu-submenu-selected,
 :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light>.ant-menu.ant-menu-horizontal>.ant-menu-submenu-selected {
+  background-color: var(--backgroundColorSecondary);
+  border-radius: 3ch;
   color: var(--colorTextBase);
-  border-radius: 5%;
-  border-bottom: 2px solid var(--colorTextBase);
-  /* Se agrega 'solid' para definir el estilo del borde */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light .ant-menu-item {
@@ -86,7 +134,8 @@
 }
 
 :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light .ant-menu-item-selected {
-  background-color: var(--background-color);
+  background-color: var(--backgroundColor);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light .ant-menu-item:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected):hover {
@@ -123,10 +172,6 @@
   color: var(--colorTextBase) ;
 }
 
-.anticon:hover{
-  background-color: var(--itemSelectedColor);
-}
-
 
 @media (max-width: 768px) {
 
@@ -149,4 +194,10 @@
     display: none;
   }
 
+
+}
+
+:where(.css-dev-only-do-not-override-xex5fb).ant-menu-light.ant-menu-horizontal >.ant-menu-item, :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light>.ant-menu.ant-menu-horizontal >.ant-menu-item, :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light.ant-menu-horizontal >.ant-menu-submenu, :where(.css-dev-only-do-not-override-xex5fb).ant-menu-light>.ant-menu.ant-menu-horizontal >.ant-menu-submenu {
+  border-radius: 3ch;
+  margin-right: 20px;
 }

@@ -1,0 +1,42 @@
+
+
+.custom-card-ldi {
+    background-color: var(--backgroundColorSecondary);
+    border-radius: 3ch;
+    padding: 2%;
+    margin: 2%;
+    transition: background-color 0.3s ease-in-out;
+    color: var(--colorTextBase);
+    box-shadow: 7px 7px 14px var(--shadowtop),
+        -7px -7px 14px var(--shadowbotom);
+}
+
+.custom-btn-list{
+    margin-left: 25%;
+    height: 15%;
+    padding-bottom: 5%;
+}
+
+.custom-btn-list:hover{
+    background-color: var(--backgroundColor);
+}
+
+.custom-text-list{
+    font-family: "Josefin Sans", sans-serif;
+    text-align: center;
+    margin-top: 6%;
+    color: var(--colorTextBase);
+}
+.custom-autor-list {
+    font-family: "Josefin Sans", sans-serif;
+    text-align: center;
+    color: var(--colorTextBase);
+    margin-top: 2%;
+}
+.custom-desp-list{
+    font-family: "Josefin Sans", sans-serif;
+    text-align: center;
+    color: var(--colorTextBase);
+    margin-top: 2%;
+    height: 100px;
+}
