@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Project",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nane": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "startdate": {
+      "type": "date"
+    },
+    "enddate": {
+      "type": "date"
+    },
+    "status_pj": {
+      "type": "string"
+    },
+    "team_members": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::person.person",
+      "inversedBy": "projects"
+    },
+    "research_line": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::research-line.research-line",
+      "inversedBy": "featured_projects"
+    }
+  }
+}
