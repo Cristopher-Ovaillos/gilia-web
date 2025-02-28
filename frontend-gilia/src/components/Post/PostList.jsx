@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import PostCard from './PostCard'; 
-import Pagination from './Pagination'; 
-import Loader from './Loader'; 
+import PostCard from './PostCard';
+import Pagination from './Pagination';
+import Loader from './Loader';
 import { useTheme } from '../../context/ThemeContext'; // Usar el contexto de tema
 import { API_BASE_URL } from "../../api_url";
 const PostList = () => {
-  const { theme } = useTheme();  
+  const { theme } = useTheme();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  
+
   /*
   para ver los atributos de meta: http://localhost:1337/api/posts?populate=*
 
@@ -18,25 +18,35 @@ const PostList = () => {
 
 
   // funcion para obtener las publicaciones de la API
-  const fetchPosts = async () => {
-    setLoading(true);//para indicar que estamos en un estado de carga, que vamos a cargar los post
-    try {
-    
-//definiendo la cantidad de post de cada pagina, los atributos cambian (pageCount, etc)
-      const response = await fetch(
-          `${API_BASE_URL}/posts?pagination[page]=${currentPage}&pagination[pageSize]=6&populate=*`
-      );
-      
 
+  
+  const fetchPosts = async () => {
+    setLoading(true);
+    try {
+      // //definiendo la cantidad de post de cada pagina, los atributos cambian (pageCount, etc)
+      const response = await fetch(
+        `${API_BASE_URL}/posts?pagination[page]=${currentPage}&pagination[pageSize]=6&populate=*`
+      );
       const data = await response.json();
+
+      console.log("API Response:", data); 
+
+      if (!data || !data.data) {
+        throw new Error("La respuesta de la API no contiene datos válidos.");
+      }
+
       setPosts(data.data);
-      setTotalPages(data.meta.pagination.pageCount);
+
+      // Verifica que 'meta' y 'pagination' existan antes de acceder a 'pageCount'
+      setTotalPages(data.meta?.pagination?.pageCount || 1);
+
     } catch (error) {
       console.error("Error fetching posts:", error);
     } finally {
       setLoading(false);
     }
   };
+
 
 
   /*
