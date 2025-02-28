@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
+
+
 .custom-card-active {
     width: 110%;
     margin-left: -5%;
     height: 82%;
-    background-color: var(--cardBackgroundColor);
     z-index: 10; /* Ajusta el valor de z-index según sea necesario */   
 }
 
@@ -19,12 +20,12 @@
 .custom-card-inactive{
     width: 100%;
     height: 70%;
-    background-color: var(--cardBackgroundColor);
 }
 
 .custom-card-home{
-    box-shadow:  6px 6px 12px var(--background-color),
-             -6px -6px 12px var(--background-color);
+    background-color: var(--backgroundColorSecondary);
+    box-shadow:  6px 6px 12px var(--backgroundColor),
+             -6px -6px 12px var(--backgroundColor);
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
@@ -45,31 +46,39 @@
     text-align: center;
     color: var(--colorTextBase);
 }
+
 .custom-card-inactive .custom-descrip-card{
-    color: #a5a0a0;
+    color: var(--colorTextBase);
+}
+
+.custom-card-active .custom-descrip-card{
+    color: var(--colorTextBase);
+    font-size: 120%;
 }
 
 .custom-text-card{
     font-family: "Josefin Sans", sans-serif;
     text-align: center;
     margin-top: 10%;
+    color: var(--colorTextBase);
 }
 
 .custom-autor-card{
     font-family: "Josefin Sans", sans-serif;
-    color: #a5a0a0;
+    color: var(--colorTextBase);
     text-align: center;
 }
 
 .custom-btn{
-    background-color: var(--cardBackgroundColor);
+    background-color: var(--backgroundColor);
+    box-shadow:  2px 2px 6px var(--backgroundColorSecondary),
+    -2px -2px 6px var(--backgroundColor);
     color: var(--colorTextBase);   
-    border: 1px solid var(--cardBackgroundColor);
+    border: 0px;
     border-radius: 1rem;
     font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
-    border: 1px solid white;
     height: 10%;
     padding-left: 20%;
     padding-right: 20%;
@@ -78,12 +87,9 @@
     transition:  all 0.7s ease-out;
 
     &:hover{
-        border: 0px;
-
-        background-color: #e2d8d8e6;
-        color: #0e0c0c;   
-        box-shadow:  2px 2px 6px #a5a0a0,
-        -2px -2px 6px #997cddb0;
+        background-color: var(--backgroundColorSecondary);
+        box-shadow: 7px 7px 14px var(--shadowtop),
+        -7px -7px 14px var(--backgroundColor);
     }
 }
 

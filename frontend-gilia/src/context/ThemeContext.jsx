@@ -1,8 +1,9 @@
-import React, { createContext, useState, useContext } from 'react';
-import { lightTheme, darkTheme } from '../Assets/styles/themes'; 
+import { createContext, useState, useContext } from 'react';
+import { lightTheme, darkTheme } from '../Assets/styles/themes';
 
 const ThemeContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(darkTheme);
 

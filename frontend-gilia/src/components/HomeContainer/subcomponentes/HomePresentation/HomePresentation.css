@@ -1,4 +1,8 @@
 @import "tailwindcss";
+.custom-presentation{
+    animation: scaleAppear 0.6s ease-out;
+}
+
 .custom-font{
     font-family: "Open Sans", sans-serif;
     color: var(--colorTextBase);
@@ -8,11 +12,11 @@
 .custom-color{
     color: var(--colorTextBase);
     font-family: "Open Sans", sans-serif;
-    background-color: var(--background-color);
+    background-color: transparent; 
     border-radius: 2rem;
 }
 .custom-back{
-    background-color: var(--cardBackgroundColor);
+    background-color: var(--backgroundColorSecondary);
 }
 
 @media (max-width: 768px) {
@@ -26,5 +30,5 @@
     .custom-subtext a{
         font-size: 80%;
     }
-  }
+}
   

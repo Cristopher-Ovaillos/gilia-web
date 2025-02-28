@@ -5,11 +5,19 @@ import { MenuOutlined, BulbOutlined, MoonOutlined } from "@ant-design/icons";
 import { useTheme } from "../../context/ThemeContext";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import asyncMock from "../../../asyncMock"; 
 
 const Navbar = ({ activeSection, setActiveSection }) => {
   const [visible, setVisible] = useState(false);
   const [esCelular, setEsCelular] = useState(window.innerWidth < 768);
   const { theme, toggleTheme } = useTheme();
+  const [lineas, setLineas] = useState([]);
+
+  useEffect(() => {
+    asyncMock.getAll()
+      .then(data => setLineas(data))
+      .catch(error => console.error("Error al obtener las líneas:", error));
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,12 +27,6 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    document.body.style.setProperty("--background-color", theme.token.backgroundColor);
-    document.body.style.setProperty("--itemSelectedColor", theme.token.itemSelectedColor);
-    document.body.style.setProperty("--colorTextBase", theme.token.colorTextBase);
-  }, [theme]);
-
   const handleMenuItemClick = (e) => {
     setActiveSection(e.key);
     if (esCelular) {
@@ -32,37 +34,40 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     }
   };
 
+  const handleLineas = () => {
+    return lineas.map((linea, index) => ({
+      key: `linea-${index}`,
+      label: (
+        <Link 
+          to={`/lineas-de-investigacion/${linea.nombre}`} 
+          className="link-text"
+        >
+          {linea.nombre}
+        </Link>
+      ),
+    }));
+  };
+
   const menuItems = [
-    { key: "home", label: <Link to="/">Inicio</Link>, className: "Menu-item" },
+    { key: "home", label: <Link to="/" className="link-text">Inicio</Link>, className: "Menu-item" },
     {
       key: "projects",
-      label: "Líneas de Investigación",
+      label: <span className="link-text">Línea de Investigación</span>,
       className: "Menu-item",
-      children: [
-        {
-          key: "ai-research",
-          label: <Link to="/lineas-de-investigacion/ia">Inteligencia Artificial</Link>,
-        },
-        {
-          key: "software-engineering",
-          label: <Link to="/lineas-de-investigacion/se">Ingeniería de Software</Link>,
-        },
-        {
-          key: "data-science",
-          label: <Link to="/lineas-de-investigacion/ds">Ciencia de Datos</Link>,
-        },
-      ],
+      children: handleLineas(),
     },
+
     { key: "goal", label: <Link to="/">Objetivos</Link>, className: "Menu-item" },
     { key: "publications", label: <Link to="/post">Publicaciones</Link>, className: "Menu-item" },
     { key: "extension", label: <Link to="/">Extensión</Link>, className: "Menu-item" },
     { key: "about-us", label: <Link to="/about-us">¿Quiénes Somos?</Link>, className: "Menu-item" },
+
   ];
 
   return (
-    <div className="Menu-Container" style={{ backgroundColor: theme.token.backgroundColor }}>
+    <div className="Menu-Container">
       <div className="logo-item">
-        <span className="logo-text" style={{ color: theme.token.colorTextBase }}>
+        <span className="logo-text">
           GILIA
         </span>
       </div>
@@ -89,14 +94,12 @@ const Navbar = ({ activeSection, setActiveSection }) => {
             placement="right"
             onClose={() => setVisible(false)}
             open={visible}
-            style={{ backgroundColor: theme.token.backgroundColor }}
           >
             <Menu
               mode="vertical"
               selectedKeys={[activeSection]}
               onClick={handleMenuItemClick}
               items={menuItems}
-              style={{ backgroundColor: theme.token.backgroundColor }}
             />
           </Drawer>
         </>
@@ -107,7 +110,8 @@ const Navbar = ({ activeSection, setActiveSection }) => {
             selectedKeys={[activeSection]}
             onClick={handleMenuItemClick}
             items={menuItems}
-            style={{ backgroundColor: theme.token.backgroundColor, flex: 1, overflow: "visible", justifyContent: "end"}}
+            className="Menu"
+            style={{ backgroundColor: theme.token.backgroundColor, flex: 1, overflow: "visible", justifyContent: "end" }}
           />
           <div className="theme-toggle-container">
             <Button type="text" onClick={toggleTheme} className="theme-toggle-button">

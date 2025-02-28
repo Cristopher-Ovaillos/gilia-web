@@ -1,0 +1,53 @@
+.custom-container-lineDetail{
+    margin-top: 2%;
+    background-color: var(--backgroundColorSecondary);
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: 3rem;
+}
+
+.custom-name-lineDetail{
+    margin-top: 3%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--colorTextBase);
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.custom-autor-lineDetail{
+    font-size: 1.05rem;
+    margin-bottom: 2%;
+    font-weight: bold;
+    color: var(--colorTextBase);
+    font-family: "Josefin Sans", sans-serif;
+}
+.custom-contenido-lineDetail{
+    font-size: 1rem;
+    color: var(--colorTextBase);
+    line-height: 220%; 
+    font-family: "Josefin Sans", sans-serif;
+}
+
+@media (max-width: 768px) {
+
+    .custom-name-lineDetail{
+        padding: 3%;
+        font-size: 1rem;
+    }
+    
+    .custom-autor-lineDetail{
+        font-size: 0.86rem;
+        margin-bottom: 2%;
+        font-weight: bold;
+        color: var(--colorTextBase);
+        font-family: "Josefin Sans", sans-serif;
+    }
+    .custom-contenido-lineDetail{
+        font-size: 0.8rem;
+        color: var(--colorTextBase);
+        line-height: 220%; 
+        font-family: "Josefin Sans", sans-serif;
+        padding: 5%;
+    }
+  }
+  
