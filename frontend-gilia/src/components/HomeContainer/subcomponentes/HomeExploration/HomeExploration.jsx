@@ -33,8 +33,8 @@ export default function HomeExploration() {
   return (
     <div className=" relative  outline-none border-0 isolate px-6 py-14 sm:py-32 lg:px-8  mt-[-10%]">
       <div className="mx-auto max-w-4xl text-center">
-        <h2 className="custom-color text-base/7 font-semibold text-indigo-600">Novedades</h2>
-        <p className="custom-color mt-2 text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">
+        <h2 className="custom-color text-base/7 font-semibold  custom-animation-start-text">Novedades</h2>
+        <p className="custom-color mt-2 text-4xl font-semibold tracking-tight text-balance  sm:text-5xl custom-animation-start-text">
           Nuevas Lineas de Investigacion
         </p>
       </div>

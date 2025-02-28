@@ -28,8 +28,8 @@ const ListLineasContainer = () => {
   if (!linea) return <Loader />;
 
   return (
-    <div className="w-[90%] h-[60%] grid grid-cols-1 gap-1 p-4 m-auto custom-container-lineDetail sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-3">
-      <div className="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col items-center justify-center text-xl">
+    <div className="w-[80%] h-[60%] grid grid-cols-1 gap-1 p-4 pb-1.5 m-auto custom-container-lineDetail sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10">
+      <div className="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col items-center justify-center text-xl text-center sm:text-center">
         <p className="custom-name-lineDetail">{linea.nombre}</p>
         <p className="custom-autor-lineDetail">{linea.autor}</p>
         <p className="custom-contenido-lineDetail">{dividirContenido(linea.contenido, 1)}</p>
@@ -40,10 +40,11 @@ const ListLineasContainer = () => {
       <div className="col-span-1 flex items-center justify-center text-xl w-[70%] mx-auto mt-1">
         <img className="custom-img" src={linea.img} alt="Imagen" />
       </div>
-      <div className="col-span-1 md:col-span-2 lg:col-span-2 flex items-center justify-center text-xl">
+      <div className="col-span-1 md:col-span-2 lg:col-span-2 flex items-center justify-center text-xl text-center sm:text-center">
         <p className="custom-contenido-lineDetail">{dividirContenido(linea.contenido, 2)}</p>
       </div>
     </div>
+
   );
 };
 

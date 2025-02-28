@@ -8,7 +8,7 @@ function classNames(...classes) {
 
 const Card = ({ id, name, autor, description, onClickTo, featured, href }) => {
   return (
-    <div className={classNames(featured ? 'custom-card-active' : 'custom-card-inactive mt-[10%]', ' custom-card-home')} >
+    <div className={classNames(featured ? 'custom-card-active' : 'custom-card-inactive mt-[10%]', ' custom-card-home custom-animation-start')} >
       <div className="absolute top-0 inset-x-0 h-1.5 bg-indigo-600 rounded-t-lg" aria-hidden="true" />
       <h3 id={id} className={classNames(featured ? ' text-2xl text-white' : ' text-1xl text-gray-300 ',' font-semibold  ', 'text-center custom-text-card'   )}> {name} </h3>
       <p className="flex-start items-baseline ">   <span className="custom-autor-card"> {autor} </span> </p>
