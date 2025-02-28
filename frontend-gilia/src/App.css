@@ -5,5 +5,4 @@
 body {
     background-color: var(--backgroundColor);
     color: var(--colorTextBase); /* Asegura que el texto contraste con el fondo */
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }

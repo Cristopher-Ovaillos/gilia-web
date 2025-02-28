@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+
+
 .custom-card-active {
     width: 110%;
     margin-left: -5%;

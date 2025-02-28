@@ -120,6 +120,8 @@ const ParticleEffect = ({ children }) => {
         border: "none",  
         width: "100vw", 
         height: "100vh", // Ajustar la altura al 50% de la pantalla
+        background:  "var(--backgroundColor)",
+
       }}
     >
       {children && (
