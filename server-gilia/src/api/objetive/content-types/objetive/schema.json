@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "objetives",
+  "info": {
+    "singularName": "objetive",
+    "pluralName": "objetives",
+    "displayName": "Objetive"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "date": {
+      "type": "date"
+    }
+  }
+}

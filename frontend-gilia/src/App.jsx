@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import { useTheme } from "./context/ThemeContext";
 import AboutUs from "./components/AboutUs/AboutUs";
-import HomeContainer from "./components/HomeContainer/HomeContainer";
-import LinesDetailContainer from "./components/LinesDetailContainer/LinesDetailContainer"; // Importa el detalle
-import ListLineasContainer  from "./components/ListLinesContainer/ListLinesContainer";
-import "./App.css";
+
+import HomeContainer from './components/HomeContainer/HomeContainer';
+import LineasContainer from './components/LineasContainer/LineasContainer';
+import PostsList from './components/Post/PostList';
+import PostDetail from './components/Post/PostDetail';
 
 
 function App() {
@@ -25,9 +26,12 @@ function App() {
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
       <Routes>
         <Route path="/" element={<HomeContainer />} />
-        <Route path="/lineas-de-investigacion" element={<ListLineasContainer />} />
-        <Route path="/lineas-de-investigacion/:name" element={<LinesDetailContainer />} />
+
+        <Route path="/lineas-de-investigacion" element={<LineasContainer />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/post/:id" element={<PostDetail />} /> 
+        <Route path="/post" element={<PostsList />} />      
+
       </Routes>
     </Router>
   );

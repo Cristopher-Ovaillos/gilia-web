@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "extensions",
+  "info": {
+    "singularName": "extension",
+    "pluralName": "extensions",
+    "displayName": "Extension"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "date": {
+      "type": "date"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
