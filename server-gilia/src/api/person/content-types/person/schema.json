@@ -4,7 +4,8 @@
   "info": {
     "singularName": "person",
     "pluralName": "people",
-    "displayName": "Person"
+    "displayName": "Person",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,21 +14,19 @@
     "full_name": {
       "type": "string"
     },
-    "role": {
-      "type": "string"
-    },
     "biography": {
       "type": "text"
     },
     "photo": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "social_links": {
       "type": "email"
@@ -43,6 +42,21 @@
       "relation": "manyToMany",
       "target": "api::post.post",
       "mappedBy": "authors"
+    },
+    "role_person": {
+      "type": "enumeration",
+      "enum": [
+        "director",
+        "investigador",
+        "colaborador",
+        "becario"
+      ]
+    },
+    "about_us": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::about-us.about-us",
+      "inversedBy": "people"
     }
   }
 }

@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiAboutUsAboutUs extends Struct.CollectionTypeSchema {
   collectionName: 'about_uses';
   info: {
+    description: '';
     displayName: 'About Us';
     pluralName: 'about-uses';
     singularName: 'about-us';
@@ -384,6 +385,7 @@ export interface ApiAboutUsAboutUs extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    footer: Schema.Attribute.Text;
     image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -394,8 +396,8 @@ export interface ApiAboutUsAboutUs extends Struct.CollectionTypeSchema {
       'api::about-us.about-us'
     > &
       Schema.Attribute.Private;
+    people: Schema.Attribute.Relation<'oneToMany', 'api::person.person'>;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -530,6 +532,7 @@ export interface ApiObjetiveObjetive extends Struct.CollectionTypeSchema {
 export interface ApiPersonPerson extends Struct.CollectionTypeSchema {
   collectionName: 'people';
   info: {
+    description: '';
     displayName: 'Person';
     pluralName: 'people';
     singularName: 'person';
@@ -538,6 +541,7 @@ export interface ApiPersonPerson extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    about_us: Schema.Attribute.Relation<'manyToOne', 'api::about-us.about-us'>;
     biography: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -556,7 +560,9 @@ export interface ApiPersonPerson extends Struct.CollectionTypeSchema {
     posts: Schema.Attribute.Relation<'manyToMany', 'api::post.post'>;
     projects: Schema.Attribute.Relation<'manyToMany', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
-    role: Schema.Attribute.String;
+    role_person: Schema.Attribute.Enumeration<
+      ['director', 'investigador', 'colaborador', 'becario']
+    >;
     social_links: Schema.Attribute.Email;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
