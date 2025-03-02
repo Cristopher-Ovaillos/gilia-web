@@ -64,9 +64,9 @@ const Navbar = ({ activeSection, setActiveSection }) => {
       className: "Menu-item",
       children: handleLineas(),
     },
-    { key: "goal", label: <Link to="/">Objetivos</Link>, className: "Menu-item" },
+    { key: "goal", label: <Link to="/objectives">Objetivos</Link>, className: "Menu-item" },
     { key: "publications", label: <Link to="/post">Publicaciones</Link>, className: "Menu-item" },
-    { key: "extension", label: <Link to="/">Extensión</Link>, className: "Menu-item" },
+    { key: "extension", label: <Link to="/extension">Extensión</Link>, className: "Menu-item" },
     { key: "about-us", label: <Link to="/about-us">¿Quiénes Somos?</Link>, className: "Menu-item" },
   ];
 

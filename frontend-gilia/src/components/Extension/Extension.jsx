@@ -1,7 +1,9 @@
-import React from 'react'
 
-export const Extension = () => {
+export default function Extension() {
   return (
-    <div>Extension</div>
-  )
+    <div>
+
+    </div>
+    
+  );
 }

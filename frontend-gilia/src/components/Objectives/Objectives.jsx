@@ -1,7 +1,7 @@
-import React from 'react'
-
-export const Objectives = () => {
+export default function Objectives() {
   return (
-    <div>Objectives</div>
-  )
+    <div>
+    </div>
+  );
 }
+
