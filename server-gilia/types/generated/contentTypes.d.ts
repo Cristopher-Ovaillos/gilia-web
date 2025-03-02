@@ -632,10 +632,6 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     nane: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    research_line: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::research-line.research-line'
-    >;
     startdate: Schema.Attribute.Date;
     status_pj: Schema.Attribute.String;
     team_members: Schema.Attribute.Relation<'manyToMany', 'api::person.person'>;
@@ -658,18 +654,16 @@ export interface ApiResearchLineResearchLine
     draftAndPublish: true;
   };
   attributes: {
+    author: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    featured_projects: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::project.project'
-    >;
+    description: Schema.Attribute.RichText;
     image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
+    image2: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

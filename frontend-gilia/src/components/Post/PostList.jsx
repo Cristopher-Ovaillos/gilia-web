@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PostCard from './PostCard';
 import Pagination from './Pagination';
-import Loader from './Loader';
+import Loader from '../Loader/Loader';
 import { useTheme } from '../../context/ThemeContext'; // Usar el contexto de tema
 import { API_BASE_URL } from "../../api_url";
 const PostList = () => {
@@ -11,14 +11,7 @@ const PostList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  /*
-  para ver los atributos de meta: http://localhost:1337/api/posts?populate=*
-
-  */
-
-
   // funcion para obtener las publicaciones de la API
-
   
   const fetchPosts = async () => {
     setLoading(true);
@@ -62,7 +55,6 @@ const PostList = () => {
   return (
     <div className="container mx-auto p-4" style={{ backgroundColor: theme.token.backgroundColor }}>
       <h1 className="text-3xl font-bold my-4" style={{ color: theme.token.colorTextBase }}>Publicaciones</h1>
-      {/* loading es true? si es true muestro el componente Loader (va a estar true solo cuando hago el fetchpost para cargar nuevos post) */}
       {loading ? (
         <Loader />
       ) : (

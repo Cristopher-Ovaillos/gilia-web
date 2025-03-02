@@ -5,7 +5,8 @@ import { MenuOutlined, BulbOutlined, MoonOutlined } from "@ant-design/icons";
 import { useTheme } from "../../context/ThemeContext";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import asyncMock from "../../../asyncMock"; 
+import { API_BASE_URL } from "../../api_url";
+
 
 const Navbar = ({ activeSection, setActiveSection }) => {
   const [visible, setVisible] = useState(false);
@@ -14,9 +15,21 @@ const Navbar = ({ activeSection, setActiveSection }) => {
   const [lineas, setLineas] = useState([]);
 
   useEffect(() => {
-    asyncMock.getAll()
-      .then(data => setLineas(data))
-      .catch(error => console.error("Error al obtener las líneas:", error));
+    const fetchLineas = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/research-lines`);
+        const result = await response.json();
+        console.log("Líneas recibidas:", result);
+
+        if (result.data && Array.isArray(result.data)) {
+          setLineas(result.data);
+        }
+      } catch (error) {
+        console.error("Error al obtener las líneas:", error);
+      }
+    };
+
+    fetchLineas();
   }, []);
 
   useEffect(() => {
@@ -35,15 +48,10 @@ const Navbar = ({ activeSection, setActiveSection }) => {
   };
 
   const handleLineas = () => {
-    return lineas.map((linea, index) => ({
-      key: `linea-${index}`,
+    return lineas.map((linea) => ({
+      key: `linea-${linea.id}`,
       label: (
-        <Link 
-          to={`/lineas-de-investigacion/${linea.nombre}`} 
-          className="link-text"
-        >
-          {linea.nombre}
-        </Link>
+        <Link to={`/lineas-de-investigacion/${linea.id}`} className="link-text" > {linea.name} </Link>
       ),
     }));
   };
@@ -56,12 +64,10 @@ const Navbar = ({ activeSection, setActiveSection }) => {
       className: "Menu-item",
       children: handleLineas(),
     },
-
     { key: "goal", label: <Link to="/">Objetivos</Link>, className: "Menu-item" },
     { key: "publications", label: <Link to="/post">Publicaciones</Link>, className: "Menu-item" },
     { key: "extension", label: <Link to="/">Extensión</Link>, className: "Menu-item" },
     { key: "about-us", label: <Link to="/about-us">¿Quiénes Somos?</Link>, className: "Menu-item" },
-
   ];
 
   return (

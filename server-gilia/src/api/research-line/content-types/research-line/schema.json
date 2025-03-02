@@ -14,9 +14,6 @@
     "name": {
       "type": "string"
     },
-    "description": {
-      "type": "text"
-    },
     "image": {
       "type": "media",
       "multiple": true,
@@ -34,11 +31,23 @@
       "target": "api::post.post",
       "mappedBy": "research_line"
     },
-    "featured_projects": {
+    "author": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::project.project",
-      "mappedBy": "research_line"
+      "relation": "oneToOne",
+      "target": "api::project.project"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "image2": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

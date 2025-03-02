@@ -1,50 +1,56 @@
 import { useParams } from "react-router-dom";
-import asyncMock from "../../../asyncMock";
 import { useState, useEffect } from "react";
 import "./LinesDetailContainer.css";
 import Loader from "../Loader/Loader";
+import {API_BASE_URL} from "../../api_url";
 
 const ListLineasContainer = () => {
-  const [linea, setLinea] = useState(null); // Inicializa en null para evitar errores
-  const { name } = useParams();
+  const [linea, setLinea] = useState(null); 
+  const { id } = useParams(); 
 
   useEffect(() => {
     let isMounted = true;
 
-    asyncMock.getOne(name)
-      .then(data => {
-        if (isMounted) {
-          console.log(data);
-          setLinea(data);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/research-lines?filters[id][$eq]=${Number(id)}`);
+        const data = await response.json();
+        console.log("Datos recibidos:", data);
+
+        if (isMounted && data.data.length > 0) {
+          setLinea(data.data[0]); 
         }
-      })
-      .catch(error => console.error("Error:", error));
+      } catch (error) {
+        console.error("Error al obtener la línea de investigación:", error);
+      }
+    };
+
+    fetchData();
 
     return () => {
       isMounted = false;
     };
-  }, [name]);
+  }, [id]);
 
   if (!linea) return <Loader />;
 
   return (
     <div className="w-[80%] h-[60%] grid grid-cols-1 gap-1 p-4 pb-1.5 m-auto custom-container-lineDetail sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10">
       <div className="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col items-center justify-center text-xl text-center sm:text-center">
-        <p className="custom-name-lineDetail">{linea.nombre}</p>
+        <p className="custom-name-lineDetail">{linea.name}</p>
         <p className="custom-autor-lineDetail">{linea.autor}</p>
-        <p className="custom-contenido-lineDetail">{dividirContenido(linea.contenido, 1)}</p>
+        <p className="custom-contenido-lineDetail">{dividirContenido(linea.description, 1)}</p>
       </div>
       <div className="col-span-1 flex items-center justify-center text-xl w-[70%] mx-auto mt-1">
-        <img className="custom-img" src={linea.img} alt="Imagen" />
+        <img className="custom-img" src={linea.image} alt="Imagen" />
       </div>
       <div className="col-span-1 flex items-center justify-center text-xl w-[70%] mx-auto mt-1">
-        <img className="custom-img" src={linea.img} alt="Imagen" />
+        <img className="custom-img" src={linea.image2} alt="Imagen" />
       </div>
       <div className="col-span-1 md:col-span-2 lg:col-span-2 flex items-center justify-center text-xl text-center sm:text-center">
-        <p className="custom-contenido-lineDetail">{dividirContenido(linea.contenido, 2)}</p>
+        <p className="custom-contenido-lineDetail">{dividirContenido(linea.description, 2)}</p>
       </div>
     </div>
-
   );
 };
 

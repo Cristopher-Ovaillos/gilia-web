@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import Loader from "../Loader/Loader";
 
 const AboutUs = () => {
   const { theme } = useTheme();
@@ -17,7 +18,7 @@ const AboutUs = () => {
   }, []);
 
   if (!data) {
-    return <div>Cargando...</div>;
+    return <Loader/>;
   }
 
   const ordenarPorRol = (people) => {
