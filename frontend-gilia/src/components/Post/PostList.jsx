@@ -3,7 +3,7 @@ import PostCard from './PostCard';
 import Pagination from './Pagination';
 import Loader from '../Loader/Loader';
 import { useTheme } from '../../context/ThemeContext'; // Usar el contexto de tema
-import { API_BASE_URL } from "../../api_url";
+import { API_BASE_URL } from "../../config/apiConfig";
 const PostList = () => {
   const { theme } = useTheme();
   const [posts, setPosts] = useState([]);
@@ -18,7 +18,7 @@ const PostList = () => {
     try {
       // //definiendo la cantidad de post de cada pagina, los atributos cambian (pageCount, etc)
       const response = await fetch(
-        `${API_BASE_URL}/posts?pagination[page]=${currentPage}&pagination[pageSize]=6&populate=*`
+        `${API_BASE_URL}/api/posts?pagination[page]=${currentPage}&pagination[pageSize]=6&populate=*`
       );
       const data = await response.json();
 

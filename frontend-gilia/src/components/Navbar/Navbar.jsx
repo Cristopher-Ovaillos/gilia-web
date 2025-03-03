@@ -5,7 +5,7 @@ import { MenuOutlined, BulbOutlined, MoonOutlined } from "@ant-design/icons";
 import { useTheme } from "../../context/ThemeContext";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import { API_BASE_URL } from "../../api_url";
+import { API_BASE_URL } from "../../config/apiConfig";
 
 
 const Navbar = ({ activeSection, setActiveSection }) => {
@@ -17,7 +17,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
   useEffect(() => {
     const fetchLineas = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/research-lines`);
+        const response = await fetch(`${API_BASE_URL}/api/research-lines`);
         const result = await response.json();
         console.log("Líneas recibidas:", result);
 

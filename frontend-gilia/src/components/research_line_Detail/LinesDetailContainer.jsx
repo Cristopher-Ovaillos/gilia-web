@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./LinesDetailContainer.css";
 import Loader from "../Loader/Loader";
-import {API_BASE_URL} from "../../api_url";
+import {API_BASE_URL} from "../../config/apiConfig";
 
 const ListLineasContainer = () => {
   const [linea, setLinea] = useState(null); 
@@ -13,7 +13,7 @@ const ListLineasContainer = () => {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/research-lines?filters[id][$eq]=${Number(id)}`);
+        const response = await fetch(`${API_BASE_URL}/api/research-lines?filters[id][$eq]=${Number(id)}`);
         const data = await response.json();
         console.log("Datos recibidos:", data);
 

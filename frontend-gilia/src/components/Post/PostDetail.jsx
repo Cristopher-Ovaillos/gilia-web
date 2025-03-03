@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { useTheme } from '../../context/ThemeContext';
-import { API_BASE_URL } from "../../api_url";
+import { API_BASE_URL } from "../../config/apiConfig";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -15,7 +15,7 @@ const PostDetail = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch( `${API_BASE_URL}/posts/${id}?populate=*`);
+        const response = await fetch( `${API_BASE_URL}/api/posts/${id}?populate=*`);
 
         if (!response.ok) {
           throw new Error("Error fetching the post");

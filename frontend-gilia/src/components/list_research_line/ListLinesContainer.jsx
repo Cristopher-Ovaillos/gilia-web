@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Loader from "../Loader/Loader";
-import { API_BASE_URL } from "../../api_url";
+import { API_BASE_URL } from "../../config/apiConfig";
 
 
 const ListLineasContainer = () => {
