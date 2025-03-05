@@ -13,13 +13,16 @@ const ListLineasContainer = () => {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/research-lines?filters[id][$eq]=${Number(id)}`);
-        const data = await response.json();
-        console.log("Datos recibidos:", data);
 
-        if (isMounted && data.data.length > 0) {
-          setLinea(data.data[0]); 
-        }
+        
+        //const response = await fetch(`${API_BASE_URL}/api/research-lines?filters[id][$eq]=${Number(id)}`);
+        const response = await fetch(`${API_BASE_URL}/api/research-lines/${id}`);
+        const data = await response.json();
+        console.log("Datos recibidos s:", data);
+
+      
+          setLinea(data); 
+        
       } catch (error) {
         console.error("Error al obtener la línea de investigación:", error);
       }
@@ -42,10 +45,10 @@ const ListLineasContainer = () => {
         <p className="custom-contenido-lineDetail">{dividirContenido(linea.description, 1)}</p>
       </div>
       <div className="col-span-1 flex items-center justify-center text-xl w-[70%] mx-auto mt-1">
-        <img className="custom-img" src={linea.image} alt="Imagen" />
+        <img className="custom-img" src={`${API_BASE_URL}${linea.image?.url}`} alt="Imagen" />
       </div>
       <div className="col-span-1 flex items-center justify-center text-xl w-[70%] mx-auto mt-1">
-        <img className="custom-img" src={linea.image2} alt="Imagen" />
+        <img className="custom-img" src={`${API_BASE_URL}${linea.image2?.url}`} alt="Imagen2" />
       </div>
       <div className="col-span-1 md:col-span-2 lg:col-span-2 flex items-center justify-center text-xl text-center sm:text-center">
         <p className="custom-contenido-lineDetail">{dividirContenido(linea.description, 2)}</p>
