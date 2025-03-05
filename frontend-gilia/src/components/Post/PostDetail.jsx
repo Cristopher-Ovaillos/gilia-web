@@ -36,6 +36,14 @@ const PostDetail = () => {
   if (error) return <p className="text-center text-red-500 mt-10">Error: {error}</p>;
   if (!post || !post.id) return <p className="text-center text-gray-500 mt-10">No hay datos disponibles.</p>;
 
+  /* 
+  text-sm → pequeño
+  text-base → normal
+  text-lg → un poco más grande
+  text-xl → grande
+  text-2xl, text-3xl, text-4xl, ... → cada vez más grande
+  
+  */
   return (
     <div
       className="max-w-screen-2xl mx-auto bg-white shadow-lg rounded-lg p-12 sm:p-24 mt-20"
@@ -46,7 +54,7 @@ const PostDetail = () => {
     >
  
       <h1
-        className="text-6xl font-extrabold text-gray-900 mb-8"
+        className="text-4xl font-extrabold text-gray-900 mb-8"
         style={{ color: theme.token.colorTextBase }}
       >
         {post.tittle}
@@ -54,7 +62,7 @@ const PostDetail = () => {
 
 
       <div
-        className="text-xl text-gray-700 leading-relaxed space-y-8"
+        className="text-base text-gray-700 leading-relaxed space-y-4"
         style={{ color: theme.token.colorTextBase }}
       >
         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
