@@ -2,95 +2,118 @@ import { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { useTheme } from "../../../../context/ThemeContext"; 
 
-// eslint-disable-next-line react/prop-types
+// Componente que genera un efecto de partículas animadas con Three.js.
 const ParticleEffect = ({ children }) => {
-  const mountRef = useRef(null);
-  const { theme } = useTheme();
+  const mountRef = useRef(null); // Referencia al contenedor donde se montará la escena de Three.js.
+  const { theme } = useTheme(); // Obtiene el tema actual desde el contexto.
 
   useEffect(() => {
-    const scene = new THREE.Scene();
+    // Configuración inicial de la escena de Three.js.
+    const scene = new THREE.Scene(); // Crea una nueva escena.
     const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
+      75, // Ángulo de visión.
+      window.innerWidth / window.innerHeight, // Relación de aspecto.
+      0.1, // Plano cercano.
+      1000 // Plano lejano.
     );
+    
+    // Renderizador WebGL con fondo transparente.
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    
+    // Agrega el canvas del renderizador al contenedor.
     mountRef.current.appendChild(renderer.domElement);
 
+    // Cantidad de partículas en la simulación.
     const particleCount = 150;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const velocities = new Float32Array(particleCount);
+    const geometry = new THREE.BufferGeometry(); // Geometría de las partículas.
+    const positions = new Float32Array(particleCount * 3); // Posiciones de las partículas (x, y, z).
+    const velocities = new Float32Array(particleCount * 3); // Velocidades de las partículas (x, y, z).
+
+    // Función para generar nuevas partículas cuando salgan del área visible.
+    const resetParticle = (index) => {
+      positions[index * 3] = 0; // Resetea la posición en X.
+      positions[index * 3 + 1] = 0; // Resetea la posición en Y.
+      positions[index * 3 + 2] = 0; // Resetea la posición en Z.
+
+      let dir = new THREE.Vector3(
+        Math.random() * 2 - 1, 
+        Math.random() * 2 - 1, 
+        Math.random() * 2 - 1
+      ).normalize(); // Se normaliza para obtener un vector unitario.
+
+      const speed = Math.random() * 0.1 + 0.02;
+      velocities[index * 3] = dir.x * speed;
+      velocities[index * 3 + 1] = dir.y * speed;
+      velocities[index * 3 + 2] = dir.z * speed;
+    };
 
     for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = Math.random() * -10; // Ajustar la distancia de las partículas
-      positions[i * 3 + 1] = Math.random() * 10 - 4; // Ajustar la altura de las partículas
-      positions[i * 3 + 2] = Math.random() * 10 - 5; // Ajustar la profundidad de las partículas
-      velocities[i] = Math.random() * 0.06 + 0.01; // Ajustar la velocidad de las partículas
+      resetParticle(i);
     }
 
+    // Asigna las posiciones a la geometría.
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
+    // Obtiene el color de las partículas desde el tema.
     const particleColor = new THREE.Color(theme.token.colorTextBase);
 
+    // Función para crear una textura circular en un canvas.
     const createCircleTexture = () => {
-      const size = 128;
+      const size = 128; // Tamaño del canvas.
       const canvas = document.createElement("canvas");
       canvas.width = size;
       canvas.height = size;
       const ctx = canvas.getContext("2d");
 
       ctx.beginPath();
-      ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+      ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2); // Dibuja un círculo.
       ctx.fillStyle = "#FFFFFF";
       ctx.fill();
 
-      const texture = new THREE.CanvasTexture(canvas);
-      return texture;
+      return new THREE.CanvasTexture(canvas); // Retorna la textura generada.
     };
 
+    // Material de las partículas con transparencia y textura circular.
     const material = new THREE.PointsMaterial({
       color: particleColor,
-      size: 0.1,
+      size: 0.1, // Tamaño de las partículas.
       map: createCircleTexture(),
       transparent: true,
-      alphaTest: 0.5,
+      alphaTest: 0.5, // Define un umbral de transparencia.
     });
 
+    // Crea el sistema de partículas y lo añade a la escena.
     const particles = new THREE.Points(geometry, material);
     scene.add(particles);
-    camera.position.z = 10;
 
-    let animationFrameId;
+    camera.position.z = 10; // Ubica la cámara para ver las partículas.
+
+    let animationFrameId; // Almacena el ID del frame de animación.
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       const positions = particles.geometry.attributes.position.array;
-      const halfWidth = window.innerWidth / 2;
-      const maxX = halfWidth / 100;
-      const minX = -maxX;
-      let allParticlesReachedEnd = true;
 
+      // Mueve las partículas según su velocidad.
       for (let i = 0; i < positions.length; i += 3) {
-        positions[i] += velocities[i / 3];
-        if (positions[i] < maxX && positions[i] > minX) {
-          allParticlesReachedEnd = false;
+        positions[i] += velocities[i]; // Movimiento en X.
+        positions[i + 1] += velocities[i + 1]; // Movimiento en Y.
+        positions[i + 2] += velocities[i + 2]; // Movimiento en Z.
+
+        // Si la partícula se sale del rango visible, se reinicia.
+        if (positions[i] > window.innerWidth || positions[i] < -window.innerWidth || positions[i + 1] > window.innerHeight || positions[i + 1] < -window.innerHeight) {
+          const index = i / 3;
+          resetParticle(index); // Resetea la partícula.
         }
       }
 
-      if (allParticlesReachedEnd) {
-        for (let i = 0; i < velocities.length; i++) {
-          velocities[i] = -velocities[i];
-        }
-      }
-
-      particles.geometry.attributes.position.needsUpdate = true;
-      renderer.render(scene, camera);
+      particles.geometry.attributes.position.needsUpdate = true; // Indica que las posiciones han cambiado.
+      renderer.render(scene, camera); // Renderiza la escena.
     };
 
-    animate();
+    animate(); // Inicia la animación.
 
+    // Función para manejar cambios en el tamaño de la pantalla.
     const handleResize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
@@ -99,32 +122,31 @@ const ParticleEffect = ({ children }) => {
       renderer.setSize(width, height);
     };
 
-    window.addEventListener('resize', handleResize);
+    // Se agrega un listener para redimensionar el canvas cuando cambia el tamaño de la ventana.
+    window.addEventListener("resize", handleResize);
 
+    // Cleanup al desmontar el componente.
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(animationFrameId); // Detiene la animación.
       if (mountRef.current) {
-        mountRef.current.removeChild(renderer.domElement);
+        mountRef.current.removeChild(renderer.domElement); // Remueve el canvas.
       }
-      renderer.dispose();
-      window.removeEventListener('resize', handleResize);
+      renderer.dispose(); // Libera recursos del renderizador.
+      window.removeEventListener("resize", handleResize); // Elimina el listener de redimensionamiento.
     };
-  }, [theme]);
+  }, [theme]); // Se ejecuta cada vez que el tema cambia.
 
   return (
     <div 
       ref={mountRef} 
       style={{
         position: "relative", 
-        outline: "none", 
-        border: "none",  
         width: "100vw", 
-        height: "100vh", // Ajustar la altura al 50% de la pantalla
-        background:  "var(--backgroundColor)",
-
+        height: "100vh",
+        background: "var(--backgroundColor)", // Usa la variable CSS del fondo.
       }}
     >
-      {children && (
+      {children && ( // Si hay hijos, los renderiza en una capa superior.
         <div
           style={{
             position: "absolute",
@@ -136,7 +158,7 @@ const ParticleEffect = ({ children }) => {
             justifyContent: "center",
             alignItems: "center",
             zIndex: 1,
-            pointerEvents: "none",
+            pointerEvents: "none", // Evita que afecte la interacción del usuario.
           }}
         >
           {children}

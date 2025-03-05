@@ -10,6 +10,7 @@ export const darkTheme  = {
       efectColorHover: '#1890ff',              // Color de efecto Hover
       shadowbotom: '#303030',
       shadowtop: '#121212',
+      homebottonshadow: '#e0e0e0',
     }
   };
   
@@ -24,6 +25,7 @@ export const darkTheme  = {
       efectColorHover: '#1890ff',      
       shadowbotom: '#fafafa',
       shadowtop: '#b8b8b8',        // Color de efecto Hover
+      homebottonshadow: '#000000',
     }
   };
   
