@@ -1,4 +1,4 @@
-﻿# Proyecto Web - Gilia
+﻿﻿# Proyecto Web - Gilia
 
 Este proyecto es una aplicación web creada para **GILIA: Grupo de Investigación en Lenguajes e Inteligencia Artificial**. El sitio web se construyó utilizando **React** y **Vite** para el frontend, mientras que el backend utiliza **Node.js** y **Strapi**.
 
@@ -37,7 +37,7 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente en tu máquina:
 1. **Navega a la carpeta del frontend**:
 
    ```bash
-   cd GILIA_WEB/server-gilia
+   cd .\frontend-gilia\
    ```
 
 2. **Instala las dependencias del frontend**:
@@ -59,7 +59,7 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente en tu máquina:
 1. **Navega a la carpeta del frontend**:
 
    ```bash
-   cd GILIA_WEB/frontend-gilia
+   cd .\server-gilia\
    ```
 
 2. **Instala las dependencias del frontend**:
@@ -73,14 +73,6 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente en tu máquina:
    ```bash
    npm run dev
    ```
-
-
-
-
-
-
-
-
 
 
 
