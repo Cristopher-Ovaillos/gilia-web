@@ -1,9 +1,7 @@
 import { API_BASE_URL } from "../../config/apiConfig";
 const PeopleCard = ({ person, theme}) => {
 
-    const backgroundColor = theme.token.colorTextBase === '#121212' 
-      ? theme.token.backgroundColorSecondary 
-      : theme.token.backgroundColor;  
+    const backgroundColor = theme.token.backgroundColorSecondary;  
     const shadowColor = theme.token.colorTextBase ;     
 
 
@@ -14,13 +12,12 @@ const PeopleCard = ({ person, theme}) => {
     return (
       <div
         className={`text-center p-6 rounded-lg shadow-md ${
-          theme.token.colorTextBase === '#121212' ? 'text-white' : 'text-black'
-        }`}
+          theme.token.colorTextBase === '#121212'}`}
         style={{
           width: '220px',
           transition: 'all 0.3s ease-in-out',
           backgroundColor, 
-          boxShadow: `0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px ${shadowColor}`, 
+          boxShadow: `0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 2px ${shadowColor}`, 
         }}
       >
       

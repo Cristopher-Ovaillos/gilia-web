@@ -6,16 +6,17 @@ const PostCard = ({ post, api }) => {
     const { theme } = useTheme();  
 
 
+    console.log("post card : ",api);
     
 
-    const imageUrl =  post.image[0]?.url ? `http://localhost:1337${post.image[0].url}` : null;
+    const imageUrl = `${api}${post.image[0].url}`;
 
     return (
         <Link
             to={`/post/${post.id}`}
             className="flex flex-col rounded-xl shadow-lg overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-2xl"
             style={{
-                backgroundColor: theme.token.cardBackgroundColor,
+                backgroundColor: theme.token.backgroundColorSecondary,
                 color: theme.token.colorTextBase,
             }}
         >

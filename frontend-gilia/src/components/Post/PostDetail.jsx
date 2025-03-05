@@ -40,7 +40,7 @@ const PostDetail = () => {
     <div
       className="max-w-screen-2xl mx-auto bg-white shadow-lg rounded-lg p-12 sm:p-24 mt-20"
       style={{
-        backgroundColor: theme.token.cardBackgroundColor,
+        backgroundColor: theme.token.backgroundColorSecondary,
         boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.08)"
       }}
     >
