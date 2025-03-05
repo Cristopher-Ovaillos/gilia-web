@@ -89,7 +89,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
           <Drawer
             title={
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ color: theme.token.colorTextBase }}>Menú</span>
+                <span style={{ color: theme.token.colorTextBas }}>Menú</span>
                 <Button
                   type="text"
                   onClick={toggleTheme}
@@ -100,12 +100,14 @@ const Navbar = ({ activeSection, setActiveSection }) => {
             placement="right"
             onClose={() => setVisible(false)}
             open={visible}
+            style={{ backgroundColor: theme.token.backgroundColor }} // Cambia el color de fondo
           >
             <Menu
               mode="vertical"
               selectedKeys={[activeSection]}
               onClick={handleMenuItemClick}
               items={menuItems}
+              style={{ backgroundColor: theme.token.backgroundColor }} // Cambia también el fondo del menú
             />
           </Drawer>
         </>
