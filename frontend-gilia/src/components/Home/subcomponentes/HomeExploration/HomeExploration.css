@@ -25,3 +25,7 @@
     animation-timeline: view();
     animation-range: entry 10% cover 80%;
 }
+.custom-flecha:active{
+    transform: scale(0.90);
+}
+
