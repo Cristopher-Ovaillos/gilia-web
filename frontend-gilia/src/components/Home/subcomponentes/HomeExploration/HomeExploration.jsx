@@ -9,19 +9,17 @@ const truncateDescription = (description, wordLimit) => {
   return words.length > wordLimit ? words.slice(0, wordLimit).join(" ") + " . . . " : description;
 };
 
-
 export default function HomeExploration() {
   const [lineas, setLineas] = useState([]);
 
   useEffect(() => {
     const fetchLineas = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/research-lines`);
+        const response = await fetch(`${API_BASE_URL}/api/linea-investigacions`);
         const result = await response.json();
-        console.log("Líneas recibidas:", result);
 
-        if (result.data && Array.isArray(result.data)) {
-          // Tomamos las primeras 3 líneas y marcamos la segunda como featured
+        // Accedemos a 'data' porque la API devuelve { data: [...] }
+        if (Array.isArray(result.data)) {
           const updatedLineas = result.data.slice(0, 3).map((linea, index) => ({
             ...linea,
             featured: index === 1, // Solo la segunda línea será featured
@@ -52,11 +50,13 @@ export default function HomeExploration() {
 
       <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 sm:grid-cols-3 lg:max-w-4xl lg:grid-cols-3 gap-y-6 sm:gap-y-0 h-120">
         {lineas.length > 0 ? (
-          lineas.map((lineaInv) => <Card
-            key={lineaInv.id}
-            {...lineaInv}
-            description={truncateDescription(lineaInv.description, 15)}
-          />)
+          lineas.map((lineaInv) => (
+            <Card
+              key={lineaInv.id}
+              {...lineaInv}
+              description={truncateDescription(lineaInv.descripcion, 15)}
+            />
+          ))
         ) : (
           <p className="text-center col-span-3">Cargando líneas de investigación...</p>
         )}

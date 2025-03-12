@@ -1,50 +1,32 @@
-
 import { Link } from 'react-router-dom';
-import { useTheme } from '../../context/ThemeContext'; 
+import { useTheme } from '../../context/ThemeContext';
 
-const PostCard = ({ post, api }) => {
-    const { theme } = useTheme();  
+const PostCard = ({ publicacion }) => {
+    const { theme } = useTheme();
 
-
-    console.log("post card : ",api);
-    
-
-    const imageUrl = `${api}${post.image[0].url}`;
+    // Resumen truncado si es necesario
+    const resumen = publicacion.resumen
+        ? publicacion.resumen.length > 120
+            ? publicacion.resumen.slice(0, 120) + "..."  // Truncamos si es mayor a 120 caracteres
+            : publicacion.resumen
+        : "Resumen no disponible";
 
     return (
         <Link
-            to={`/post/${post.id}`}
-            className="flex flex-col rounded-xl shadow-lg overflow-hidden transition-transform transform hover:-translate-y-2 hover:shadow-2xl"
+            to={`/publicacion/${publicacion.id}`}
+            className="flex flex-col rounded-lg shadow-lg overflow-hidden hover:shadow-2xl hover:bg-gray-100 transition-all"
             style={{
-                backgroundColor: theme.token.backgroundColorSecondary,
+                backgroundColor: theme.token.backgroundColorPrimary,
                 color: theme.token.colorTextBase,
             }}
         >
-            {imageUrl ? (
-                <img
-                    src={imageUrl}
-                    alt={post.title}
-                    className="w-full h-48 object-cover rounded-t-xl"
-                />
-            ) : (
-                <div className="w-full h-48 bg-gray-300 rounded-t-xl flex items-center justify-center text-white">
-                    No Image Available
+            <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">{publicacion.titulo || "Título no disponible"}</h3>
+                <p className="text-sm text-gray-600 mb-4">{resumen}</p>
+                <div className="flex justify-between items-center text-sm text-gray-500">
+                    <span>{publicacion.autores || "Autores no disponibles"}</span>
+                    <span>{publicacion.anio || "Año no disponible"}</span>
                 </div>
-            )}
-
-            <div className="p-4 flex flex-col justify-between flex-grow">
-                <h3
-                    className="text-xl font-semibold mb-3"
-                    style={{
-                        color: theme.token.colorTextBase,
-                    }}
-                >
-                    {post.tittle}
-                </h3>
-
-                <p className="text-sm text-gray-600 mb-4">{post.description}</p>
-
-                
             </div>
         </Link>
     );

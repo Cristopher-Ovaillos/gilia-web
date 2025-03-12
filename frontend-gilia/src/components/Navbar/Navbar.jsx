@@ -17,7 +17,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
   useEffect(() => {
     const fetchLineas = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/research-lines`);
+        const response = await fetch(`${API_BASE_URL}/api/linea-investigacions`);
         const result = await response.json();
         console.log("Líneas recibidas:", result);
 
@@ -51,7 +51,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     return lineas.map((linea) => ({
       key: `linea-${linea.id}`,
       label: (
-        <Link to={`/lineas-de-investigacion/${linea.id}`} className="link-text" > {linea.name} </Link>
+        <Link to={`/lineas-de-investigacion/${linea.id}`} className="link-text" > {linea.nombre} </Link>
       ),
     }));
   };

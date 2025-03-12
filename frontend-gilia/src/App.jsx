@@ -8,7 +8,7 @@ import HomeContainer from './components/Home/HomeContainer';
 import LinesDetailContainer from "./components/research_line_Detail/LinesDetailContainer";
 import ListLineasContainer from "./components/list_research_line/ListLinesContainer";
 import PostsList from './components/Post/PostList';
-import PostDetail from './components/Post/PostDetail';
+
 import Objectives from './components/Objectives/Objectives';
 import Extension from './components/Extension/Extension';
 
@@ -34,7 +34,7 @@ function App() {
         <Route path="/lineas-de-investigacion" element={<ListLineasContainer />} />
         <Route path="/lineas-de-investigacion/:id" element={<LinesDetailContainer />} />
 
-        <Route path="/post/:id" element={<PostDetail />} />
+      
         <Route path="/post" element={<PostsList />} />
         <Route path="/objectives" element={<Objectives />} />
         <Route path="/extension" element={<Extension />} />       
