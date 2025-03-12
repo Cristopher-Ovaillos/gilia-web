@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "linea_investigacions",
+  "info": {
+    "singularName": "linea-investigacion",
+    "pluralName": "linea-investigacions",
+    "displayName": "linea_investigacion",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "descripcion": {
+      "type": "richtext",
+      "required": true
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "publicacions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::publicacion.publicacion",
+      "inversedBy": "linea_investigacions"
+    },
+    "proyectos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::proyecto.proyecto",
+      "mappedBy": "linea_investigacion"
+    }
+  }
+}

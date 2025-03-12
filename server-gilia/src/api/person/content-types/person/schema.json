@@ -31,18 +31,6 @@
     "social_links": {
       "type": "email"
     },
-    "projects": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::project.project",
-      "mappedBy": "team_members"
-    },
-    "posts": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::post.post",
-      "mappedBy": "authors"
-    },
     "role_person": {
       "type": "enumeration",
       "enum": [

@@ -397,12 +397,12 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiExtensionExtension extends Struct.CollectionTypeSchema {
-  collectionName: 'extensions';
+export interface ApiGaleriaGaleria extends Struct.CollectionTypeSchema {
+  collectionName: 'galerias';
   info: {
-    displayName: 'Extension';
-    pluralName: 'extensions';
-    singularName: 'extension';
+    displayName: 'galeria';
+    pluralName: 'galerias';
+    singularName: 'galeria';
   };
   options: {
     draftAndPublish: true;
@@ -411,20 +411,20 @@ export interface ApiExtensionExtension extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    date: Schema.Attribute.Date;
-    description: Schema.Attribute.Text;
-    image: Schema.Attribute.Media<
+    descripcion: Schema.Attribute.Text & Schema.Attribute.Required;
+    imagenes: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
-    >;
+    > &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::extension.extension'
+      'api::galeria.galeria'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    titulo: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -463,12 +463,14 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiObjetiveObjetive extends Struct.CollectionTypeSchema {
-  collectionName: 'objetives';
+export interface ApiLineaExtensionLineaExtension
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'linea_extensions';
   info: {
-    displayName: 'Objetive';
-    pluralName: 'objetives';
-    singularName: 'objetive';
+    description: '';
+    displayName: 'linea_extension';
+    pluralName: 'linea-extensions';
+    singularName: 'linea-extension';
   };
   options: {
     draftAndPublish: true;
@@ -477,16 +479,90 @@ export interface ApiObjetiveObjetive extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    date: Schema.Attribute.Date;
-    description: Schema.Attribute.Text;
+    descripcion: Schema.Attribute.RichText & Schema.Attribute.Required;
+    imagen: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+    instituciones: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::objetive.objetive'
+      'api::linea-extension.linea-extension'
+    > &
+      Schema.Attribute.Private;
+    nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    proyectos: Schema.Attribute.Relation<'oneToMany', 'api::proyecto.proyecto'>;
+    publicacions: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::publicacion.publicacion'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiLineaInvestigacionLineaInvestigacion
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'linea_investigacions';
+  info: {
+    description: '';
+    displayName: 'linea_investigacion';
+    pluralName: 'linea-investigacions';
+    singularName: 'linea-investigacion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.RichText & Schema.Attribute.Required;
+    imagen: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::linea-investigacion.linea-investigacion'
+    > &
+      Schema.Attribute.Private;
+    nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    proyectos: Schema.Attribute.Relation<'oneToMany', 'api::proyecto.proyecto'>;
+    publicacions: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::publicacion.publicacion'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiObjetivoObjetivo extends Struct.CollectionTypeSchema {
+  collectionName: 'objetivos';
+  info: {
+    displayName: 'objetivo';
+    pluralName: 'objetivos';
+    singularName: 'objetivo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.RichText & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::objetivo.objetivo'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    titulo: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -520,8 +596,6 @@ export interface ApiPersonPerson extends Struct.CollectionTypeSchema {
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
-    posts: Schema.Attribute.Relation<'manyToMany', 'api::post.post'>;
-    projects: Schema.Attribute.Relation<'manyToMany', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     role_person: Schema.Attribute.Enumeration<
       ['director', 'investigador', 'colaborador', 'becario']
@@ -533,106 +607,93 @@ export interface ApiPersonPerson extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiPostPost extends Struct.CollectionTypeSchema {
-  collectionName: 'posts';
+export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
+  collectionName: 'proyectos';
   info: {
-    description: '';
-    displayName: 'Post';
-    pluralName: 'posts';
-    singularName: 'post';
+    displayName: 'proyecto';
+    pluralName: 'proyectos';
+    singularName: 'proyecto';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    authors: Schema.Attribute.Relation<'manyToMany', 'api::person.person'>;
-    content: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.String;
-    image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::post.post'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    research_line: Schema.Attribute.Relation<
+    descripcion: Schema.Attribute.RichText & Schema.Attribute.Required;
+    imagen: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+    linea_extension: Schema.Attribute.Relation<
       'manyToOne',
-      'api::research-line.research-line'
+      'api::linea-extension.linea-extension'
     >;
-    tittle: Schema.Attribute.String;
+    linea_investigacion: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::linea-investigacion.linea-investigacion'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::proyecto.proyecto'
+    > &
+      Schema.Attribute.Private;
+    nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiProjectProject extends Struct.CollectionTypeSchema {
-  collectionName: 'projects';
+export interface ApiPublicacionPublicacion extends Struct.CollectionTypeSchema {
+  collectionName: 'publicacions';
   info: {
-    description: '';
-    displayName: 'Project';
-    pluralName: 'projects';
-    singularName: 'project';
+    displayName: 'publicacion';
+    pluralName: 'publicacions';
+    singularName: 'publicacion';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    anio: Schema.Attribute.Integer & Schema.Attribute.Required;
+    autores: Schema.Attribute.RichText & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    enddate: Schema.Attribute.Date;
+    editor: Schema.Attribute.String;
+    enlace: Schema.Attribute.Text;
+    linea_extensions: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::linea-extension.linea-extension'
+    >;
+    linea_investigacions: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::linea-investigacion.linea-investigacion'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::project.project'
+      'api::publicacion.publicacion'
     > &
       Schema.Attribute.Private;
-    nane: Schema.Attribute.String;
+    pagina_libro: Schema.Attribute.String;
+    publicacion: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    startdate: Schema.Attribute.Date;
-    status_pj: Schema.Attribute.String;
-    team_members: Schema.Attribute.Relation<'manyToMany', 'api::person.person'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiResearchLineResearchLine
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'research_lines';
-  info: {
-    description: '';
-    displayName: 'Research_line';
-    pluralName: 'research-lines';
-    singularName: 'research-line';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    author: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.RichText;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    image2: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::research-line.research-line'
+    resumen: Schema.Attribute.RichText;
+    tipo: Schema.Attribute.Enumeration<
+      [
+        'Art\u00EDculo',
+        'Cap\u00EDtulo de Libro',
+        'Paper',
+        'Informe T\u00E9cnico',
+        'Tesis',
+        'Libro',
+      ]
     > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publication: Schema.Attribute.Relation<'oneToMany', 'api::post.post'>;
-    publishedAt: Schema.Attribute.DateTime;
+      Schema.Attribute.Required;
+    titulo: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1149,13 +1210,14 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
-      'api::extension.extension': ApiExtensionExtension;
+      'api::galeria.galeria': ApiGaleriaGaleria;
       'api::global.global': ApiGlobalGlobal;
-      'api::objetive.objetive': ApiObjetiveObjetive;
+      'api::linea-extension.linea-extension': ApiLineaExtensionLineaExtension;
+      'api::linea-investigacion.linea-investigacion': ApiLineaInvestigacionLineaInvestigacion;
+      'api::objetivo.objetivo': ApiObjetivoObjetivo;
       'api::person.person': ApiPersonPerson;
-      'api::post.post': ApiPostPost;
-      'api::project.project': ApiProjectProject;
-      'api::research-line.research-line': ApiResearchLineResearchLine;
+      'api::proyecto.proyecto': ApiProyectoProyecto;
+      'api::publicacion.publicacion': ApiPublicacionPublicacion;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

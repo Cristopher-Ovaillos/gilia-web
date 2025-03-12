@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "galerias",
+  "info": {
+    "singularName": "galeria",
+    "pluralName": "galerias",
+    "displayName": "galeria"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "required": true
+    },
+    "descripcion": {
+      "type": "text",
+      "required": true
+    },
+    "imagenes": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
+    }
+  }
+}

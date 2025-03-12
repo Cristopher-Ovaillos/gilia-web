@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "publicacions",
+  "info": {
+    "singularName": "publicacion",
+    "pluralName": "publicacions",
+    "displayName": "publicacion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "required": true
+    },
+    "autores": {
+      "type": "richtext",
+      "required": true
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "Artículo",
+        "Capítulo de Libro",
+        "Paper",
+        "Informe Técnico",
+        "Tesis",
+        "Libro"
+      ],
+      "required": true
+    },
+    "publicacion": {
+      "type": "string",
+      "required": true
+    },
+    "anio": {
+      "type": "integer",
+      "required": true
+    },
+    "enlace": {
+      "type": "text"
+    },
+    "editor": {
+      "type": "string"
+    },
+    "pagina_libro": {
+      "type": "string"
+    },
+    "resumen": {
+      "type": "richtext"
+    },
+    "linea_investigacions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::linea-investigacion.linea-investigacion",
+      "mappedBy": "publicacions"
+    },
+    "linea_extensions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::linea-extension.linea-extension",
+      "mappedBy": "publicacions"
+    }
+  }
+}

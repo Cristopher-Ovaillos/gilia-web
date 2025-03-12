@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "objetivos",
+  "info": {
+    "singularName": "objetivo",
+    "pluralName": "objetivos",
+    "displayName": "objetivo"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "required": true
+    },
+    "descripcion": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

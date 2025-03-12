@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "linea_extensions",
+  "info": {
+    "singularName": "linea-extension",
+    "pluralName": "linea-extensions",
+    "displayName": "linea_extension",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "descripcion": {
+      "type": "richtext",
+      "required": true
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "instituciones": {
+      "type": "text"
+    },
+    "publicacions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::publicacion.publicacion",
+      "inversedBy": "linea_extensions"
+    },
+    "proyectos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::proyecto.proyecto",
+      "mappedBy": "linea_extension"
+    }
+  }
+}
