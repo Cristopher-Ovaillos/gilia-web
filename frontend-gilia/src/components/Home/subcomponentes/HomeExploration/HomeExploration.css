@@ -19,6 +19,9 @@
     animation-timeline: view();
     animation-range: entry 10% cover 40%;
 }
+.custom-flecha{
+    color: var(--colorTextBase);
+}
 
 .custom-animation-start-text {
     animation: scaleAppear 0.6s ease-out;
@@ -26,6 +29,7 @@
     animation-range: entry 10% cover 80%;
 }
 .custom-flecha:active{
-    transform: scale(0.90);
+    transform: scale(0.86);
+    
 }
 

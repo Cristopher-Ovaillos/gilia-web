@@ -9,13 +9,9 @@ const ListLineasContainer = () => {
   const { id } = useParams(); 
 
   useEffect(() => {
-    let isMounted = true;
 
     const fetchData = async () => {
-      try {
-
-        
-        //const response = await fetch(`${API_BASE_URL}/api/research-lines?filters[id][$eq]=${Number(id)}`);
+      try {        
         const response = await fetch(`${API_BASE_URL}/api/research-lines/${id}`);
         const data = await response.json();
         console.log("Datos recibidos s:", data);
@@ -29,10 +25,6 @@ const ListLineasContainer = () => {
     };
 
     fetchData();
-
-    return () => {
-      isMounted = false;
-    };
   }, [id]);
 
   if (!linea) return <Loader />;

@@ -3,16 +3,16 @@
 
 
 .custom-card-active {
-    width: 120%;
-    height: 80%;
+    width: 130vh;
+    height: 45vh;
     z-index: 10; /* Ajusta el valor de z-index según sea necesario */   
     margin-left: -3%;
     margin-right: -3%;
     transition: all 0.3s cubic-bezier( 0.3, 0.5, 0.7,0.9);
 }
 .custom-card-inactive{
-    width: 100%;
-    height: 70%;
+    width: 120vh;
+    height: 40vh;
     margin-top: 2.5%;
     transition: all 0s ease-in-out; /* Aplica la transición suave a todas las propiedades en 0.3 segundos */
 
@@ -52,19 +52,20 @@
 
 .custom-card-inactive .custom-descrip-card{
     color: var(--colorTextBase);
+    
 }
 
 .custom-card-active .custom-descrip-card{
     color: var(--colorTextBase);
     font-size: 120%;
-    height: 130px;
-    margin-bottom: 10%;
+    height: 40%;
+    margin-bottom: 5%;
     transition: all 0.3s cubic-bezier( 0.3, 0.5, 0.7,0.9);
-
 }
 
 .custom-card-active .custom-text-card{
-    height: 40px;
+    margin-top: 20%;
+    height: 10%;
     transition: all 0.3s cubic-bezier( 0.3, 0.5, 0.7,0.9);
 
 }

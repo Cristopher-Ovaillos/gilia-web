@@ -11,6 +11,7 @@ import PostsList from './components/Post/PostList';
 import PostDetail from './components/Post/PostDetail';
 import Objectives from './components/Objectives/Objectives';
 import Extension from './components/Extension/Extension';
+import Galery from './components/Galery/Galery'
 
 import "./App.css"
 
@@ -39,6 +40,7 @@ function App() {
         <Route path="/objectives" element={<Objectives />} />
         <Route path="/extension" element={<Extension />} />       
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/galery" element={<Galery />} />
 
       </Routes>
     </Router>

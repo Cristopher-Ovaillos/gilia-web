@@ -68,6 +68,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     { key: "publications", label: <Link to="/post">Publicaciones</Link>, className: "Menu-item" },
     { key: "extension", label: <Link to="/extension">Extensión</Link>, className: "Menu-item" },
     { key: "about-us", label: <Link to="/about-us">¿Quiénes Somos?</Link>, className: "Menu-item" },
+    { key: "galery", label: <Link to="/galery">Galeria</Link>, className: "Menu-item" },
   ];
 
   return (
