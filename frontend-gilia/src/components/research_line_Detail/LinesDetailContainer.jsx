@@ -10,7 +10,6 @@ const ListLineasContainer = () => {
   const { id } = useParams(); 
 
   useEffect(() => {
-    let isMounted = true;
 
     const fetchData = async () => {
       try {
@@ -24,10 +23,6 @@ const ListLineasContainer = () => {
     };
 
     fetchData();
-
-    return () => {
-      isMounted = false;
-    };
   }, [id]);
 
   if (!linea) return <Loader />;

@@ -1,67 +1,83 @@
 .custom-container-lineDetail {
-    margin-top: 2%;
-    background-color: var(--backgroundColorSecondary);
-    padding-left: 2%;
-    padding-right: 2%;
-    border-radius: 3rem;
-    display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se ajusten cuando sea necesario */
-  }
-  
+  margin-top: 2%;
+  background-color: var(--backgroundColorSecondary);
+  padding: 2%;
+  border-radius: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  /* Permite que los elementos se ajusten cuando sea necesario */
+}
+
+.custom-name-lineDetail {
+  margin-top: 3%;
+  min-height: 78vh;
+  min-width: 90%;
+}
+
+.custom-img {
+  border-radius: 2rem;
+}
+
+.custom-name-lineDetail {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--colorTextBase);
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.custom-autor-lineDetail {
+  font-size: 1.05rem;
+  margin-bottom: 2%;
+  font-weight: bold;
+  color: var(--colorTextBase);
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.custom-contenido-lineDetail {
+  font-size: 1rem;
+  color: var(--colorTextBase);
+  line-height: 220%;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.text-content {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.image-container {
+  max-width: 100%;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-side {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+/* Asegurarse que el texto y las imágenes no queden fuera de lugar */
+@media (max-width: 768px) {
   .custom-name-lineDetail {
-    margin-top: 3%;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--colorTextBase);
-    font-family: "Josefin Sans", sans-serif;
-  }
-  
-  .custom-contenido-lineDetail {
+    padding: 3%;
     font-size: 1rem;
+  }
+
+  .custom-contenido-lineDetail {
+    font-size: 0.8rem;
     color: var(--colorTextBase);
     line-height: 220%;
     font-family: "Josefin Sans", sans-serif;
+    padding: 5%;
   }
-  
-  .text-content {
-    flex: 1;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-  
-  .image-container {
-    max-width: 100%;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+
   .image-side {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    border-radius: 10px;
-    margin: 10px;
+    max-width: 100%;
   }
-  
-  /* Asegurarse que el texto y las imágenes no queden fuera de lugar */
-  @media (max-width: 768px) {
-    .custom-name-lineDetail {
-      padding: 3%;
-      font-size: 1rem;
-    }
-  
-    .custom-contenido-lineDetail {
-      font-size: 0.8rem;
-      color: var(--colorTextBase);
-      line-height: 220%;
-      font-family: "Josefin Sans", sans-serif;
-      padding: 5%;
-    }
-  
-    .image-side {
-      max-width: 100%;
-    }
-  }
-  
+}
