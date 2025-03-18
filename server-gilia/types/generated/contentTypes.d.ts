@@ -400,7 +400,8 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
 export interface ApiGaleriaGaleria extends Struct.CollectionTypeSchema {
   collectionName: 'galerias';
   info: {
-    displayName: 'galeria';
+    description: '';
+    displayName: 'Seccion_Galeria';
     pluralName: 'galerias';
     singularName: 'galeria';
   };
@@ -411,7 +412,6 @@ export interface ApiGaleriaGaleria extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    descripcion: Schema.Attribute.Text & Schema.Attribute.Required;
     imagenes: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
