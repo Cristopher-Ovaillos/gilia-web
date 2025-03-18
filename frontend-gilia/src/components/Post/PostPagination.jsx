@@ -1,6 +1,8 @@
+import React from "react";
+
 const PostPagination = ({ pagina, setPagina, totalPaginas }) => {
   return (
-    <div className="mt-6 flex justify-between">
+    <div className="mt-6 flex justify-between sm:justify-center items-center gap-4">
       <button
         disabled={pagina === 1}
         onClick={() => setPagina(pagina - 1)}
@@ -8,7 +10,9 @@ const PostPagination = ({ pagina, setPagina, totalPaginas }) => {
       >
         Anterior
       </button>
-      <span>Página {pagina} de {totalPaginas}</span>
+      <span>
+        Página {pagina} de {totalPaginas}
+      </span>
       <button
         disabled={pagina === totalPaginas}
         onClick={() => setPagina(pagina + 1)}

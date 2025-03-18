@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import { API_BASE_URL } from "../../config/apiConfig";
 import PostItem from "./PostItem";
@@ -17,28 +17,40 @@ const PostList = () => {
     const fetchPublicaciones = async () => {
       setLoading(true);
       try {
-        const query = new URLSearchParams({
-          _page: pagina,
-          _limit: 10,
-          anio: filtro.anio,
-          tipo: filtro.tipo,
-          linea: filtro.linea,
-        }).toString();
+        const queryParams = {
+          "pagination[page]": pagina,
+          "pagination[pageSize]": 10,
+          sort: "createdAt:desc",
+        };
+
+        if (filtro.anio) {
+          queryParams["filters[anio][$eq]"] = filtro.anio;
+        }
+        if (filtro.tipo) {
+          queryParams["filters[tipo][$eq]"] = filtro.tipo;
+        }
+        if (filtro.linea) {
+          queryParams["filters[linea][$containsi]"] = filtro.linea;
+        }
+
+        const query = new URLSearchParams(queryParams).toString();
         const response = await fetch(`${API_BASE_URL}/api/publicacions?${query}`);
         const data = await response.json();
+
         setPublicaciones(data.data || []);
-        setTotalPaginas(data.totalPages || 1);
+        setTotalPaginas(data.meta?.pagination?.pageCount || 1);
       } catch (err) {
         console.error("Error fetching publicaciones:", err);
       } finally {
         setLoading(false);
       }
     };
+
     fetchPublicaciones();
   }, [pagina, filtro]);
 
   return (
-    <div className="container mx-auto px-4 py-8" style={{ color: theme.token.colorTextBase }}>
+    <div className="max-w-screen-lg mx-auto px-4 py-8" style={{ color: theme.token.colorTextBase }}>
       <PostFilter filtro={filtro} setFiltro={setFiltro} setPagina={setPagina} />
 
       {loading ? (

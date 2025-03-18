@@ -1,3 +1,5 @@
+import React from "react";
+
 const PostFilter = ({ filtro, setFiltro, setPagina }) => {
   const handleFiltroChange = (e) => {
     setFiltro({ ...filtro, [e.target.name]: e.target.value });
@@ -12,17 +14,21 @@ const PostFilter = ({ filtro, setFiltro, setPagina }) => {
         placeholder="Año"
         value={filtro.anio}
         onChange={handleFiltroChange}
-        className="p-2 border rounded w-full sm:w-auto"
+        className="p-2 border rounded w-full sm:w-48"
       />
       <select
         name="tipo"
         value={filtro.tipo}
         onChange={handleFiltroChange}
-        className="p-2 border rounded w-full sm:w-auto"
+        className="p-2 border rounded w-full sm:w-48"
       >
         <option value="">Tipo</option>
-        <option value="articulo">Artículo</option>
-        <option value="conferencia">Conferencia</option>
+        <option value="Artículo">Artículo</option>
+        <option value="Capítulo de Libro">Capítulo de Libro</option>
+        <option value="Paper">Paper</option>
+        <option value="Informe Técnico">Informe Técnico</option>
+        <option value="Tesis">Tesis</option>
+        <option value="Libro">Libro</option>
       </select>
       <input
         type="text"
@@ -30,7 +36,7 @@ const PostFilter = ({ filtro, setFiltro, setPagina }) => {
         placeholder="Línea"
         value={filtro.linea}
         onChange={handleFiltroChange}
-        className="p-2 border rounded w-full sm:w-auto"
+        className="p-2 border rounded w-full sm:w-48"
       />
     </div>
   );
