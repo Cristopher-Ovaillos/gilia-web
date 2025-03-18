@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useTheme } from '../../context/ThemeContext';
-import { API_BASE_URL } from '../../config/apiConfig';
+import { useEffect, useState } from "react";
+import { useTheme } from "../../context/ThemeContext";
+import { API_BASE_URL } from "../../config/apiConfig";
+import PostItem from "./PostItem";
+import PostFilter from "./PostFilter";
+import PostPagination from "./PostPagination";
 
 const PostList = () => {
   const [publicaciones, setPublicaciones] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pagina, setPagina] = useState(1);
-  const [filtro, setFiltro] = useState({ anio: '', tipo: '', linea: '' });
+  const [filtro, setFiltro] = useState({ anio: "", tipo: "", linea: "" });
   const [totalPaginas, setTotalPaginas] = useState(1);
   const { theme } = useTheme();
 
@@ -26,7 +29,7 @@ const PostList = () => {
         setPublicaciones(data.data || []);
         setTotalPaginas(data.totalPages || 1);
       } catch (err) {
-        console.error('Error fetching publicaciones:', err);
+        console.error("Error fetching publicaciones:", err);
       } finally {
         setLoading(false);
       }
@@ -34,48 +37,23 @@ const PostList = () => {
     fetchPublicaciones();
   }, [pagina, filtro]);
 
-  const handleFiltroChange = (e) => {
-    setFiltro({ ...filtro, [e.target.name]: e.target.value });
-    setPagina(1);
-  };
-
   return (
     <div className="container mx-auto px-4 py-8" style={{ color: theme.token.colorTextBase }}>
-      <div className="mb-6 flex gap-4">
-        <input type="number" name="anio" placeholder="Año" value={filtro.anio} onChange={handleFiltroChange} className="p-2 border rounded" />
-        <select name="tipo" value={filtro.tipo} onChange={handleFiltroChange} className="p-2 border rounded">
-          <option value="">Tipo</option>
-          <option value="articulo">Artículo</option>
-          <option value="conferencia">Conferencia</option>
-        </select>
-        <input type="text" name="linea" placeholder="Línea" value={filtro.linea} onChange={handleFiltroChange} className="p-2 border rounded" />
-      </div>
+      <PostFilter filtro={filtro} setFiltro={setFiltro} setPagina={setPagina} />
 
       {loading ? (
         <p className="text-center text-gray-500">Cargando publicaciones...</p>
+      ) : publicaciones.length === 0 ? (
+        <p className="text-center text-gray-500">No hay publicaciones.</p>
       ) : (
-        <div>
-          {publicaciones.length === 0 ? (
-            <p className="text-center text-gray-500">No hay publicaciones.</p>
-          ) : (
-            <ul>
-              {publicaciones.map((pub) => (
-                <li key={pub.id} className="border-b py-4">
-                  <h3 className="text-lg font-semibold">{pub.titulo}</h3>
-                  <p className="text-sm">{pub.autores} - {pub.anio}</p>
-                  <p className={`text-sm ${pub.tipo === 'articulo' ? 'text-blue-500' : 'text-green-500'}`}>{pub.tipo}</p>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <ul className="flex flex-col gap-4">
+          {publicaciones.map((pub) => (
+            <PostItem key={pub.id} publicacion={pub} />
+          ))}
+        </ul>
       )}
 
-      <div className="mt-6 flex justify-between">
-        <button disabled={pagina === 1} onClick={() => setPagina(pagina - 1)} className="p-2 border rounded">Anterior</button>
-        <span>Página {pagina} de {totalPaginas}</span>
-        <button disabled={pagina === totalPaginas} onClick={() => setPagina(pagina + 1)} className="p-2 border rounded">Siguiente</button>
-      </div>
+      <PostPagination pagina={pagina} setPagina={setPagina} totalPaginas={totalPaginas} />
     </div>
   );
 };

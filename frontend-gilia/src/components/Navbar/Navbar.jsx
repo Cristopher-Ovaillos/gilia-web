@@ -20,7 +20,6 @@ const Navbar = ({ activeSection, setActiveSection }) => {
         const response = await fetch(`${API_BASE_URL}/api/linea-investigacions`);
         const result = await response.json();
         console.log("Líneas recibidas:", result);
-
         if (result.data && Array.isArray(result.data)) {
           setLineas(result.data);
         }
