@@ -1,14 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 
 const tipoColorMap = {
-  "Artículo": "#3B82F6", // azul
-  "Capítulo de Libro": "#8B5CF6", // púrpura
-  "Paper": "#10B981", // verde
-  "Informe Técnico": "#F59E0B", // amarillo
-  "Tesis": "#EF4444", // rojo
-  "Libro": "#6366F1", // índigo
+  "Artículo": "#3B82F6",
+  "Capítulo de Libro": "#8B5CF6", 
+  "Paper": "#10B981", 
+  "Informe Técnico": "#F59E0B", 
+  "Tesis": "#EF4444", 
+  "Libro": "#6366F1",
 };
 
 const PostItem = ({ publicacion }) => {
@@ -26,11 +25,8 @@ const PostItem = ({ publicacion }) => {
           color: theme.token.colorTextBase,
         }}
       >
-        <Link
-          to={`/publicacion/${publicacion.id}`}
-          className="w-full sm:w-auto"
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
+  
+        <div className="w-full sm:w-auto">
           <h3 className="text-lg font-semibold sm:text-xl">{publicacion.titulo || "Título no disponible"}</h3>
           <p className="text-sm opacity-80">{publicacion.autores || "Autores no disponibles"} - {publicacion.anio || "Año no disponible"}</p>
           <p className="text-sm mt-1 font-medium">
@@ -42,7 +38,6 @@ const PostItem = ({ publicacion }) => {
             </span>
           </p>
 
-          {/* Información adicional */}
           {(publicacion.enlace ||
             publicacion.editor ||
             publicacion.pagina_libro ||
@@ -50,9 +45,16 @@ const PostItem = ({ publicacion }) => {
             publicacion.linea_investigacions ||
             publicacion.linea_extensions) && (
             <div className="mt-2 text-sm">
-              {publicacion.enlace && <p><strong>Enlace:</strong> {publicacion.enlace}</p>}
+              {publicacion.enlace && (
+                <p>
+                  <strong>Enlace:</strong>{" "}
+                  <a href={publicacion.enlace} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                    {publicacion.enlace}
+                  </a>
+                </p>
+              )}
               {publicacion.editor && <p><strong>Editor:</strong> {publicacion.editor}</p>}
-              {publicacion.pagina_libro && <p><strong>Página del Libro:</strong> {publicacion.pagina_libro}</p>}
+              {publicacion.pagina_libro && <p><strong>Pagina del Libro:</strong> {publicacion.pagina_libro}</p>}
               {publicacion.resumen && <p><strong>Resumen:</strong> {publicacion.resumen}</p>}
               {publicacion.linea_investigacions && (
                 <p>
@@ -66,7 +68,7 @@ const PostItem = ({ publicacion }) => {
               )}
             </div>
           )}
-        </Link>
+        </div>
       </div>
     </li>
   );

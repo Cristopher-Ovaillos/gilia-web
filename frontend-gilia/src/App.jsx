@@ -8,12 +8,10 @@ import HomeContainer from './components/Home/HomeContainer';
 import LinesDetailContainer from "./components/research_line_Detail/LinesDetailContainer";
 import ListLineasContainer from "./components/list_research_line/ListLinesContainer";
 import PostsList from './components/Post/PostList';
-
 import Objectives from './components/Objectives/Objectives';
-import Extension from './components/Extension/Extension';
-
+import ExtensionList from "./components/linea_extension/ExtensionLista";
+import ExtensionDetails from "./components/linea_extension/ExtensionDetails";
 import "./App.css"
-
 function App() {
   const { theme } = useTheme();
   const [activeSection, setActiveSection] = useState("home");
@@ -30,16 +28,15 @@ function App() {
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
       <Routes>
         <Route path="/" element={<HomeContainer />} />
-
         <Route path="/lineas-de-investigacion" element={<ListLineasContainer />} />
         <Route path="/lineas-de-investigacion/:id" element={<LinesDetailContainer />} />
-
-      
         <Route path="/post" element={<PostsList />} />
         <Route path="/objectives" element={<Objectives />} />
-        <Route path="/extension" element={<Extension />} />       
+        <Route path="/linea-extension" element={<ExtensionList />} />
+        <Route path="/linea-extension/:id" element={<ExtensionDetails />} />
         <Route path="/about-us" element={<AboutUs />} />
-
+    
+      
       </Routes>
     </Router>
   );
