@@ -1,83 +1,76 @@
-.custom-container-lineDetail {
-  margin-top: 2%;
-  background-color: var(--backgroundColorSecondary);
-  padding: 2%;
-  border-radius: 3rem;
+/* ListLineasContainer.css */
+
+/* Contenedor principal */
+.linea-container {
   display: flex;
-  flex-wrap: wrap;
-  /* Permite que los elementos se ajusten cuando sea necesario */
-}
-
-.custom-name-lineDetail {
-  margin-top: 3%;
-  min-height: 78vh;
-  min-width: 90%;
-}
-
-.custom-img {
-  border-radius: 2rem;
-}
-
-.custom-name-lineDetail {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--colorTextBase);
-  font-family: "Josefin Sans", sans-serif;
-}
-
-.custom-autor-lineDetail {
-  font-size: 1.05rem;
-  margin-bottom: 2%;
-  font-weight: bold;
-  color: var(--colorTextBase);
-  font-family: "Josefin Sans", sans-serif;
-}
-
-.custom-contenido-lineDetail {
-  font-size: 1rem;
-  color: var(--colorTextBase);
-  line-height: 220%;
-  font-family: "Josefin Sans", sans-serif;
-}
-
-.text-content {
-  flex: 1;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.image-container {
-  max-width: 100%;
-  margin: 10px;
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  padding: 30px;
+  min-height: 100vh;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
 }
 
-.image-side {
+/* Título de la línea de investigación */
+.linea-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Descripción */
+.linea-description {
   width: 100%;
-  max-width: 200px;
-  height: auto;
-  border-radius: 10px;
-  margin: 10px;
+  max-width: 900px;
+  font-size: 1.2rem;
+  line-height: 1.75;
+  font-weight: 300;
+  color: inherit;
+  text-align: justify;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-/* Asegurarse que el texto y las imágenes no queden fuera de lugar */
+/* Pie de página de la línea de investigación */
+.linea-footer {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 3px solid #ddd;
+}
+
+.linea-footer-text {
+  font-size: 1.25rem;
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  color: #1890ff; /* Color primario */
+}
+
+/* Estilo para las descripciones con markdown */
+.prose {
+  max-width: 100%;
+}
+
+.prose-lg {
+  font-size: 1.25rem;
+}
+
+.sm\:prose-xl {
+  font-size: 1.5rem;
+}
+
 @media (max-width: 768px) {
-  .custom-name-lineDetail {
-    padding: 3%;
+  .linea-title {
+    font-size: 2rem;
+  }
+
+  .linea-footer-text {
     font-size: 1rem;
-  }
-
-  .custom-contenido-lineDetail {
-    font-size: 0.8rem;
-    color: var(--colorTextBase);
-    line-height: 220%;
-    font-family: "Josefin Sans", sans-serif;
-    padding: 5%;
-  }
-
-  .image-side {
-    max-width: 100%;
   }
 }

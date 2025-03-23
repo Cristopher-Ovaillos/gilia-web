@@ -1,4 +1,3 @@
-// components/AboutUs/AboutUs.jsx
 import { useState, useEffect } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import Loader from '../Loader/Loader';
@@ -13,6 +12,9 @@ const AboutUs = () => {
   useEffect(() => {
     const getData = async () => {
       const fetchedData = await fetchAboutUsData(API_BASE_URL);
+
+      console.log(fetchedData);
+      
       setData(fetchedData);
     };
 
@@ -56,7 +58,7 @@ const AboutUs = () => {
       >
         {data.image ? (
           <img
-            src={`http://localhost:1337${data.image?.url}`}
+            src={`${API_BASE_URL}${data.image?.url}`}
             alt="Imagen del equipo"
             className="w-full h-full object-cover rounded-lg shadow-lg"
           />
@@ -73,8 +75,8 @@ const AboutUs = () => {
           Equipo
         </h3>
         <div className="flex flex-wrap justify-center gap-8">
-          {sortedPeople.map((person, index) => (
-            <PeopleCard key={index} person={person} theme={theme} />
+          {sortedPeople.map((person) => (
+            <PeopleCard key={person.id} person={person} theme={theme} />
           ))}
         </div>
       </section>

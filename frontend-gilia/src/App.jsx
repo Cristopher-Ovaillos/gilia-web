@@ -11,6 +11,7 @@ import PostsList from './components/Post/PostList';
 import Objectives from './components/Objectives/Objectives';
 import ExtensionList from "./components/linea_extension/ExtensionLista";
 import ExtensionDetails from "./components/linea_extension/ExtensionDetails";
+import Galery from './components/Galery/Galery'
 import "./App.css"
 function App() {
   const { theme } = useTheme();
@@ -35,7 +36,7 @@ function App() {
         <Route path="/linea-extension" element={<ExtensionList />} />
         <Route path="/linea-extension/:id" element={<ExtensionDetails />} />
         <Route path="/about-us" element={<AboutUs />} />
-    
+        <Route path="/galery" element={<Galery />} />
       
       </Routes>
     </Router>
