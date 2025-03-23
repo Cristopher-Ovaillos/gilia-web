@@ -37,7 +37,7 @@ const LineaExtensionList = () => {
               to={`/linea-extension/${linea.id}`}
               className="text-blue-500 mt-2 inline-block"
             >
-              Ver más
+              Ver mas
             </Link>
           </div>
         ))}

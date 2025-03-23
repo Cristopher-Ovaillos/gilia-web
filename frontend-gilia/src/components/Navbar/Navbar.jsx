@@ -20,6 +20,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
         const response = await fetch(`${API_BASE_URL}/api/linea-investigacions`);
         const result = await response.json();
         console.log("Líneas recibidas:", result);
+
         if (result.data && Array.isArray(result.data)) {
           setLineas(result.data);
         }
@@ -67,6 +68,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     { key: "publications", label: <Link to="/post">Publicaciones</Link>, className: "Menu-item" },
     { key: "extension", label: <Link to="/linea-extension">Extensión</Link>, className: "Menu-item" },
     { key: "about-us", label: <Link to="/about-us">¿Quiénes Somos?</Link>, className: "Menu-item" },
+    { key: "galery", label: <Link to="/galery">Galeria</Link>, className: "Menu-item" },
   ];
 
   return (
