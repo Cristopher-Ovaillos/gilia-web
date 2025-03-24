@@ -1,8 +1,9 @@
 import { useRef, useEffect } from "react";
 import * as THREE from "three";
-import { useTheme } from "../../../../context/ThemeContext"; 
+import { useTheme } from "../../../../context/ThemeContext";
 
 // Componente que genera un efecto de partículas animadas con Three.js.
+// eslint-disable-next-line react/prop-types
 const ParticleEffect = ({ children }) => {
   const mountRef = useRef(null); // Referencia al contenedor donde se montará la escena de Three.js.
   const { theme } = useTheme(); // Obtiene el tema actual desde el contexto.
@@ -16,16 +17,16 @@ const ParticleEffect = ({ children }) => {
       0.1, // Plano cercano.
       1000 // Plano lejano.
     );
-    
+
     // Renderizador WebGL con fondo transparente.
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    
+
     // Agrega el canvas del renderizador al contenedor.
     mountRef.current.appendChild(renderer.domElement);
 
     // Cantidad de partículas en la simulación.
-    const particleCount = 150;
+    const particleCount = 400;
     const geometry = new THREE.BufferGeometry(); // Geometría de las partículas.
     const positions = new Float32Array(particleCount * 3); // Posiciones de las partículas (x, y, z).
     const velocities = new Float32Array(particleCount * 3); // Velocidades de las partículas (x, y, z).
@@ -37,8 +38,8 @@ const ParticleEffect = ({ children }) => {
       positions[index * 3 + 2] = 0; // Resetea la posición en Z.
 
       let dir = new THREE.Vector3(
-        Math.random() * 2 - 1, 
-        Math.random() * 2 - 1, 
+        Math.random() * 2 - 1,
+        Math.random() * 2 - 1,
         Math.random() * 2 - 1
       ).normalize(); // Se normaliza para obtener un vector unitario.
 
@@ -90,26 +91,43 @@ const ParticleEffect = ({ children }) => {
     camera.position.z = 10; // Ubica la cámara para ver las partículas.
 
     let animationFrameId; // Almacena el ID del frame de animación.
+
+    //Nueva
+    let explosionPhase = true; // Estado inicial: explosión
+    const slowDownFactor = 0.995; // Factor de desaceleración más suave
+    const minVelocity = 0.002; // Velocidad mínima para evitar vibraciones
+    
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       const positions = particles.geometry.attributes.position.array;
-
-      // Mueve las partículas según su velocidad.
+    
       for (let i = 0; i < positions.length; i += 3) {
         positions[i] += velocities[i]; // Movimiento en X.
         positions[i + 1] += velocities[i + 1]; // Movimiento en Y.
         positions[i + 2] += velocities[i + 2]; // Movimiento en Z.
-
-        // Si la partícula se sale del rango visible, se reinicia.
-        if (positions[i] > window.innerWidth || positions[i] < -window.innerWidth || positions[i + 1] > window.innerHeight || positions[i + 1] < -window.innerHeight) {
-          const index = i / 3;
-          resetParticle(index); // Resetea la partícula.
+    
+        // Si la partícula se alejó bastante, pasamos a la fase de desaceleración
+        if (explosionPhase && Math.hypot(positions[i], positions[i + 1], positions[i + 2]) > 5) {
+          explosionPhase = false; 
         }
+    
+        // Fase de desaceleración progresiva
+        if (!explosionPhase) {
+          velocities[i] *= slowDownFactor;
+          velocities[i + 1] *= slowDownFactor;
+          velocities[i + 2] *= slowDownFactor;
+        }
+    
+        // Evitar que las partículas se detengan completamente y empiecen a vibrar
+        if (Math.abs(velocities[i]) < minVelocity) velocities[i] = Math.sign(velocities[i]) * minVelocity;
+        if (Math.abs(velocities[i + 1]) < minVelocity) velocities[i + 1] = Math.sign(velocities[i + 1]) * minVelocity;
+        if (Math.abs(velocities[i + 2]) < minVelocity) velocities[i + 2] = Math.sign(velocities[i + 2]) * minVelocity;
       }
-
-      particles.geometry.attributes.position.needsUpdate = true; // Indica que las posiciones han cambiado.
-      renderer.render(scene, camera); // Renderiza la escena.
+    
+      particles.geometry.attributes.position.needsUpdate = true;
+      renderer.render(scene, camera);
     };
+    
 
     animate(); // Inicia la animación.
 
@@ -137,11 +155,11 @@ const ParticleEffect = ({ children }) => {
   }, [theme]); // Se ejecuta cada vez que el tema cambia.
 
   return (
-    <div 
-      ref={mountRef} 
+    <div
+      ref={mountRef}
       style={{
-        position: "relative", 
-        width: "100vw", 
+        position: "relative",
+        width: "100vw",
         height: "100vh",
         background: "var(--backgroundColor)", // Usa la variable CSS del fondo.
       }}

@@ -3,23 +3,26 @@
 
 
 .custom-card-active {
-    width: 110%;
-    margin-left: -5%;
-    height: 82%;
+    width: 130vh;
+    height: 45vh;
     z-index: 10; /* Ajusta el valor de z-index según sea necesario */   
+    margin-left: -3%;
+    margin-right: -3%;
+    transition: all 0.3s cubic-bezier( 0.3, 0.5, 0.7,0.9);
 }
+.custom-card-inactive{
+    width: 120vh;
+    height: 40vh;
+    margin-top: 2.5%;
+    transition: all 0s ease-in-out; /* Aplica la transición suave a todas las propiedades en 0.3 segundos */
 
-
+}
 .custom-card-active h3{
     margin-top: 12%;
 }
 
 .relative{
     color: transparent;
-}
-.custom-card-inactive{
-    width: 100%;
-    height: 70%;
 }
 
 .custom-card-home{
@@ -31,7 +34,7 @@
     flex-direction: column;
     align-content: start;
     align-items: center;
-    transition:  all 0.7s ease-out;
+
     cursor: pointer;
     &:hover{
         box-shadow:  6px 6px 12px #f7f7f757 ,
@@ -40,8 +43,8 @@
 }
 
 .custom-descrip-card{
-    padding: 8%;
-    height: 45%;
+    padding: 5%;
+    height: 40%;
     font-family: "Josefin Sans", sans-serif;
     text-align: center;
     color: var(--colorTextBase);
@@ -49,14 +52,30 @@
 
 .custom-card-inactive .custom-descrip-card{
     color: var(--colorTextBase);
+    
 }
 
 .custom-card-active .custom-descrip-card{
     color: var(--colorTextBase);
     font-size: 120%;
+    height: 40%;
+    margin-bottom: 5%;
+    transition: all 0.3s cubic-bezier( 0.3, 0.5, 0.7,0.9);
 }
 
-.custom-card-inactive{
+.custom-card-active .custom-text-card{
+    margin-top: 20%;
+    height: 10%;
+    transition: all 0.3s cubic-bezier( 0.3, 0.5, 0.7,0.9);
+
+}
+
+
+.custom-card-inactive .custom-descrip-card{
+    color: var(--colorTextBase);
+}
+
+.custom-card-inactive .custom-text-card{
     padding-left: 4%;
     padding-right: 4%;
 }
@@ -65,16 +84,17 @@
 .custom-text-card{
     font-family: "Josefin Sans", sans-serif;
     text-align: center;
-    margin-top: 10%;
+    margin-top: 20%;
     color: var(--colorTextBase);
-    padding-left: 2%;
-    padding-right: 2%;
+    padding-left: 3%;
+    padding-right: 3cqb;
 }
 
-.custom-autor-card{
-    font-family: "Josefin Sans", sans-serif;
-    color: var(--colorTextBase);
-    text-align: center;
+.custom-card-active .custom-btn{
+    transition: all 0.3s cubic-bezier( 0.3, 0.5, 0.7,0.9);
+    height: 15%;
+    border-radius: 2rem;
+    margin-top: -4%;
 }
 
 .custom-btn{
@@ -83,11 +103,11 @@
     -2px -2px 6px var(--backgroundColor);
     color: var(--colorTextBase);   
     border: 0px;
-    border-radius: 1rem;
+    border-radius: 2rem;
     font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
-    height: 10%;
+    height: 13%;
     padding-left: 20%;
     padding-right: 20%;
     justify-content: center;
