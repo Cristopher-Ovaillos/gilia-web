@@ -32,19 +32,19 @@ const ListLineasContainer = () => {
     <div
       className="flex flex-col items-center p-8 min-h-screen"
       style={{
-        backgroundColor: theme.token.backgroundColor, // Fondo según el tema
-        color: theme.token.colorTextBase, // Color de texto según el tema
+        backgroundColor: theme.token.backgroundColor, 
+        color: theme.token.colorTextBase,
   
         backgroundSize: "cover",
         backgroundPosition: "center",
-        boxShadow: `inset 0 0 20px ${theme.token.shadowtop}` // Sombra suave en el fondo
+        boxShadow: `inset 0 0 20px ${theme.token.shadowtop}` 
       }}
     >
       <p
         className="text-4xl font-bold text-center mb-6 uppercase tracking-wider"
         style={{
-          color: theme.token.colorTextBase, // Título en el color del tema
-          textShadow: `0 0 10px ${theme.token.shadowtop}, 0 0 15px ${theme.token.shadowtop}` // Sombra sutil para el texto
+          color: theme.token.colorTextBase, 
+          textShadow: `0 0 10px ${theme.token.shadowtop}, 0 0 15px ${theme.token.shadowtop}` 
         }}
       >
         {linea.nombre}
@@ -53,8 +53,8 @@ const ListLineasContainer = () => {
       <div
         className="w-full max-w-4xl text-lg leading-relaxed font-light text-justify"
         style={{
-          color: theme.token.colorTextBase, // Color de texto en el contenido
-          textShadow: `0 0 5px ${theme.token.shadowtop}, 0 0 10px ${theme.token.shadowtop}`, // Sombra en el texto
+          color: theme.token.colorTextBase, 
+          textShadow: `0 0 5px ${theme.token.shadowtop}, 0 0 10px ${theme.token.shadowtop}`, 
         }}
       >
         <div
@@ -66,10 +66,10 @@ const ListLineasContainer = () => {
       <div
         className="mt-6 w-full max-w-4xl"
         style={{
-          borderTop: `3px solid ${theme.token.borderColor}`, // Borde superior decorativo
+          borderTop: `3px solid ${theme.token.borderColor}`,
           paddingTop: "20px",
           textAlign: "center",
-          color: theme.token.accentColor, // Color de acento para detalles
+          color: theme.token.accentColor, 
           fontSize: "1.25rem"
         }}
       >
