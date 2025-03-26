@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import * as THREE from "three";
-import { useTheme } from "../../../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 
 // Componente que genera un efecto de partículas animadas con Three.js.
 // eslint-disable-next-line react/prop-types

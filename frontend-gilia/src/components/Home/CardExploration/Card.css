@@ -37,8 +37,8 @@
 
     cursor: pointer;
     &:hover{
-        box-shadow:  6px 6px 12px #f7f7f757 ,
-             -6px -6px 12px #f7f7f757 ;
+        box-shadow:  6px 6px 12px var(--shadowbotom) ,
+             -6px -6px 12px var(--shadowbotom) ;
     }
 }
 
@@ -116,8 +116,8 @@
 
     &:hover{
         background-color: var(--backgroundColorSecondary);
-        box-shadow: 2px 2px 4px var(--homebottonshadow),
-        -2px -2px 6px var(--homebottonshadow);
+        box-shadow: 2px 2px 4px var(--backgroundColor),
+        -2px -2px 6px var(--backgroundColor);
     }
 }
 

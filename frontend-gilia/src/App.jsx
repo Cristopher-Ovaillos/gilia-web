@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useTheme } from "./context/ThemeContext";
 import Navbar from "./components/Navbar/Navbar";
 import AboutUs from "./components/AboutUs/AboutUs";
-import HomeContainer from './components/Home/HomeContainer';
+import HomeContainer from './components/Home/HomeContainer/HomeContainer';
 import LinesDetailContainer from "./components/research_line_Detail/LinesDetailContainer";
 import ListLineasContainer from "./components/list_research_line/ListLinesContainer";
 import PostsList from './components/Post/PostList';

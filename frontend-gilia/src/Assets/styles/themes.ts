@@ -27,7 +27,7 @@ export const lightTheme = {
     colorTextBase: '#141414',                // Color texto
     colorTextBaseHover: '#413f4b',           // Color texto on Hover
     efectColorHover: '#1890ff',              
-    shadowbotom: '#fafafa',                  // Sombra inferior
+    shadowbotom: '#bebebe',                  // Sombra inferior
     shadowtop: '#b8b8b8',                    // Sombra superior
     homebottonshadow: '#000000',             // Sombra del botón
     // Propiedades nuevas para detalles
