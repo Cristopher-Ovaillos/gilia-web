@@ -528,6 +528,7 @@ export interface ApiLineaInvestigacionLineaInvestigacion
     > &
       Schema.Attribute.Private;
     nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    people: Schema.Attribute.Relation<'oneToMany', 'api::person.person'>;
     proyectos: Schema.Attribute.Relation<'oneToMany', 'api::proyecto.proyecto'>;
     publicacions: Schema.Attribute.Relation<
       'manyToMany',
@@ -586,6 +587,10 @@ export interface ApiPersonPerson extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     full_name: Schema.Attribute.String;
+    linea_investigacion: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::linea-investigacion.linea-investigacion'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

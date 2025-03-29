@@ -41,6 +41,12 @@
       "relation": "oneToMany",
       "target": "api::proyecto.proyecto",
       "mappedBy": "linea_investigacion"
+    },
+    "people": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::person.person",
+      "mappedBy": "linea_investigacion"
     }
   }
 }

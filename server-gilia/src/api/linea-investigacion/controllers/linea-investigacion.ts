@@ -12,7 +12,7 @@ export default factories.createCoreController('api::linea-investigacion.linea-in
     // Consulta con 'populate' para obtener imagen, publicaciones y proyectos
     const lineaInvestigacion = await strapi.db.query('api::linea-investigacion.linea-investigacion').findOne({
       where: { id },
-      populate: ['imagen', 'publicacions', 'proyectos'],  // Agregar campos relacionados
+      populate: ['imagen', 'publicacions', 'proyectos', 'people'],  // Agregar campos relacionados
     });
 
     if (!lineaInvestigacion) {

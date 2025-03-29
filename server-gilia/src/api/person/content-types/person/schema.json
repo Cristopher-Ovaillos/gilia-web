@@ -39,6 +39,12 @@
         "colaborador",
         "becario"
       ]
+    },
+    "linea_investigacion": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::linea-investigacion.linea-investigacion",
+      "inversedBy": "people"
     }
   }
 }

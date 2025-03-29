@@ -42,11 +42,11 @@ const PostFilter = ({ filtro, setFiltro, setPagina }) => {
       <input
         type="text"
         name="linea" 
-        placeholder="Linea (falta)" 
+        placeholder="Linea" 
         value={filtro.linea || ""} 
         onChange={() => {}} 
         className="p-2 border rounded w-full sm:w-48" 
-        disabled 
+       
       />
     </div>
   );
