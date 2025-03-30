@@ -40,7 +40,7 @@ const ListLineasContainer = () => {
       <div className="mt-8 w-full text-center border-t border-gray-300 pt-4">
         <p className="text-lg font-semibold mb-2">Explora más sobre esta línea:</p>
         <div className="mt-2 flex flex-col sm:flex-row justify-center gap-6">
-          <Link to="/proyectos" state={{ linea: linea.nombre }} className="flex items-center gap-2 hover:opacity-75">
+          <Link to="/" state={{ linea: linea.nombre }} className="flex items-center gap-2 hover:opacity-75">
             <FolderOutlined className="text-xl" />
             <span className="text-lg font-medium">Ver proyectos</span>
           </Link>
@@ -48,7 +48,7 @@ const ListLineasContainer = () => {
             <BookOutlined className="text-xl" />
             <span className="text-lg font-medium">Ver publicaciones</span>
           </Link>
-          <Link to="/integrantes" state={{ linea: linea.nombre }} className="flex items-center gap-2 hover:opacity-75">
+          <Link to="/" state={{ linea: linea.nombre }} className="flex items-center gap-2 hover:opacity-75">
             <TeamOutlined className="text-xl" />
             <span className="text-lg font-medium">Ver integrantes</span>
           </Link>
