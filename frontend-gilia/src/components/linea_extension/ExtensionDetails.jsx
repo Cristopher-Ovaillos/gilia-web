@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { marked } from "marked";
 import { API_BASE_URL } from "../../config/apiConfig";
-
+import { useTheme } from "../../context/ThemeContext";
 const LineaExtensionDetail = () => {
   const { id } = useParams();
   const [linea, setLinea] = useState(null);
-  const [visibleProjects, setVisibleProjects] = useState(6);
-  const [visiblePublications, setVisiblePublications] = useState(6);
+  const [visibleProjects, setVisibleProjects] = useState(2);
+  const [visiblePublications, setVisiblePublications] = useState(2);
 
   useEffect(() => {
     const fetchLineaExtensionDetail = async () => {

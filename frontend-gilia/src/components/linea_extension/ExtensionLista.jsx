@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { API_BASE_URL } from '../../config/apiConfig'; 
-import { useTheme } from "../../context/ThemeContext";
-
+import "./Extension.css";
 const LineaExtensionList = () => {
   const [lineas, setLineas] = useState([]);
-  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchLineasExtension = async () => {
