@@ -4,22 +4,10 @@
   font-style: normal;
   margin-bottom: 2%;
   font-size: 200%;
-  text-align: center;
 }
-
-.text-linea-investigacion {
+.text-linea-investigacion{
   font-family: "Josefin Sans", sans-serif;
   font-optical-sizing: auto;
   font-size: 120%;
-  line-height: 1.9;
-  text-align: justify;
-}
-
-.integrantes-lista {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+  line-height: 1.9; /* Ajusta el valor según necesites */
 }
