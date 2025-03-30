@@ -12,24 +12,24 @@ const PostFilter = ({ filtro, setFiltro, setPagina }) => {
 
   return (
     <div className="mb-6 flex flex-col sm:flex-row gap-4">
-    
+
       <input
-        type="number" 
-        name="anio" 
-        placeholder="Año" 
-        value={filtro.anio || ""} 
+        type="number"
+        name="anio"
+        placeholder="Año"
+        value={filtro.anio || ""}
         onChange={handleFiltroChange} // Llamamos a la funcion cuando cambia el valor
-        className="p-2 border rounded w-full sm:w-48" 
+        className="p-2 border rounded w-full sm:w-48"
       />
- 
+
       <select
-        name="tipo" 
-        value={filtro.tipo || ""} 
+        name="tipo"
+        value={filtro.tipo || ""}
         onChange={handleFiltroChange} // llamamos a la funcion cuando cambia el valor
-        className="p-2 border rounded w-full sm:w-48" 
+        className="p-2 border rounded w-full sm:w-48"
       >
         <option value="">Tipo</option>
-      
+
         <option value="Articulo">Articulo</option>
         <option value="Capitulo de Libro">Capitulo de Libro</option>
         <option value="Paper">Paper</option>
@@ -41,13 +41,13 @@ const PostFilter = ({ filtro, setFiltro, setPagina }) => {
 
       <input
         type="text"
-        name="linea" 
-        placeholder="Linea" 
-        value={filtro.linea || ""} 
-        onChange={() => {}} 
-        className="p-2 border rounded w-full sm:w-48" 
-       
+        name="linea"
+        placeholder="Linea"
+        value={filtro.linea || ""}
+        onChange={handleFiltroChange}
+        className="p-2 border rounded w-full sm:w-48"
       />
+
     </div>
   );
 };

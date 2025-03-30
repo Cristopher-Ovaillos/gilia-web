@@ -15,6 +15,9 @@ const ListLineasContainer = () => {
         const response = await fetch(`${API_BASE_URL}/api/linea-investigacions/${id}`);
         const data = await response.json();
         setLinea(data);
+        
+        
+
       } catch (error) {
         console.error("Error al obtener la línea de investigación:", error);
       }
@@ -26,7 +29,7 @@ const ListLineasContainer = () => {
   if (!linea) return <Loader />;
 
   const descripcionHTML = marked(linea.descripcion);
-
+  console.log(linea.nombre);
   return (
     <div className="flex flex-col items-center p-8 min-h-screen w-[90%] mx-auto">
       <h1 className="text-center w-full text-3xl font-semibold tracking-wide">{linea.nombre}</h1>
@@ -43,10 +46,12 @@ const ListLineasContainer = () => {
             <FolderOutlined className="text-xl" />
             <span className="text-lg font-medium">Ver proyectos</span>
           </Link>
+
           <Link to="/post" state={{ linea: linea.nombre }} className="flex items-center gap-2 hover:opacity-75">
             <BookOutlined className="text-xl" />
             <span className="text-lg font-medium">Ver publicaciones</span>
           </Link>
+
           <Link to="/integrantes" state={{ linea: linea.nombre }} className="flex items-center gap-2 hover:opacity-75">
             <TeamOutlined className="text-xl" />
             <span className="text-lg font-medium">Ver integrantes</span>

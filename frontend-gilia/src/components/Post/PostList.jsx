@@ -4,12 +4,15 @@ import { API_BASE_URL } from "../../config/apiConfig";
 import PostItem from "./PostItem";
 import PostFilter from "./PostFilter";
 import PostPagination from "./PostPagination";
+import { useLocation } from "react-router-dom";
 
 const PostList = () => {
+  const { state } = useLocation(); // Accede al estado de navegación
+  const linea = state?.linea || ""; // Obtén el valor de 'linea' del estado
   const [publicaciones, setPublicaciones] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pagina, setPagina] = useState(1);
-  const [filtro, setFiltro] = useState({ anio: "", tipo: "", linea: "" });
+  const [filtro, setFiltro] = useState({ anio: "", tipo: "", linea: linea }); // Inicia el filtro con 'linea'
   const [totalPaginas, setTotalPaginas] = useState(1);
   const { theme } = useTheme();
 
@@ -30,7 +33,8 @@ const PostList = () => {
           queryParams["filters[tipo][$eq]"] = filtro.tipo;
         }
         if (filtro.linea) {
-          queryParams["filters[linea][$containsi]"] = filtro.linea;
+          console.log("Filtrando por línea:", filtro.linea);
+          queryParams["filters[linea_investigacions][nombre][$containsi]"] = filtro.linea;
         }
 
         const query = new URLSearchParams(queryParams).toString();
@@ -47,7 +51,7 @@ const PostList = () => {
     };
 
     fetchPublicaciones();
-  }, [pagina, filtro]);
+  }, [pagina, filtro]); // Reemplaza 'filtro' con la nueva línea como parte de la dependencia
 
   return (
     <div className="max-w-screen-lg mx-auto px-4 py-8" style={{ color: theme.token.colorTextBase }}>
