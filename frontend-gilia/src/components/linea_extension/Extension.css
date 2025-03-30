@@ -1,3 +1,36 @@
-.link-text{
-    color: var(--colorTextBase);
+/* styles.css */
+
+.card {
+    background-color: var(--backgroundColorSecondary);
+    border: 1px solid var(--shadowbotom);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px var(--shadowtop);
   }
+  
+  .card-button {
+    background-color: var(--colorPrimario);
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card-button:hover {
+    background-color: var(--efectColorHover);
+  }
+  
+  .card-link {
+    color: var(--colorPrimario);
+    text-decoration: none;
+  }
+  
+  .card-link:hover {
+    color: var(--colorTextBaseHover);
+    text-decoration: none;
+  }
+  
+  /* Los estilos de grid y utilidades de Tailwind se mantienen en clase */
+  
