@@ -1,4 +1,4 @@
-/* styles.css */
+
 
 .card {
     background-color: var(--backgroundColorSecondary);
@@ -31,6 +31,5 @@
     color: var(--colorTextBaseHover);
     text-decoration: none;
   }
-  
-  /* Los estilos de grid y utilidades de Tailwind se mantienen en clase */
+ 
   
