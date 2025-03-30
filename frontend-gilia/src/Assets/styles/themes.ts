@@ -9,10 +9,7 @@ export const darkTheme  = {
     shadowbotom: '#303030',                 
     shadowtop: '#121212',                    
     homebottonshadow: '#e0e0e0',             
-    // Propiedades nuevas para detalles
-    borderRadius: '12px',                    
-    hoverBackgroundColor: '#333333',        
-    accentColor: '#ff6347',                  
+         
 
   }
 };
@@ -28,10 +25,7 @@ export const lightTheme = {
     shadowbotom: '#bebebe',                  
     shadowtop: '#b8b8b8',                   
     homebottonshadow: '#000000',             
-    // Propiedades nuevas para detalles
-    borderRadius: '12px',                    
-    hoverBackgroundColor: '#f0f0f0',        
-    accentColor: '#ff6347',                  
+                 
    
   }
 };
