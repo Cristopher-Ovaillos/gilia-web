@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Card from "../CardExploration/Card";
-import "./homeExploration.css";
 
 export default function HomeExploration() {
   const [activeIndex, setActiveIndex] = useState(1);
@@ -15,13 +13,6 @@ export default function HomeExploration() {
 
   const totalItems = novedades.length;
 
-  const getDisplayedItems = () => {
-    return [
-      novedades[(activeIndex - 1 + totalItems) % totalItems],
-      novedades[activeIndex],
-      novedades[(activeIndex + 1) % totalItems],
-    ];
-  };
 
   const handleNext = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % totalItems);
@@ -44,15 +35,7 @@ export default function HomeExploration() {
 
       <div className="relative flex items-center justify-center mt-16">
         <button onClick={handlePrev} className="absolute left-0 text-white px-4 py-2 rounded-full rotate-180 ml-[20%] custom-flecha">➤</button>
-        <div className="flex overflow-hidden w-[950px] h-[450px] justify-center pl-5 pr-5 pt-5">
-          {getDisplayedItems().map((lineaInv, index) => (
-            <Card
-              key={lineaInv.id}
-              {...lineaInv}
-              activa={index === 1}
-            />
-          ))}
-        </div>
+       
         <button onClick={handleNext} className="absolute right-0 text-white px-4 py-2 rounded-full mr-[20%] custom-flecha">➤</button>
       </div>
     </div>
