@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { marked } from "marked";
 import { API_BASE_URL } from "../../config/apiConfig";
 import './Extension.css';
+import Loader from "../Loader/Loader";
 
 const LineaExtensionDetail = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const LineaExtensionDetail = () => {
     fetchLineaExtensionDetail();
   }, [id]);
 
-  if (!linea) return <p className="text-center text-lg">Cargando...</p>;
+  if (!linea) return  <Loader/>;
 
   const descripcionHTML = marked(linea.descripcion || "");
 

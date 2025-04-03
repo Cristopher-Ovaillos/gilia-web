@@ -1,0 +1,391 @@
+Como hago para que el contendor de custom-animatino-start aparezca de apoco cuandos se escrolea hacia abajo, encargate:
+----------------Ultimo de css----------------
+
+.custom-card1 {
+
+    padding: 5%;
+
+    background-color: var(--backgroundColorSecondary);
+
+    border-radius: 2rem;
+
+    box-shadow: 5px 5px 28px #adadad, -5px -5px 28px #ebebeb;
+
+    margin: 0;
+
+    margin-left: 30%;
+
+    justify-self: center;
+
+    align-self: center;
+
+    align-items: center;
+
+    align-content: center;
+
+    height: 90%;
+
+    max-width: 100%;
+
+}
+
+
+
+
+
+.custom-novedad {
+
+    height: 40vh;
+
+}
+
+
+
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+
+    bottom: var(--swiper-pagination-bottom, -6px);
+
+    top: var(--swiper-pagination-top, auto);
+
+    left: 0;
+
+    width: 100%;
+
+
+
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+
+    position: relative; /* Asegura que respete el z-index */
+
+}
+
+
+
+.swiper-container {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+
+.swiper-slide-prev,
+
+.swiper-slide-next {
+
+    opacity: 1 !important;
+
+    background-color: var(--backgroundColorSecondary) !important; /* Fondo sólido para las diapositivas previas y siguientes */ 
+
+}
+
+
+
+.swiper {
+
+    width: 100%;
+
+    height: 100%;
+
+    box-shadow: 6px 6px 12px var(--backgroundColor),
+
+                -6px -6px 12px var(--backgroundColor);
+
+}
+
+
+
+.swiper-slide {
+
+    height: 40vh;
+
+    width: 20vw;
+
+    background-color: var(--backgroundColorSecondary);
+
+    box-shadow: 6px 6px 12px var(--backgroundColor),
+
+                -6px -6px 12px var(--backgroundColor);
+
+    border-radius: 2rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+}
+
+
+
+/* Escalar y opacar los slides previos y posteriores */
+
+.swiper-slide-prev,
+
+.swiper-slide-next {
+
+    transform: scale(0.9);
+
+    opacity: 0.6;
+
+}
+
+
+
+/* Slide activo se mantiene normal */
+
+.swiper-slide-active {
+
+    transform: scale(1);
+
+    opacity: 1;
+
+}
+
+
+
+.swiper-slide h3 {
+
+    font-size: 1.2rem;
+
+    font-weight: bold;
+
+    margin-top: 20px;
+
+}
+
+
+
+.swiper-slide p {
+
+    font-size: 1rem;
+
+    padding: 10px;
+
+}
+
+
+
+/* Ajuste para que las slides inactivas se vean apiladas */
+
+.swiper-slide-prev {
+
+    transform: translateX(-20px) scale(0.9);
+
+}
+
+
+
+.swiper-slide-next {
+
+    transform: translateX(20px) scale(0.9);
+
+}
+
+
+
+/* Estilos para pantallas móviles */
+
+@media (max-width: 768px) {
+
+    .custom-card1 {
+
+        margin-left: 10%; /* Asegura que el card ocupe un poco menos de espacio en móviles */
+
+        padding: 3%; /* Menos padding en dispositivos pequeños */
+
+        height: auto; /* Altura automática */
+
+        max-width: 90%; /* Mejor ajuste en dispositivos móviles */
+
+    }
+
+
+
+    .swiper-slide {
+
+        width: 70vw; /* Hacer las diapositivas más grandes en móviles */
+
+        height: 35vh; /* Ajustar la altura */
+
+    }
+
+
+
+    .swiper-slide-prev,
+
+    .swiper-slide-next {
+
+        transform: scale(0.85);
+
+    }
+
+
+
+    .swiper-slide h3 {
+
+        font-size: 1rem; /* Reducir tamaño de fuente para móviles */
+
+    }
+
+
+
+    .swiper-slide p {
+
+        font-size: 0.9rem; /* Reducir el tamaño de texto para móviles */
+
+    }
+
+
+
+    .swiper-container {
+
+        margin-top: 20px; /* Agregar un poco de margen superior en móviles */
+
+    }
+
+}
+
+
+
+/* Estilos adicionales para pantallas más pequeñas (por ejemplo, móviles muy pequeños) */
+
+@media (max-width: 480px) {
+
+    .swiper-slide {
+
+        width: 85vw; /* Asegura que las diapositivas ocupen más espacio en pantallas muy pequeñas */
+
+        height: 30vh; /* Reducir la altura para pantallas pequeñas */
+
+    }
+
+
+
+    .swiper-slide-prev,
+
+    .swiper-slide-next {
+
+        transform: scale(0.75); /* Escalar más las diapositivas previas y siguientes */
+
+    }
+
+
+
+    .swiper-slide h3 {
+
+        font-size: 0.9rem; /* Ajuste de tamaño de texto */
+
+    }
+
+
+
+    .swiper-slide p {
+
+        font-size: 0.8rem; /* Ajuste de tamaño de texto */
+
+    }
+
+}
+
+
+----------------Ultimo----------------
+
+<Swiper
+  effect={'coverflow'}
+  grabCursor={true}
+  centeredSlides={true}
+  initialSlide={Math.floor(novedades.length / 2)}
+  slidesPerView={'auto'}
+  coverflowEffect={{
+    rotate: 30,
+    stretch: 0,
+    depth: 300,
+    modifier: 1,
+    slideShadows: false,
+  }}
+  pagination={{ clickable: true }}
+  navigation={true}
+  modules={[Navigation, EffectCoverflow, Pagination]}
+  className="mySwiper mt-[2%]"
+>
+  {novedades.map((novedad) => (
+    <SwiperSlide key={novedad.id} data-history={novedad.titulo} className="poster-slide">
+      <div className="custom-novedad">
+        <h3>{novedad.titulo}</h3>
+        <p>{novedad.descripcion}</p>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
+
+----------------Anterior----------------
+
+<Swiper
+
+          effect={'coverflow'}
+
+          grabCursor={true}
+
+          centeredSlides={true}
+
+          initialSlide={Math.floor(novedades.length / 2)} // Comienza desde el centro
+
+          slidesPerView={'auto'}
+
+          coverflowEffect={{
+
+            rotate: 30,
+
+            stretch: 0,
+
+            depth: 300,
+
+            modifier: 1,
+
+            slideShadows: false,
+
+          }}
+
+          pagination={true}
+
+          navigation={true}
+
+          modules={[Navigation, EffectCoverflow, Pagination]}
+
+          className="mySwiper mt-[2%]"
+
+        >
+
+          {novedades.map((novedad) => (
+
+            <SwiperSlide key={novedad.id} data-history={novedad.titulo} className="poster-slide">
+
+              <div className="custom-novedad">
+
+                <h3>{novedad.titulo}</h3>
+
+                <p>{novedad.descripcion}</p>
+
+              </div>
+
+            </SwiperSlide>
+
+          ))}
+
+        </Swiper>
+
+
