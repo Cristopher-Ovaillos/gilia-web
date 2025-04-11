@@ -28,7 +28,7 @@ const PostFilter = ({ filtro, setFiltro, setPagina }) => {
       className="inputField"
     >
       <option value="">Tipo</option>
-      <option value="Articulo">Articulo</option>
+      <option value="Artículo">Artículo</option>
       <option value="Capitulo de Libro">Capitulo de Libro</option>
       <option value="Paper">Paper</option>
       <option value="Informe Tecnico">Informe Tecnico</option>
