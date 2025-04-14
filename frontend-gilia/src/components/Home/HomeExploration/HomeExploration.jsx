@@ -97,6 +97,7 @@ export default function HomeExploration() {
 }
 
 
+
 /*
 
 !! Estilado de las cards 
