@@ -615,6 +615,7 @@ export interface ApiPersonPerson extends Struct.CollectionTypeSchema {
 export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
   collectionName: 'proyectos';
   info: {
+    description: '';
     displayName: 'proyecto';
     pluralName: 'proyectos';
     singularName: 'proyecto';
@@ -627,8 +628,6 @@ export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     descripcion: Schema.Attribute.RichText & Schema.Attribute.Required;
-    imagen: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
-      Schema.Attribute.Required;
     linea_extension: Schema.Attribute.Relation<
       'manyToOne',
       'api::linea-extension.linea-extension'

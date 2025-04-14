@@ -54,7 +54,7 @@ const PostList = () => {
   }, [pagina, filtro]); // Reemplaza 'filtro' con la nueva línea como parte de la dependencia
 
   return (
-    <div className="max-w-screen-lg mx-auto px-4 py-8" style={{ color: theme.token.colorTextBase }}>
+    <div className="max-w-screen-2xl mx-auto px-4 py-8" style={{ color: theme.token.colorTextBase }}>
       <PostFilter filtro={filtro} setFiltro={setFiltro} setPagina={setPagina} />
 
       {loading ? (

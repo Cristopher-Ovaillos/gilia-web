@@ -4,7 +4,8 @@
   "info": {
     "singularName": "proyecto",
     "pluralName": "proyectos",
-    "displayName": "proyecto"
+    "displayName": "proyecto",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,17 +17,6 @@
     },
     "descripcion": {
       "type": "richtext",
-      "required": true
-    },
-    "imagen": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false,
       "required": true
     },
     "linea_investigacion": {
