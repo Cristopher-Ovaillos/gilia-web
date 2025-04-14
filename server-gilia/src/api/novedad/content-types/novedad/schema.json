@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "novedads",
+  "info": {
+    "singularName": "novedad",
+    "pluralName": "novedads",
+    "displayName": "Novedad"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Titulo": {
+      "type": "string"
+    },
+    "Descripcion": {
+      "type": "text"
+    },
+    "Enlace": {
+      "type": "string"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { marked } from "marked";
 import Loader from "../Loader/Loader";
@@ -29,7 +29,7 @@ const LineaExtensionDetail = () => {
     fetchLineaExtensionDetail();
   }, [id]);
 
-  if (!linea) return <Loader />;
+  if (!linea) return  <Loader/>;
 
   const descripcionHTML = marked(linea.descripcion || "");
 

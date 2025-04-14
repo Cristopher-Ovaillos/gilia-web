@@ -541,6 +541,36 @@ export interface ApiLineaInvestigacionLineaInvestigacion
   };
 }
 
+export interface ApiNovedadNovedad extends Struct.CollectionTypeSchema {
+  collectionName: 'novedads';
+  info: {
+    displayName: 'Novedad';
+    pluralName: 'novedads';
+    singularName: 'novedad';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Descripcion: Schema.Attribute.Text;
+    Enlace: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::novedad.novedad'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiObjetivoObjetivo extends Struct.CollectionTypeSchema {
   collectionName: 'objetivos';
   info: {
@@ -1218,6 +1248,7 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::linea-extension.linea-extension': ApiLineaExtensionLineaExtension;
       'api::linea-investigacion.linea-investigacion': ApiLineaInvestigacionLineaInvestigacion;
+      'api::novedad.novedad': ApiNovedadNovedad;
       'api::objetivo.objetivo': ApiObjetivoObjetivo;
       'api::person.person': ApiPersonPerson;
       'api::proyecto.proyecto': ApiProyectoProyecto;

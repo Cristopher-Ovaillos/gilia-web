@@ -2,7 +2,7 @@ export const darkTheme = {
   token: {
     colorPrimario: '#ffffff', // blanco para mantener el estilo monocromo
     backgroundColor: '#141414',
-    backgroundColorSecondary: '#212121',
+    backgroundColorSecondary: '#212121', //Color de fondo para Card 
     colorTextBase: '#ffffff',
     colorTextBaseHover: '#d4cee4',
     efectColorHover: '#aaaaaa', // gris claro para hover en oscuro
@@ -16,7 +16,7 @@ export const lightTheme = {
   token: {
     colorPrimario: '#444444', // reemplazamos el azul por gris oscuro
     backgroundColor: '#e6e6e6',
-    backgroundColorSecondary: '#f5f5f5',
+    backgroundColorSecondary: '#cfcfcf',
     colorTextBase: '#141414',
     colorTextBaseHover: '#413f4b',
     efectColorHover: '#dddddd', // <- más suave que el actual
