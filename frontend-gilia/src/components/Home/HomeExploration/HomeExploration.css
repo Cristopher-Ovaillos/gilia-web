@@ -1,37 +1,37 @@
+
+
+/* --- Overrides / Utilidades (Si aplica) --- */
 .bg-indigo-600 {
+  /* NOTA: Esto anula una clase de utilidad, podría ser intencional o un error. */
+  /* Si es intencional, considera un nombre de clase más específico. */
   background-color: transparent;
 }
 
+/* --- Componente: Custom Novedad (Texto) --- */
 .custom-novedad {
-  height: 40vh;
+  font-family: "Josefin Sans", sans-serif;
 }
 
-.swiper-pagination-fraction,
-.swiper-pagination-custom,
-.swiper-horizontal > .swiper-pagination-bullets,
-.swiper-pagination-bullets.swiper-pagination-horizontal {
-  bottom: var(--swiper-pagination-bottom, -6px);
-  top: var(--swiper-pagination-top, auto);
-  left: 0;
-  width: 100%;
-  z-index: 10;
-  position: relative; /* Asegura que respete el z-index */
+.custom-novedad h3 {
+  font-size: 1.3rem;
+  color: var(--colorTextBase);
+  font-weight: 650; /* Nota: 650 no es un valor estándar, usualmente son múltiplos de 100 (ej: 600 o 700) */
 }
 
+.custom-novedad p {
+  font-size: 1.05rem;
+  color: var(--colorTextBase);
+  font-weight: 350; /* Nota: 350 no es un valor estándar, usualmente son múltiplos de 100 (ej: 300 o 400) */
+}
+
+/* --- Swiper: Contenedor y Estructura Base --- */
 .swiper-container {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.swiper-slide-prev,
-.swiper-slide-next {
-  opacity: 1 !important;
-  background-color: var(
-    --backgroundColorSecondary
-  ) !important; /* Fondo sólido para las diapositivas previas y siguientes */
+  /* margin-top: 20px;  Movido a media query para móviles */
 }
 
 .swiper {
@@ -40,13 +40,14 @@
   box-shadow:
     6px 6px 12px var(--backgroundColor),
     -6px -6px 12px var(--backgroundColor);
-  position: relative;
+  position: relative; /* Necesario para z-index y posicionamiento interno */
   overflow: hidden; /* Mantiene el contenido dentro del Swiper */
 }
 
+/* --- Swiper: Estilos de Slide Base --- */
 .swiper-slide {
   height: 40vh;
-  width: 20vw;
+  width: 20vw; /* Bastante estrecho para pantallas grandes, ajusta según necesidad */
   background-color: var(--backgroundColorSecondary);
   box-shadow:
     6px 6px 12px var(--backgroundColor),
@@ -61,45 +62,19 @@
     opacity 0.3s ease;
 }
 
-/* Escalar y opacar los slides previos y posteriores */
-
+/* --- Swiper: Estados de Slide (Prev, Next, Active) --- */
 .swiper-slide-prev,
 .swiper-slide-next {
+  background-color: var(--backgroundColorSecondary) !important; /* Fondo sólido */
   transform: scale(0.9);
-
-  opacity: 0.6;
 }
-
-/* Estilos para los botones de navegación */
-.swiper-button-prev,
-.swiper-button-next {
-  color: var(--colorTextBase);
-  background-color: var(--backgroundColor);
-  border-radius: 15%;
-}
-
-/* Slide activo se mantiene normal */
 
 .swiper-slide-active {
   transform: scale(1);
-
   opacity: 1;
 }
 
-.swiper-slide h3 {
-  font-size: 1.2rem;
-
-  font-weight: bold;
-
-  margin-top: 20px;
-}
-
-.swiper-slide p {
-  font-size: 1rem;
-
-  padding: 10px;
-}
-
+/* Ajustes finos de posicion para prev/next después del escalado base */
 .swiper-slide-prev {
   transform: translateX(-20px) scale(0.9);
 }
@@ -108,62 +83,199 @@
   transform: translateX(20px) scale(0.9);
 }
 
-/* Estilos para pantallas móviles */
+/* --- Swiper: Navegación (Botones) --- */
+.swiper-button-prev,
+.swiper-button-next {
+  color: var(--colorTextBase);
+  border-radius: 15%; /* Puede que no tenga efecto visual sin un fondo o borde */
+  /* Considera añadir tamaño, fondo o posición si no lo hereda de Swiper correctamente */
+}
 
+/* --- Swiper: Paginación --- */
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: var(--swiper-pagination-bottom, -6px); /* Usa variable CSS si está definida */
+  top: var(--swiper-pagination-top, auto);       /* Usa variable CSS si está definida */
+  left: 0;
+  width: 100%;
+  position: relative; /* Asegura que respete el z-index si es necesario */
+  z-index: 10;        /* Asegura que esté sobre otros elementos si es necesario */
+}
+
+/* --- Componente: Botón Novedades --- */
+.btn-novedades {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  border: 0;
+  position: relative; /* Necesario para el pseudo-elemento de efecto */
+  overflow: hidden;   /* Necesario para contener el efecto */
+  border-radius: 2rem;
+  transition: all 0.02s; /* Transición muy rápida para el :active */
+  font-weight: bold;
+  color: var(--colorTextBase);
+  background: transparent; /* Fondo inicial explícito */
+  cursor: pointer;
+  z-index: 0; /* Contexto de apilamiento base */
+  box-shadow: 0 0px 7px -5px var(--colorTextBase);
+  height: 4rem; /* Altura fija */
+  width: 50%;   /* Ancho relativo al contenedor padre */
+}
+
+.btn-novedades:hover {
+  background: var(--homebottonshadow); /* Cambia el fondo al hacer hover */
+  color: var(--backgroundColor);      /* Cambia el color del texto al hacer hover */
+}
+
+.btn-novedades:active {
+  transform: scale(0.97); /* Efecto de clic */
+}
+
+/* --- Componente: Botón Novedades - Efecto Hover Animado --- */
+.hf-novedades {
+  position: absolute;
+  inset: 0; /* Equivalente a top: 0; right: 0; bottom: 0; left: 0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1; /* Detrás del texto del botón */
+}
+
+.hf-novedades div {
+  background: linear-gradient(
+    90deg,
+    var(--colorTextBase) 25%,
+    var(--backgroundColorSecondary) 67%,
+    var(--colorbtn) 100%
+  );
+  border-radius: 50%; /* Para que sea un círculo */
+  width: 10rem;
+  height: 10rem;
+  transition: width 0.4s, height 0.4s; /* Transición suave del tamaño */
+  filter: blur(20px);
+  animation: effect 3s linear infinite;
+  opacity: 0.5;
+}
+
+.btn-novedades:hover .hf-novedades div {
+  /* Reduce el tamaño del efecto al hacer hover sobre el botón */
+  width: 8rem;
+  height: 8rem;
+}
+
+/* Animación para el efecto del botón */
+@keyframes effect {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Responsive Styles --- */
+
+/* Estilos para Tablets y Móviles Grandes */
 @media (max-width: 768px) {
+  /* .custom-card1 no estaba en el código original, lo comento o elimino */
+  /*
   .custom-card1 {
     margin-left: 10%;
-
     padding: 3%;
     height: auto;
-
     max-width: 90%;
   }
-
-  .swiper-slide {
-    width: 70vw;
-
-    height: 35vh;
-  }
-
-  .swiper-slide-prev,
-  .swiper-slide-next {
-    transform: scale(0.85);
-  }
-
-  .swiper-slide h3 {
-    font-size: 1rem; /* Reducir tamaño de fuente para móviles */
-  }
-
-  .swiper-slide p {
-    font-size: 0.9rem; /* Reducir el tamaño de texto para móviles */
-  }
+  */
 
   .swiper-container {
-    margin-top: 20px; /* Agregar un poco de margen superior en móviles */
+    margin-top: 20px; /* Agregar margen superior en móviles */
   }
-}
 
-/* Estilos adicionales para pantallas más pequeñas (por ejemplo, móviles muy pequeños) */
+  .swiper {
+      width: 90%; /* Hacer el swiper un poco más ancho */
+  }
 
-@media (max-width: 480px) {
   .swiper-slide {
-    width: 85vw; /* Asegura que las diapositivas ocupen más espacio en pantallas muy pequeñas */
-
-    height: 30vh; /* Reducir la altura para pantallas pequeñas */
+    width: 70vw; /* Hacer slides más anchas en pantallas medianas */
+    height: 35vh; /* Ajustar altura si es necesario */
   }
 
   .swiper-slide-prev,
   .swiper-slide-next {
-    transform: scale(0.75);
+    transform: scale(0.85); /* Reducir escala para slides no activas */
   }
 
-  .swiper-slide h3 {
-    font-size: 0.9rem;
+  /* Ajuste específico de translate después de la nueva escala */
+  .swiper-slide-prev {
+    transform: translateX(-15px) scale(0.85); /* Ajustar translate si es necesario */
+  }
+  .swiper-slide-next {
+    transform: translateX(15px) scale(0.85); /* Ajustar translate si es necesario */
   }
 
-  .swiper-slide p {
-    font-size: 0.8rem;
+  /* Ajustar fuentes dentro del slide si es necesario */
+  .custom-novedad h3 { /* Asumiendo que .custom-novedad está DENTRO de .swiper-slide */
+    font-size: 1.1rem; /* Reducir tamaño de fuente */
+  }
+
+  .custom-novedad p { /* Asumiendo que .custom-novedad está DENTRO de .swiper-slide */
+    font-size: 0.95rem; /* Reducir tamaño de fuente */
+  }
+
+  .btn-novedades {
+      width: 70%; /* Hacer el botón más ancho */
   }
 }
 
+/* Estilos para Móviles Pequeños */
+@media (max-width: 480px) {
+  .swiper {
+      width: 95%; /* Casi el ancho completo */
+  }
+
+  .swiper-slide {
+    width: 85vw; /* Slides ocupan más espacio horizontal */
+    height: 30vh; /* Reducir altura */
+  }
+
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    transform: scale(0.8); /* Escala aún menor */
+    opacity: 0.5 !important; /* Quizás menos opacidad */
+  }
+
+  /* Ajuste específico de translate después de la nueva escala */
+  .swiper-slide-prev {
+    transform: translateX(-10px) scale(0.8);
+  }
+  .swiper-slide-next {
+    transform: translateX(10px) scale(0.8);
+  }
+
+  .custom-novedad h3 {
+    font-size: 1rem;
+  }
+
+  .custom-novedad p {
+    font-size: 0.85rem;
+  }
+
+   .btn-novedades {
+      width: 85%; /* Botón ocupa más ancho */
+      padding: 12px 24px; /* Reducir padding si es necesario */
+      height: 3.5rem; /* Reducir altura si es necesario */
+  }
+
+   .hf-novedades div {
+       width: 8rem; /* Ajustar tamaño del efecto si se ve muy grande */
+       height: 8rem;
+   }
+
+   .btn-novedades:hover .hf-novedades div {
+       width: 6rem;
+       height: 6rem;
+   }
+}

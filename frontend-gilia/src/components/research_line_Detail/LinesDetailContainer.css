@@ -1,5 +1,5 @@
 .titulo-linea-investigacion {
-  font-family: "Playwrite AU QLD", cursive;
+  font-family: "Josefin Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   margin-bottom: 2%;
@@ -10,6 +10,7 @@
   font-family: "Josefin Sans", sans-serif;
   font-optical-sizing: auto;
   font-size: 120%;
+  font-weight: 350; /* Equivalente a semibold */
   line-height: 1.9;
 }
 
@@ -29,7 +30,7 @@
   cursor: pointer;
   font-family: inherit;
   padding: 0;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease; 
 }
 .explore-btn:hover {
   color: var(--colorTextBaseHover);

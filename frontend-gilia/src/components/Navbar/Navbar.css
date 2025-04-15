@@ -172,6 +172,9 @@
   color: var(--colorTextBase) ;
 }
 
+.link-text{
+  font-family: "Josefin Sans", sans-serif;
+}
 
 @media (max-width: 768px) {
 

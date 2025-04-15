@@ -77,7 +77,7 @@ const ListLineasContainer = () => {
 
       <div className="text-lg leading-relaxed font-light text-justify w-full text-linea-investigacion">
         <div
-          className="sm:prose-xl"
+          className="sm:prose-xl "
           dangerouslySetInnerHTML={{ __html: descripcionHTML }}
         />
       </div>
