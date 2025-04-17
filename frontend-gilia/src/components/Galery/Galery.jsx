@@ -1,53 +1,104 @@
+import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../../config/apiConfig";
+import SeccionGalery from "./SeccionGalery";
 
 const Galery = () => {
-    const images = [
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg",
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg",
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg",
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg",
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg",
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg",
-    ];
-  
-    const cantidadDeColumnas=4;
-    const cantidadDeFilasPorCol=3;
-  
-    return (
-      // Contenedor principal con clases de Tailwind para la cuadrícula y márgenes.
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-[90%] ml-[5%] mt-[2%] mb-[6%]">
-        {/* Itera sobre un arreglo de 4 elementos para crear las columnas */}
-        {[...Array(cantidadDeColumnas)].map((_, colIndex) => (
-          // Cada columna tiene un contenedor con una cuadrícula interna
-          <div key={colIndex} className="grid gap-4">
-            {/* Itera sobre un arreglo de 3 elementos para crear las filas dentro de cada columna */}
-            {[...Array(cantidadDeFilasPorCol)].map((_, rowIndex) => {
-              // Calcula el índice de la imagen en el arreglo según la columna y la fila
-              const imageIndex = colIndex * 3 + rowIndex;
-              return (
-                // Cada fila contiene una imagen
-                <div key={rowIndex}>
-                  <img
-                    // Establece las clases para la imagen: altura automática, ancho máximo 100%, y bordes redondeados
-                    className="h-auto max-w-full rounded-lg"
-                    // Fuente de la imagen, obtenida del arreglo `images` usando el índice calculado
-                    src={images[imageIndex]}
-                    // Texto alternativo para la imagen, basado en el índice calculado
-                    alt={`image-${imageIndex}`}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-  
-    );
-  };
-  
-  export default Galery;
+  const [gallerySections, setGallerySections] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        console.log(`${API_BASE_URL}/api/galerias`);
+
+        const response = await fetch(`${API_BASE_URL}/api/galerias`);
+        if (!response.ok) {
+          throw new Error(
+            `Error HTTP: ${response.status} ${response.statusText}`
+          );
+        }
+        const data = await response.json();
+        console.log("Datos de la galería obtenidos:", data);
+        setGallerySections(data);
+      } finally {
+        setLoading(false); // Finaliza la carga en cualquier caso
+      }
+    };
+
+    fetchData();
+  }, []); // El array vacío asegura que se ejecute solo al montar
+
+  if (loading) {
+    return <div className="text-center py-10">Cargando galería...</div>;
+  }
+
+  // --- Renderizado del Swiper ---
+  return (
+    <div className="w-full my-8 overflow-hidden">
+      {gallerySections.map((section) => (
+        <SeccionGalery key={section.id} section={section} />
+      ))}
+    </div>
+  );
+};
+
+export default Galery;
+
+/*
+
+ <Swiper
+        modules={[EffectCoverflow, Pagination, Navigation, Mousewheel, Keyboard]}
+        effect={'coverflow'}
+        slidesPerView={'auto'} // Muy importante para que respete el ancho de los slides
+        spaceBetween={50}     // Ajusta el espacio entre imágenes
+        centeredSlides={true}
+        //loop={allImages.length > 1} // Activa el loop solo si hay más de una imagen
+        grabCursor={true}
+        coverflowEffect={{
+          rotate: 40,        // Menos rotación puede verse mejor con imágenes
+          stretch: 0,
+          depth: 150,        // Más profundidad para separar más las imágenes
+          modifier: 1,
+          slideShadows: true,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        //mousewheel={true}
+        keyboard={{
+            enabled: true,
+        }}
+        // Clases para el contenedor Swiper, ajusta altura y padding
+        className="pb-12 pt-4 h-[400px] md:h-[500px] lg:h-[600px]" // Aumentamos la altura para las imágenes
+      >
+        <h3></h3>
+        {gallerySections.map((section) => {
+
+
+        })}
+      </Swiper>
+
+<SwiperSlide key={`${imageInfo.sectionId}-${imageInfo.imageId}-${index}`} className="flex-shrink-0 w-[70vw] md:w-[50vw] lg:w-[40vw] max-w-md bg-black rounded-lg shadow-xl overflow-hidden group"
+          >
+            <div className="relative w-full h-full">
+
+              <img
+                src={`${API_BASE_URL}${imageInfo.imageUrl}`} // Construye la URL completa
+                alt={imageInfo.altText || `Imagen ${index + 1} de ${imageInfo.sectionTitle}`}
+                className="block w-full h-full object-cover" // `object-cover` para llenar el espacio sin distorsión
+                loading="lazy" // Carga diferida para mejorar rendimiento
+              />
+
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/50 to-transparent transition-opacity opacity-0 group-hover:opacity-100">
+                <h3 className="text-white text-lg font-semibold truncate mb-1" title={imageInfo.sectionTitle}>
+                  {imageInfo.sectionTitle}
+                </h3>
+              </div>
+            </div>
+          </SwiperSlide>
+
+        
+        */

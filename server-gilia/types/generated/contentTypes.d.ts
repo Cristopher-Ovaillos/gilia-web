@@ -400,12 +400,13 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
 export interface ApiGaleriaGaleria extends Struct.CollectionTypeSchema {
   collectionName: 'galerias';
   info: {
-    displayName: 'galeria';
+    description: '';
+    displayName: 'Seccion_galeria';
     pluralName: 'galerias';
     singularName: 'galeria';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
