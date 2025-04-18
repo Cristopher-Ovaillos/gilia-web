@@ -8,7 +8,7 @@ import LinesDetailContainer from "./components/research_line_Detail/LinesDetailC
 import PostsList from './components/Post/PostList';
 import ExtensionList from "./components/linea_extension/ExtensionLista";
 import ExtensionDetails from "./components/linea_extension/ExtensionDetails";
-import Galery from './components/Galery/Galery'
+import Galery from './components/Galery/GaleryContainer/GaleryContainer';
 import ProyectoDetail from './components/Proyectos/Proyectos';
 import "./App.css"
 

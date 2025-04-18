@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
-
-// Import Swiper React components and styles
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
-// Import Local dependencies
 import { API_BASE_URL } from "../../../config/apiConfig";
 import Loader from "../../Loader/Loader";
 import "./HomeExploration.css";
 
+// Swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  EffectCoverflow,
+  Pagination,
+  Navigation,
+  Mousewheel,
+  Keyboard,
+} from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 // Configuración de Strapi
 const STRAPI_API_ENDPOINT = `${API_BASE_URL}/api/novedads`; // Endpoint para la colección 'novedads'
 
@@ -124,7 +128,13 @@ export default function HomeExploration() {
           }}
           pagination={{ clickable: true }} // Asegúrate que los estilos de paginación estén visibles
           navigation={false} // Asegúrate que los estilos/botones de navegación estén visibles y funcionen
-          modules={[Navigation, EffectCoverflow, Pagination]}
+          modules={[
+            EffectCoverflow,
+            Pagination,
+            Navigation,
+            Mousewheel,
+            Keyboard,
+          ]}
           className="mySwiper w-full" // Asegúrate que el Swiper pueda ocupar el ancho necesario
           style={{ paddingBottom: "40px" }} // Añade espacio para la paginación si queda oculta
         >
@@ -132,7 +142,7 @@ export default function HomeExploration() {
             <SwiperSlide
               key={novedad.id}
               data-history={novedad.titulo || `novedad-${novedad.id}`}
-              className="poster-slide !w-[300px] sm:!w-[400px] " // Ajusta el ancho si es necesario con !important si Swiper lo sobreescribe
+              className="poster-slide !w-[300px] sm:!w-[400px] home-swiper-slide " // Ajusta el ancho si es necesario con !important si Swiper lo sobreescribe
             >
               <div className="custom-novedad flex flex-col h-[100%] p-4 rounded-lg text-center overflow-hidden">
                 {/* TÍTULO */}

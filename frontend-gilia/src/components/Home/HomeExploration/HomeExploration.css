@@ -35,7 +35,7 @@
 }
 
 .swiper {
-  width: 85%;
+  width: 100%;
   height: 100%;
   box-shadow:
     6px 6px 12px var(--backgroundColor),
@@ -45,7 +45,7 @@
 }
 
 /* --- Swiper: Estilos de Slide Base --- */
-.swiper-slide {
+.home-swiper-slide {
   height: 40vh;
   width: 20vw; /* Bastante estrecho para pantallas grandes, ajusta según necesidad */
   background-color: var(--backgroundColorSecondary);
@@ -63,9 +63,9 @@
 }
 
 /* --- Swiper: Estados de Slide (Prev, Next, Active) --- */
-.swiper-slide-prev,
-.swiper-slide-next {
-  background-color: var(--backgroundColorSecondary) !important; /* Fondo sólido */
+.home-swiper-slide .swiper-slide-prev,
+.home-swiper-slide .swiper-slide-next {
+  background-color: var(--backgroundColorSecondary); /* Fondo sólido */
   transform: scale(0.9);
 }
 
@@ -99,6 +99,7 @@
   bottom: var(--swiper-pagination-bottom, -6px); /* Usa variable CSS si está definida */
   top: var(--swiper-pagination-top, auto);       /* Usa variable CSS si está definida */
   left: 0;
+  margin-top: 2%;
   width: 100%;
   position: relative; /* Asegura que respete el z-index si es necesario */
   z-index: 10;        /* Asegura que esté sobre otros elementos si es necesario */
@@ -121,8 +122,9 @@
   cursor: pointer;
   z-index: 0; /* Contexto de apilamiento base */
   box-shadow: 0 0px 7px -5px var(--colorTextBase);
-  height: 4rem; /* Altura fija */
+  height: 3.5rem; /* Altura fija */
   width: 50%;   /* Ancho relativo al contenedor padre */
+  margin-bottom: 4%;
 }
 
 .btn-novedades:hover {

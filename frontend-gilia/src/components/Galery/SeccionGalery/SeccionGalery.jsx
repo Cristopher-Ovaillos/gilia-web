@@ -1,5 +1,5 @@
 import React from "react";
-import { API_BASE_URL } from "../../config/apiConfig";
+import { API_BASE_URL } from "../../../config/apiConfig";
 
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,7 +19,9 @@ import "swiper/css/navigation";
 const SeccionGalery = ({ section }) => {
   return (
     <div key={section.id} className="mb-12">
-      <h2 className="text-2xl font-bold text-center mb-4">{section.titulo}</h2>
+      <h2 className="text-2xl font-bold text-center mb-[2%]">
+        {section.titulo}
+      </h2>
 
       <Swiper
         effect={"coverflow"}
@@ -27,14 +29,13 @@ const SeccionGalery = ({ section }) => {
         centeredSlides={true}
         slidesPerView={"auto"}
         coverflowEffect={{
-          rotate: 10,
+          rotate: 0,
           stretch: 0,
           depth: 1000,
           modifier: 1,
           slideShadows: false,
         }}
         pagination={{ clickable: true }}
-        navigation
         mousewheel
         keyboard
         modules={[
@@ -44,19 +45,22 @@ const SeccionGalery = ({ section }) => {
           Mousewheel,
           Keyboard,
         ]}
-        className="pb-12 pt-4 h-[300px] md:h-[400px] lg:h-[500px]"
+        className="pb-12 pt-4"
       >
         {section.imagenes.map((img, idx) => (
           <SwiperSlide
             key={idx}
-            style={{ backgroundColor: 'var(--backgroundColor)' , border: 'none', boxShadow: 'none' }}
-            className="flex-shrink-0 bg-transparent" // ← podés agregar estilos acá si querés
+            style={{
+              border: "none",
+              boxShadow: "none",
+            }}
+            className="!w-auto !h-[60vh] flex items-center justify-center custom-swiper-slide"
           >
-            <div className="relative h-full flex items-center justify-center">
+            <div className="flex items-center justify-center h-full">
               <img
                 src={`${API_BASE_URL}${img.url}`}
                 alt={img.descripcion || `Imagen ${idx + 1}`}
-                className="h-full w-auto object-contain"
+                className="max-w-[80vw] max-h-[90%] w-auto h-auto object-contain rounded-2xl shadow-lg"
                 loading="lazy"
               />
             </div>
