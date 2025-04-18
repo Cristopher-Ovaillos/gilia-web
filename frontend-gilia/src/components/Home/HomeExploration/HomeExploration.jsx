@@ -1,92 +1,178 @@
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
-
+import { useState, useEffect } from "react";
+import { API_BASE_URL } from "../../../config/apiConfig";
+import Loader from "../../Loader/Loader";
 import "./HomeExploration.css";
 
+// Swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  EffectCoverflow,
+  Pagination,
+  Navigation,
+  Mousewheel,
+  Keyboard,
+} from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+// Configuración de Strapi
+const STRAPI_API_ENDPOINT = `${API_BASE_URL}/api/novedads`; // Endpoint para la colección 'novedads'
+
 export default function HomeExploration() {
-  const novedades = [
-    {
-      id: 1,
-      titulo: "IA en la Medicina",
-      descripcion:
-        "Explorando el impacto de la inteligencia artificial en los diagnósticos médicos y tratamientos avanzados.",
-      link: "#",
-    },
-    {
-      id: 2,
-      titulo: "Blockchain en Finanzas",
-      descripcion:
-        "Cómo la tecnología blockchain está revolucionando la seguridad y transparencia en las transacciones financieras.",
-      link: "#",
-    },
-    {
-      id: 3,
-      titulo: "Realidad Virtual en Educación",
-      descripcion:
-        "El uso de la realidad virtual para mejorar la enseñanza y el aprendizaje en las aulas.",
-      link: "#",
-    },
-    {
-      id: 4,
-      titulo: "Automatización Industrial",
-      descripcion:
-        "Robots y software inteligente en la industria manufacturera para optimizar la producción.",
-      link: "#",
-    },
-    {
-      id: 5,
-      titulo: "5G y su Impacto",
-      descripcion:
-        "Cómo la conectividad 5G transformará la comunicación y las ciudades inteligentes.",
-      link: "#",
-    },
-  ];
+  const [novedades, setNovedades] = useState([]);
+  const [loading, setLoading] = useState(true); // Estado para indicar carga inicial
+  const [error, setError] = useState(null); // Estado para almacenar errores de fetch
+
+  // --- Efecto para Cargar Datos ---
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true); // Inicia la carga
+      setError(null); // Resetea errores previos
+      try {
+        const response = await fetch(STRAPI_API_ENDPOINT);
+
+        // Verificar si la respuesta HTTP fue exitosa (status 200-299)
+        if (!response.ok) {
+          // Intentar obtener más detalles del error si es posible
+          let errorData;
+          try {
+            errorData = await response.json();
+            // eslint-disable-next-line no-unused-vars
+          } catch (parseError) {
+            // Si el cuerpo no es JSON o está vacío
+            errorData = { message: response.statusText };
+          }
+          throw new Error(
+            `HTTP error! status: ${response.status} - ${errorData?.error?.message || errorData?.message || "Error desconocido"}`
+          );
+        }
+
+        // Procesar la respuesta JSON
+        const result = await response.json();
+        console.log("Datos recibidos de Strapi:", result);
+
+        // Verificar la estructura esperada de Strapi v4 ({ data: [...] })
+        if (result && Array.isArray(result.data)) {
+          setNovedades(result.data); // Guardar el array de entidades
+        } else {
+          console.warn(
+            "La estructura de datos recibida no es la esperada (se esperaba result.data como array):",
+            result
+          );
+          setNovedades([]); // Establecer como vacío si la estructura no es correcta
+        }
+      } catch (err) {
+        console.error("Error detallado al obtener datos:", err);
+        setError(err.message || "Ocurrió un error al cargar las novedades."); // Guardar el mensaje de error
+        setNovedades([]); // Asegurar que no haya datos viejos si falla
+      } finally {
+        setLoading(false); // Finaliza la carga (tanto si tuvo éxito como si falló)
+      }
+    };
+
+    fetchData();
+  }, []); // El array vacío asegura que el efecto se ejecute solo una vez al montar
+
+  if (loading) {
+    return <Loader />; // Muestra el loader mientras carga
+  }
+
+  if (error) {
+    return (
+      // Muestra un mensaje de error claro
+      <div className="relative isolate px-6 py-14 sm:py-32 lg:px-8 text-center text-red-600">
+        <h2>Error al cargar novedades</h2>
+        <p>{error}</p>
+        <p>Por favor, intenta recargar la página o contacta al soporte.</p>
+      </div>
+    );
+  }
+
+  if (!novedades || novedades.length === 0) {
+    return (
+      // Mensaje si no hay novedades (después de cargar y sin errores)
+      <div className="relative isolate px-6 py-14 sm:py-32 lg:px-8 text-center">
+        <h2 className="custom-color text-xl font-semibold">No hay novedades</h2>
+        <p className="mt-2 text-gray-600">Vuelve a consultar más tarde.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="relative outline-none border-0 isolate px-6 py-14 sm:py-32 lg:px-8 mt-[-10%]">
-      <div className="mx-auto max-w-4xl text-center">
-        <h2 className="custom-color text-base/7 font-semibold custom-animation-start-text">
+    <div className=" w-full sm:max-w-full mb-[20%]">
+      <div className="mx-auto max-w-4xl text-center mb-12">
+        <h2 className="custom-color text-base/7 font-semibold custom-animation-start-text ">
           Nuestras
         </h2>
         <p className="custom-color mt-2 text-4xl font-semibold tracking-tight text-balance sm:text-5xl custom-animation-start-text">
           Novedades
         </p>
       </div>
-
-      <div className="relative flex items-center justify-center mt-16">
+      <div className="relative flex items-center justify-center">
         <Swiper
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
-          initialSlide={Math.floor(novedades.length / 2)} // Comienza desde el centro
+          initialSlide={
+            novedades.length > 0 ? Math.floor(novedades.length / 2) : 0
+          }
           slidesPerView={"auto"}
           coverflowEffect={{
             rotate: 30,
             stretch: 0,
             depth: 300,
             modifier: 1,
-            slideShadows: false,
+            slideShadows: false, // Ajusta si quieres sombras
           }}
-          pagination={{ clickable: true }}
-          navigation={true}
-          modules={[Navigation, EffectCoverflow, Pagination]}
-          className="mySwiper mt-[2%]"
+          pagination={{ clickable: true }} // Asegúrate que los estilos de paginación estén visibles
+          navigation={false} // Asegúrate que los estilos/botones de navegación estén visibles y funcionen
+          modules={[
+            EffectCoverflow,
+            Pagination,
+            Navigation,
+            Mousewheel,
+            Keyboard,
+          ]}
+          className="mySwiper w-full" // Asegúrate que el Swiper pueda ocupar el ancho necesario
+          style={{ paddingBottom: "40px" }} // Añade espacio para la paginación si queda oculta
         >
           {novedades.map((novedad) => (
             <SwiperSlide
               key={novedad.id}
-              data-history={novedad.titulo}
-              className="poster-slide"
+              data-history={novedad.titulo || `novedad-${novedad.id}`}
+              className="poster-slide !w-[300px] sm:!w-[400px] home-swiper-slide " // Ajusta el ancho si es necesario con !important si Swiper lo sobreescribe
             >
-              <div className="custom-novedad">
-                <h3>{novedad.titulo}</h3>
-                <p>{novedad.descripcion}</p>
+              <div className="custom-novedad flex flex-col h-[100%] p-4 rounded-lg text-center overflow-hidden">
+                {/* TÍTULO */}
+                <div className="h-[80px] flex items-center justify-center px-2 mt-[]">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800">
+                    {novedad?.Titulo || "Título no disponible"}
+                  </h3>
+                </div>
+
+                {/* DESCRIPCIÓN */}
+                <div className="flex items-center h-[150px] overflow-y-auto">
+                  <p className="text-sm text-gray-600 px-3">
+                    {novedad?.Descripcion || "Descripción no disponible."}
+                  </p>
+                </div>
+
+                {/* BOTÓN */}
+                <div className="h-[80px] flex items-end justify-center">
+                  <a
+                    className="btn-novedades"
+                    href={novedad?.Enlace || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Ver Más
+                    <div className="hf-novedades">
+                      <div />
+                    </div>
+                  </a>
+                </div>
               </div>
             </SwiperSlide>
           ))}
@@ -95,8 +181,6 @@ export default function HomeExploration() {
     </div>
   );
 }
-
-
 
 /*
 
@@ -120,4 +204,4 @@ export default function HomeExploration() {
 
     pagination={{ clickable: true }}: Habilita la paginación con puntos (dots), permitiendo hacer clic en ellos para cambiar de diapositiva
     navigation={true}: Activa los botones de navegación (flechas izquierda y derecha).
-*/
+    */

@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Menu, Drawer, Button } from "antd";
-import { MenuOutlined, BulbOutlined, MoonOutlined } from "@ant-design/icons";
+import { MenuOutlined, BulbOutlined, MoonOutlined ,TranslationOutlined} from "@ant-design/icons";
 import { useTheme } from "../../context/ThemeContext";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { API_BASE_URL } from "../../config/apiConfig";
-
 
 const Navbar = ({ activeSection, setActiveSection }) => {
   const [visible, setVisible] = useState(false);
@@ -17,7 +16,9 @@ const Navbar = ({ activeSection, setActiveSection }) => {
   useEffect(() => {
     const fetchLineas = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/linea-investigacions`);
+        const response = await fetch(
+          `${API_BASE_URL}/api/linea-investigacions`
+        );
         const result = await response.json();
         console.log("Líneas recibidas:", result);
 
@@ -51,32 +52,57 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     return lineas.map((linea) => ({
       key: `linea-${linea.id}`,
       label: (
-        <Link to={`/lineas-de-investigacion/${linea.id}`} className="link-text" > {linea.nombre} </Link>
+        <Link to={`/lineas-de-investigacion/${linea.id}`} className="link-text">
+          {" "}
+          {linea.nombre}{" "}
+        </Link>
       ),
     }));
   };
 
   const menuItems = [
-    { key: "home", label: <Link to="/" className="link-text">Inicio</Link>, className: "Menu-item" },
+    {
+      key: "home",
+      label: (
+        <Link to="/" className="link-text">
+          Inicio
+        </Link>
+      ),
+      className: "Menu-item",
+    },
     {
       key: "projects",
       label: <span className="link-text">Línea de Investigación</span>,
       className: "Menu-item",
       children: handleLineas(),
     },
-    { key: "goal", label: <Link to="/objectives">Objetivos</Link>, className: "Menu-item" },
-    { key: "publications", label: <Link to="/post">Publicaciones</Link>, className: "Menu-item" },
-    { key: "extension", label: <Link to="/linea-extension">Extensión</Link>, className: "Menu-item" },
-    { key: "about-us", label: <Link to="/about-us">¿Quiénes Somos?</Link>, className: "Menu-item" },
-    { key: "galery", label: <Link to="/galery">Galeria</Link>, className: "Menu-item" },
+    // { key: "goal", label: <Link to="/objectives">Objetivos</Link>, className: "Menu-item" },
+    {
+      key: "publications",
+      label: <Link to="/post">Publicaciones</Link>,
+      className: "Menu-item",
+    },
+    {
+      key: "extension",
+      label: <Link to="/linea-extension">Extensión</Link>,
+      className: "Menu-item",
+    },
+    {
+      key: "about-us",
+      label: <Link to="/about-us">¿Quiénes Somos?</Link>,
+      className: "Menu-item",
+    },
+    {
+      key: "galery",
+      label: <Link to="/galery">Galeria</Link>,
+      className: "Menu-item",
+    },
   ];
 
   return (
     <div className="Menu-Container">
       <div className="logo-item">
-        <span className="logo-text">
-          GILIA
-        </span>
+        <span className="logo-text">GILIA</span>
       </div>
 
       {esCelular ? (
@@ -84,17 +110,31 @@ const Navbar = ({ activeSection, setActiveSection }) => {
           <Button
             className="menu-button"
             type="text"
-            icon={<MenuOutlined style={{ marginTop: "40%", fontSize: "22px" }} />}
+            icon={
+              <MenuOutlined style={{ marginTop: "40%", fontSize: "22px" }} />
+            }
             onClick={() => setVisible(true)}
           />
           <Drawer
             title={
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
                 <span style={{ color: theme.token.colorTextBas }}>Menú</span>
                 <Button
                   type="text"
                   onClick={toggleTheme}
-                  icon={theme.token.backgroundColor === "#121212" ? <BulbOutlined /> : <MoonOutlined />}
+                  icon={
+                    theme.token.backgroundColor === "#121212" ? (
+                      <BulbOutlined />
+                    ) : (
+                      <MoonOutlined />
+                    )
+                  }
                 />
               </div>
             }
@@ -120,11 +160,27 @@ const Navbar = ({ activeSection, setActiveSection }) => {
             onClick={handleMenuItemClick}
             items={menuItems}
             className="Menu"
-            style={{ backgroundColor: theme.token.backgroundColor, flex: 1, overflow: "visible", justifyContent: "end" }}
+            style={{
+              backgroundColor: theme.token.backgroundColor,
+              flex: 1,
+              overflow: "visible",
+              justifyContent: "end",
+            }}
           />
           <div className="theme-toggle-container">
-            <Button type="text" onClick={toggleTheme} className="theme-toggle-button">
-              {theme.token.backgroundColor === "#121212" ? <BulbOutlined /> : <MoonOutlined />}
+            <Button
+              type="text"
+              onClick={toggleTheme}
+              className="theme-toggle-button"
+            >
+              {theme.token.backgroundColor === "#121212" ? (
+                <BulbOutlined />
+              ) : (
+                <MoonOutlined />
+              )}
+            </Button>
+            <Button type="text" className="theme-toggle-button">
+              <TranslationOutlined />
             </Button>
           </div>
         </>
